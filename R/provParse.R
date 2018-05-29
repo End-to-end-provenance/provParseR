@@ -23,7 +23,7 @@ parseDataNodes <- function(prov.data) {
 
 parseProcNodes <- function(prov.data) {
   proc.nodes <- prov.data$activity[grep("^p", names(prov.data$activity))]
-  return(do.call(rbind, proc.nodes))
+  return(do.call(rbind.data.frame, proc.nodes))
 }
 
 parse.functions <- function(prov.data) {
