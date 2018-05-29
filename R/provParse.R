@@ -19,32 +19,20 @@ parse.libs <- function(prov.data) {
   return(libraries)
 }
 
-# data nodes
-parse.data.nodes <- function(prov.data) {
-  data.nodes <- prov.data$entity[grep("^d", names(prov.data$entity))]
-  
-  return(do.call(rbind.data.frame, data.nodes))
+#Source Scripts
+parse.scripts <- function(prov.data) {
+  env <- prov.data$entity$environment
+  scripts <-env$`rdt:sourcedScripts`
+  scripts <- as.data.frame(cbind(scripts, env$`rdt:sourcedScriptTimeStamps`))
+  if(length(scripts) > 0) names(scripts) <- c("Scripts", "Timestamps")
+  return(scripts)
 }
 
-# procedure nodes
-parse.proc.nodes <- function(prov.data) {
-  proc.nodes <- prov.data$activity[grep("^p", names(prov.data$activity))]
-  
-  return(do.call(rbind.data.frame, proc.nodes))
-}
-
-# function-library edges
-parse.func.lib.edges <- function(prov.data) {
-  func.lib.edges <- prov.data$hadMember[grep("^m", names(prov.data$hadMember))]
-  
-  return(do.call(rbind, func.lib.edges))
-}
-
-# functions
-parse.functions <- function(prov.data) {
-  func.nodes <- prov.data$entity[grep("^f", names(prov.data$entity))]
-  
-  return(do.call(rbind.data.frame,func.nodes))
+#generalized parser
+parse.general <- function(m.list, requested) {
+  grep.arg <- paste("^",requested,"[[:digit:]]", sep = "")
+  nodes <- m.list[grep(grep.arg, names(m.list))]
+  return(do.call(rbind.data.frame, nodes))
 }
 
 prov.parse <- function(filename) {
@@ -55,11 +43,21 @@ prov.parse <- function(filename) {
   
   prov.data <- fromJSON(prov)
   
-  func.lib.df <- parse.func.lib.edges(prov.data)
-  func.df <- parse.functions(prov.data)
+  master.list <- unlist(prov.data, recursive = F)
+  names(master.list) <- gsub("^.*\\.","", names(master.list))
+ 
   envi.df <- parse.envi(prov.data)
   lib.df <- parse.libs(prov.data)
-  dnodes.df <- parse.data.nodes(prov.data)
-  pnodes.df <- parse.proc.nodes(prov.data)
+  scr.df <- parse.scripts(prov.data)
+  
+  obj.chars <- c("p", "d", "f", "pp", "pd", "dp", "fp", "m")
+  obj.df <- lapply(obj.chars, parse.general, m.list = master.list)
+  names(obj.df) <- c("procNodes", "dataNodes", "funcNodes", "procProcEdges","ProcDataEdges",
+                     "dataProcEdges", "FuncProcEdges", "FuncLibEdges")
+  obj.df[["envi"]] <- envi.df
+  obj.df[["libs"]] <- lib.df
+  obj.df[["scripts"]] <- scr.df
+
+  return(obj.df)
 }
 
