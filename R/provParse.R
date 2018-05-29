@@ -17,7 +17,7 @@ parseLibs <- function(prov.data) {
   }
   
   lib.df <- t(as.data.frame(sapply(libraries, parseRows)))
-  colnames(lib.df) <- c("name", "version")
+  colnames(lib.df) <- c("Name", "Version")
   return(data.frame(lib.df))
 }
 
@@ -36,12 +36,7 @@ parseDataNodes <- function(prov.data) {
 
 parseProcNodes <- function(prov.data) {
   proc.nodes <- prov.data$activity[grep("^p", names(prov.data$activity))]
-  parseRows <- function(x) {
-    return(x)
-  }
-  
-  rows <- as.data.frame(t(sapply(proc.nodes, parseRows)))
-  return(rows)
+  return(do.call(rbind, proc.nodes))
 }
 
 prov.parse <- function(filename) {
