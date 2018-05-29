@@ -18,16 +18,8 @@ parseLibs <- function(prov.data) {
 }
 
 parseDataNodes <- function(prov.data) {
-  # data nodes
   data.nodes <- prov.data$entity[grep("^d", names(prov.data$entity))]
-  
-  remove.valType <- function(dn) {
-    dn <- dn[ - which(names(dn) == "valType")]
-  }
-  
-  data.nodes <- t(sapply(data.nodes, remove.valType))
-  data.nodes <- data.frame(data.nodes)
-  return(data.nodes)
+  return(do.call(rbind.data.frame, data.nodes))
 }
 
 parseProcNodes <- function(prov.data) {
