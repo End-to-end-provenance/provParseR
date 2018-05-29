@@ -8,12 +8,24 @@ parseEnvi <- function(prov.data) {
   return(data.frame(environment))
 }
 
+parseLibs <- function(prov.data) {
+  # libraries
+  libraries <- prov.data$entity[grep("^l", names(prov.data$entity))]
+  
+  parseRows <- function(x) {
+    return(c(x[[1]], x[[2]]))
+  }
+  
+  lib.df <- t(as.data.frame(sapply(libraries, parseRows)))
+  colnames(lib.df) <- c("name", "version")
+  return(data.frame(lib.df))
+}
 prov.parse <- function(filename) {
   library("jsonlite")
   
   prov.data <- fromJSON(file)
   
   envi.df <- parseEnvi(prov.data)
-  libr.df <- parseLibs(prov.data)
+  lib.df <- parseLibs(prov.data)
 }
 
