@@ -13,7 +13,6 @@ parseLibs <- function(prov.data) {
   libraries <- prov.data$entity[grep("^l", names(prov.data$entity))]
   libraries <- data.frame(do.call(rbind, libraries))
   libraries <- libraries[ - which(names(libraries) == "prov.type")]
-
   return(libraries)
 }
 
