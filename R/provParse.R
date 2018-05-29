@@ -20,6 +20,11 @@ parseLibs <- function(prov.data) {
   colnames(lib.df) <- c("name", "version")
   return(data.frame(lib.df))
 }
+
+parseDataNodes <- function(prov.data) {
+  
+}
+
 prov.parse <- function(filename) {
   library("jsonlite")
   
@@ -27,6 +32,6 @@ prov.parse <- function(filename) {
   
   envi.df <- parseEnvi(prov.data)
   lib.df <- parseLibs(prov.data)
-  
+  dnodes.df <- 
 }
 
