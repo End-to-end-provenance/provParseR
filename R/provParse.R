@@ -1,7 +1,7 @@
 parseEnvi <- function(prov.data) {
   env <- prov.data$entity$environment
-  env <- env[ - which(names(env) == "rdt:sourcedScripts")]
-  env <- env[ - which(names(env) == "rdt:sourcedScriptTimeStamps")]
+  env <- env[ - which(names(env) == "sourcedScripts")]
+  env <- env[ - which(names(env) == "sourcedScriptTimeStamps")]
   
   environment <- t(as.data.frame(env))
   colnames(environment) <- c("Value")
@@ -25,6 +25,16 @@ parseDataNodes <- function(prov.data) {
   
 }
 
+parseProcNodes <- function(prov.data) {
+  proc.nodes <- prov.data$activity[grep("^p", names(prov.data$activity))]
+  parseRows <- function(x) {
+    return(x)
+  }
+  
+  rows <- as.data.frame(t(sapply(proc.nodes, parseRows)))
+  return(rows)
+}
+
 prov.parse <- function(filename) {
   library("jsonlite")
   
@@ -35,6 +45,7 @@ prov.parse <- function(filename) {
   
   envi.df <- parseEnvi(prov.data)
   lib.df <- parseLibs(prov.data)
-  dnodes.df <- 
+  dnodes.df <- parseDataNodes(prov.data)
+  pnodes.df <- parseProcNodes(prov.data)
 }
 
