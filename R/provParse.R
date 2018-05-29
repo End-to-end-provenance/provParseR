@@ -26,6 +26,11 @@ parseProcNodes <- function(prov.data) {
   return(do.call(rbind, proc.nodes))
 }
 
+parse.functions <- function(prov.data) {
+  func.nodes <- prov.data$entity[grep("^f", names(prov.data$entity))]
+  return(do.call(rbind.data.frame,func.nodes))
+}
+
 prov.parse <- function(filename) {
   library("jsonlite")
   
@@ -34,6 +39,7 @@ prov.parse <- function(filename) {
   
   prov.data <- fromJSON(prov)
   
+  func.df <- parse.functions(prov.data)
   envi.df <- parseEnvi(prov.data)
   lib.df <- parseLibs(prov.data)
   dnodes.df <- parseDataNodes(prov.data)
