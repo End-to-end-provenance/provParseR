@@ -9,16 +9,12 @@ parseEnvi <- function(prov.data) {
 }
 
 parseLibs <- function(prov.data) {
-  # libraries
+  #libraries
   libraries <- prov.data$entity[grep("^l", names(prov.data$entity))]
-  
-  parseRows <- function(x) {
-    return(c(x[[1]], x[[2]]))
-  }
-  
-  lib.df <- t(as.data.frame(sapply(libraries, parseRows)))
-  colnames(lib.df) <- c("Name", "Version")
-  return(data.frame(lib.df))
+  libraries <- data.frame(do.call(rbind, libraries))
+  libraries <- libraries[ - which(names(libraries) == "prov.type")]
+
+  return(libraries)
 }
 
 parseDataNodes <- function(prov.data) {
