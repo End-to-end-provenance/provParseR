@@ -1,59 +1,100 @@
-# environment
+# provParse.R 
+# Orenna Brand & Joe Wonsil
+
+# Generalized parser
+parse.general <- function(m.list, requested) {
+  # Constructs pattern to match to using the grep function.
+  grep.arg <- paste("^", requested, "[[:digit:]]", sep = "")
+  
+  # Using the pattern to pull out only the requested nodes/edges
+  # from the master list.
+  nodes <- m.list[grep(grep.arg, names(m.list))]
+  
+  # Combine into a single data frame.
+  return(do.call(rbind.data.frame, nodes))
+}
+
+# Environment parser
 parse.envi <- function(prov.data) {
   env <- prov.data$entity$environment
+  
+  # Remove nested lists which are parsed in a different function
   env <- env[ - which(names(env) == "sourcedScripts")]
   env <- env[ - which(names(env) == "sourcedScriptTimeStamps")]
   
+  # Swap rows and columns for clarity and apply name the column
   environment <- t(as.data.frame(env))
   colnames(environment) <- c("Value")
   
   return(data.frame(environment))
 }
 
-# libraries
+# Libraries parser
 parse.libs <- function(prov.data) {
+  
+  # Locate all the library nodes, all start with "l"
   libraries <- prov.data$entity[grep("^l", names(prov.data$entity))]
+  
+  # Combine the libraries into a data frame to return to the user
   libraries <- data.frame(do.call(rbind, libraries))
+  
+  # Remove unnecessary data (is it? TODO: determine if we keep this step)
   libraries <- libraries[ - which(names(libraries) == "prov.type")]
   
   return(libraries)
 }
 
-#Source Scripts
+# Source scripts parser
 parse.scripts <- function(prov.data) {
+  
+  # The source scripts are nested in the environment object
   env <- prov.data$entity$environment
+  
+  # Grab the script names 
   scripts <-env$`rdt:sourcedScripts`
+  
+  # Append the script time stamps to the end 
   scripts <- as.data.frame(cbind(scripts, env$`rdt:sourcedScriptTimeStamps`))
+  
+  # If there are scripts, append names to the data frame
   if(length(scripts) > 0) names(scripts) <- c("Scripts", "Timestamps")
+  
   return(scripts)
-}
-
-#generalized parser
-parse.general <- function(m.list, requested) {
-  grep.arg <- paste("^",requested,"[[:digit:]]", sep = "")
-  nodes <- m.list[grep(grep.arg, names(m.list))]
-  return(do.call(rbind.data.frame, nodes))
 }
 
 prov.parse <- function(filename) {
   library("jsonlite")
   
+  # Removing "rdt:" prefix for legibility of data.
   prov <- readLines(filename)
   prov <- gsub("rdt:", "", prov)
   
+  # Converting to an R-useable data structure.
   prov.data <- fromJSON(prov)
   
+  # Creating the master list by unlisting the nodes/edges.
   master.list <- unlist(prov.data, recursive = F)
+  
+  # This removes the appended prefixes created by unlisting.
+  # This leaves the nodes with their original names.
   names(master.list) <- gsub("^.*\\.","", names(master.list))
  
+  # These nodes cannot be parsed with the generalized function.
+  # Therefore they are done separately and appended later.
   envi.df <- parse.envi(prov.data)
   lib.df <- parse.libs(prov.data)
   scr.df <- parse.scripts(prov.data)
   
+  # This list represents the characters codes for the different possible objects. 
   obj.chars <- c("p", "d", "f", "pp", "pd", "dp", "fp", "m")
+  
+  # Utilizes char codes to produce the list of data frames.
   obj.df <- lapply(obj.chars, parse.general, m.list = master.list)
-  names(obj.df) <- c("procNodes", "dataNodes", "funcNodes", "procProcEdges","ProcDataEdges",
-                     "dataProcEdges", "FuncProcEdges", "FuncLibEdges")
+  
+  names(obj.df) <- c("procNodes", "dataNodes", "funcNodes", "procProcEdges", 
+                     "ProcDataEdges", "dataProcEdges", "FuncProcEdges", "FuncLibEdges")
+  
+  # Appending hard-coded data to list of data frames.
   obj.df[["envi"]] <- envi.df
   obj.df[["libs"]] <- lib.df
   obj.df[["scripts"]] <- scr.df
