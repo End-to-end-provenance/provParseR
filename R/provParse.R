@@ -23,7 +23,10 @@ parseLibs <- function(prov.data) {
 prov.parse <- function(filename) {
   library("jsonlite")
   
-  prov.data <- fromJSON(file)
+  prov <- readLines(filename)
+  prov <- gsub("rdt:", "", prov)
+  
+  prov.data <- fromJSON(prov)
   
   envi.df <- parseEnvi(prov.data)
   lib.df <- parseLibs(prov.data)
