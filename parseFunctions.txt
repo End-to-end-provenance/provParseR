@@ -1,9 +1,9 @@
 Procedure nodes - X
-Data nodes - Orenna
+Data nodes - X
 Libraries - X
 Functions - Joe
 Control Flow Edges -
 Data Flow Edges - 
-Function-library edges -
+Function-library edges - Orenna
 Procedure function edges -
 environment - X
