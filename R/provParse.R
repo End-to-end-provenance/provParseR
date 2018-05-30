@@ -35,7 +35,7 @@ parse.envi <- function() {
 parse.libs <- function() {
   
   # Locate all the library nodes, all start with "l"
-  libraries <- master.list[grep("^l", names(prov.data$entity))]
+  libraries <- master.list[grep("^l", names(master.list))]
   
   # Combine the libraries into a data frame to return to the user
   libraries <- data.frame(do.call(rbind, libraries))
@@ -85,9 +85,9 @@ prov.parse <- function(filename) {
   
   # These nodes cannot be parsed with the generalized function.
   # Therefore they are done separately and appended later.
-  envi.df <- parse.envi(prov.data)
-  lib.df <- parse.libs(prov.data)
-  scr.df <- parse.scripts(prov.data)
+  envi.df <- parse.envi()
+  lib.df <- parse.libs()
+  scr.df <- parse.scripts()
   
   # This list represents the characters codes for the different possible objects. 
   obj.chars <- c("p", "d", "f", "pp", "pd", "dp", "fp", "m")
