@@ -90,7 +90,7 @@ get.data.proc <- function() {
 }
 
 get.proc.data <- function() {
-  return(parse.general("dp"))
+  return(parse.general("pd"))
 }
 
 get.func.proc <- function() {
