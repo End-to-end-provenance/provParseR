@@ -74,6 +74,26 @@ get.proc.nodes <- function() {
   return(parse.general("p"))
 }
 
+get.data.proc <- function() {
+  return(parse.general("dp"))
+}
+
+get.func.proc <- function() {
+  return(parse.general("fp"))
+}
+
+get.func.lib <- function() {
+  return(parse.general("m"))
+}
+
+get.libs <- function() {
+  return(parse.libs())
+}
+
+get.scripts <- function() {
+  return(parse.scripts())
+}
+
 ##====##
 
 prov.parse <- function(filename, retList = T) {
