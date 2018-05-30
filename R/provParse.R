@@ -64,7 +64,7 @@ parse.scripts <- function() {
   return(scripts)
 }
 
-prov.parse <- function(filename) {
+prov.parse <- function(filename, retList = T) {
   library("jsonlite")
   
   # Removing "rdt:" prefix for legibility of data.
@@ -81,7 +81,7 @@ prov.parse <- function(filename) {
   # This leaves the nodes with their original names.
   names(master.list) <- gsub("^.*\\.","", names(master.list))
   
-  assign("master.list", master.list, envir = .GlobalEnv)
+  assign("master.list", master.list, envir = .GlobalEnv, )
   
   # These nodes cannot be parsed with the generalized function.
   # Therefore they are done separately and appended later.
@@ -103,5 +103,5 @@ prov.parse <- function(filename) {
   obj.df[["libs"]] <- lib.df
   obj.df[["scripts"]] <- scr.df
 
-  return(obj.df)
+  if(retList) return(obj.df[])
 }
