@@ -94,7 +94,7 @@ prov.parse <- function(filename) {
   obj.df <- lapply(obj.chars, parse.general, m.list = master.list)
   
   names(obj.df) <- c("procNodes", "dataNodes", "funcNodes", "procProcEdges", 
-                     "ProcDataEdges", "dataProcEdges", "FuncProcEdges", "FuncLibEdges")
+                     "procDataEdges", "dataProcEdges", "funcProcEdges", "funcLibEdges")
   
   # Appending hard-coded data to list of data frames.
   obj.df[["envi"]] <- envi.df
