@@ -2,13 +2,13 @@
 # Orenna Brand & Joe Wonsil
 
 # Generalized parser
-parse.general <- function(m.list, requested) {
+parse.general <- function(requested) {
   # Constructs pattern to match to using the grep function.
   grep.arg <- paste("^", requested, "[[:digit:]]", sep = "")
   
   # Using the pattern to pull out only the requested nodes/edges
   # from the master list.
-  nodes <- m.list[grep(grep.arg, names(m.list))]
+  nodes <- master.list[grep(grep.arg, names(master.list))]
   
   # Combine into a single data frame.
   return(do.call(rbind.data.frame, nodes))
@@ -78,7 +78,9 @@ prov.parse <- function(filename) {
   # This removes the appended prefixes created by unlisting.
   # This leaves the nodes with their original names.
   names(master.list) <- gsub("^.*\\.","", names(master.list))
- 
+  
+  assign("master.list", master.list, envir = .GlobalEnv)
+  
   # These nodes cannot be parsed with the generalized function.
   # Therefore they are done separately and appended later.
   envi.df <- parse.envi(prov.data)
@@ -89,7 +91,7 @@ prov.parse <- function(filename) {
   obj.chars <- c("p", "d", "f", "pp", "pd", "dp", "fp", "m")
   
   # Utilizes char codes to produce the list of data frames.
-  obj.df <- lapply(obj.chars, parse.general, m.list = master.list)
+  obj.df <- lapply(obj.chars, parse.general)
   
   names(obj.df) <- c("procNodes", "dataNodes", "funcNodes", "procProcEdges", 
                      "procDataEdges", "dataProcEdges", "funcProcEdges", "funcLibEdges")
