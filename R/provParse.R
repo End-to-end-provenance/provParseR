@@ -89,6 +89,10 @@ get.data.proc <- function() {
   return(parse.general("dp"))
 }
 
+get.proc.data <- function() {
+  return(parse.general("dp"))
+}
+
 get.func.proc <- function() {
   return(parse.general("fp"))
 }
