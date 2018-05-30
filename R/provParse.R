@@ -3,6 +3,7 @@
 
 # Generalized parser
 parse.general <- function(requested) {
+  
   # Constructs pattern to match to using the grep function.
   grep.arg <- paste("^", requested, "[[:digit:]]", sep = "")
   
@@ -15,8 +16,9 @@ parse.general <- function(requested) {
 }
 
 # Environment parser
-parse.envi <- function(prov.data) {
-  env <- prov.data$entity$environment
+parse.envi <- function() {
+  
+  env <- master.list$'environment'
   
   # Remove nested lists which are parsed in a different function
   env <- env[ - which(names(env) == "sourcedScripts")]
@@ -30,10 +32,10 @@ parse.envi <- function(prov.data) {
 }
 
 # Libraries parser
-parse.libs <- function(prov.data) {
+parse.libs <- function() {
   
   # Locate all the library nodes, all start with "l"
-  libraries <- prov.data$entity[grep("^l", names(prov.data$entity))]
+  libraries <- master.list[grep("^l", names(prov.data$entity))]
   
   # Combine the libraries into a data frame to return to the user
   libraries <- data.frame(do.call(rbind, libraries))
@@ -45,13 +47,13 @@ parse.libs <- function(prov.data) {
 }
 
 # Source scripts parser
-parse.scripts <- function(prov.data) {
+parse.scripts <- function() {
   
   # The source scripts are nested in the environment object
-  env <- prov.data$entity$environment
+  env <- master.list$'environment'
   
   # Grab the script names 
-  scripts <-env$`rdt:sourcedScripts`
+  scripts <- env$`rdt:sourcedScripts`
   
   # Append the script time stamps to the end 
   scripts <- as.data.frame(cbind(scripts, env$`rdt:sourcedScriptTimeStamps`))
@@ -103,4 +105,3 @@ prov.parse <- function(filename) {
 
   return(obj.df)
 }
-
