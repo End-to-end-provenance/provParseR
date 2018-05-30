@@ -64,6 +64,18 @@ parse.scripts <- function() {
   return(scripts)
 }
 
+##==Simple wrapper functions for calling data frames==##
+
+get.environment <- function() {
+  return(parse.envi())
+}
+
+get.proc.nodes <- function() {
+  return(parse.general("p"))
+}
+
+##====##
+
 prov.parse <- function(filename, retList = T) {
   library("jsonlite")
   
