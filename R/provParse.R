@@ -73,6 +73,17 @@ get.environment <- function() {
 get.proc.nodes <- function() {
   return(parse.general("p"))
 }
+  
+get.data.nodes <- function() {
+  return(parse.general("d"))
+}
+
+get.func.nodes <- function() {
+  return(parse.general("f"))
+}
+
+get.proc.proc <- function() {
+  return(parse.general("pp"))
 
 ##====##
 
