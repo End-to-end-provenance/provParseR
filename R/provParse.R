@@ -171,6 +171,7 @@ prov.parse <- function(filename) {
   # Removing 'rdt:' prefix for legibility of data.
   prov <- readLines(filename)
   prov <- gsub("rdt:", "", prov)
+  prov <- gsub("prov:", "", prov)
   
   # Converting to an R-useable data structure.
   prov.data <- fromJSON(prov)

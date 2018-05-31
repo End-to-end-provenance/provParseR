@@ -1,9 +1,13 @@
 Package: EnviR
 Title: Pulls Computing Environment and Libraries From Provenance 
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: c(
+    person("Orenna", "Brand", email = "o.brand@columbia.edu", role = c("aut", "cre")),
+    person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = c("aut", "cre"))
+    )
 Description: What the package does (one paragraph).
 Depends: R (>= 3.5.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Suggests: testthat

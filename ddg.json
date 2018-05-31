@@ -1,0 +1,1152 @@
+{
+	"prefix": {
+		"prov": "http://www.w3.org/ns/prov#",
+		"rdt": "http://rdatatracker.org/"
+	},
+
+	"activity" : {
+		// procedure nodes
+		"p1": {
+			"rdt:name": "exercise.R",
+			"rdt:type": "Start",
+			"rdt:elapsedTime": 108.309,
+			"rdt:scriptNum": "NA",
+			"rdt:startLine": "NA",
+			"rdt:startCol": "NA",
+			"rdt:endLine": "NA",
+			"rdt:endCol": "NA"
+		},
+		"p2": {
+			"rdt:name": "met_df <- read.csv(\"http://harvardforest.fas.harvard.edu/sit",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.128,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 4,
+			"rdt:startCol": 1,
+			"rdt:endLine": 5,
+			"rdt:endCol": 34
+		},
+		"p3": {
+			"rdt:name": "colnames(met_df) <- c(\"type\", \"year\", \"jd\", \"hm\", \"airt\", \"r",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.283,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 8,
+			"rdt:startCol": 1,
+			"rdt:endLine": 10,
+			"rdt:endCol": 67
+		},
+		"p4": {
+			"rdt:name": "met_df <- met_df[met_df$type == 101, ]",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.372,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 12,
+			"rdt:startCol": 1,
+			"rdt:endLine": 12,
+			"rdt:endCol": 38
+		},
+		"p5": {
+			"rdt:name": "summary(met_df)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.487,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 15,
+			"rdt:startCol": 1,
+			"rdt:endLine": 15,
+			"rdt:endCol": 15
+		},
+		"p6": {
+			"rdt:name": "head(met_df)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.497,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 16,
+			"rdt:startCol": 1,
+			"rdt:endLine": 16,
+			"rdt:endCol": 12
+		},
+		"p7": {
+			"rdt:name": "tail(met_df)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.508,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 17,
+			"rdt:startCol": 1,
+			"rdt:endLine": 17,
+			"rdt:endCol": 12
+		},
+		"p8": {
+			"rdt:name": "str(met_df)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.547,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 18,
+			"rdt:startCol": 1,
+			"rdt:endLine": 18,
+			"rdt:endCol": 11
+		},
+		"p9": {
+			"rdt:name": "nrow(met_df)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.559,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 21,
+			"rdt:startCol": 1,
+			"rdt:endLine": 21,
+			"rdt:endCol": 12
+		},
+		"p10": {
+			"rdt:name": "nrow(met_df[met_df$prec > 0, ])",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.577,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 24,
+			"rdt:startCol": 1,
+			"rdt:endLine": 24,
+			"rdt:endCol": 31
+		},
+		"p11": {
+			"rdt:name": "nrow(met_df[met_df$airt < met_df$st, ])",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.623,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 27,
+			"rdt:startCol": 1,
+			"rdt:endLine": 27,
+			"rdt:endCol": 39
+		},
+		"p12": {
+			"rdt:name": "nrow(met_df[met_df$prec > 0 & met_df$airt < met_df$st, ])",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.642,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 30,
+			"rdt:startCol": 1,
+			"rdt:endLine": 30,
+			"rdt:endCol": 57
+		},
+		"p13": {
+			"rdt:name": "met_df[, c(\"jd\", \"hm\", \"airt\", \"st\", \"prec\")]",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.654,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 33,
+			"rdt:startCol": 1,
+			"rdt:endLine": 33,
+			"rdt:endCol": 45
+		},
+		"p14": {
+			"rdt:name": "met_df[met_df$prec > 0 & met_df$airt < met_df$st, c(\"jd\", \"h",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.67,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 36,
+			"rdt:startCol": 1,
+			"rdt:endLine": 36,
+			"rdt:endCol": 86
+		},
+		"p15": {
+			"rdt:name": "met_df[order(met_df$wspd, decreasing = TRUE), ][1:5, ]",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.722,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 39,
+			"rdt:startCol": 1,
+			"rdt:endLine": 39,
+			"rdt:endCol": 54
+		},
+		"p16": {
+			"rdt:name": "met_df[order(met_df$wspd, decreasing = TRUE), ][1:5, c(\"jd\",",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.757,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 42,
+			"rdt:startCol": 1,
+			"rdt:endLine": 42,
+			"rdt:endCol": 91
+		},
+		"p17": {
+			"rdt:name": "met_df$rainy <- met_df$prec > 0",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.77,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 45,
+			"rdt:startCol": 1,
+			"rdt:endLine": 45,
+			"rdt:endCol": 31
+		},
+		"p18": {
+			"rdt:name": "f <- function(x) { max(met_df[met_df$jd == x, \"airt\"], na",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.793,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 48,
+			"rdt:startCol": 1,
+			"rdt:endLine": 50,
+			"rdt:endCol": 1
+		},
+		"p19": {
+			"rdt:name": "f(121)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.803,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 52,
+			"rdt:startCol": 1,
+			"rdt:endLine": 52,
+			"rdt:endCol": 6
+		},
+		"p20": {
+			"rdt:name": "min(met_df$jd, na.rm = TRUE)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.81,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 55,
+			"rdt:startCol": 1,
+			"rdt:endLine": 55,
+			"rdt:endCol": 28
+		},
+		"p21": {
+			"rdt:name": "min",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.818,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 56,
+			"rdt:startCol": 1,
+			"rdt:endLine": 56,
+			"rdt:endCol": 3
+		},
+		"p22": {
+			"rdt:name": "max(met_df$jd, na.rm = TRUE)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.825,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 58,
+			"rdt:startCol": 1,
+			"rdt:endLine": 58,
+			"rdt:endCol": 28
+		},
+		"p23": {
+			"rdt:name": "max",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.837,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 59,
+			"rdt:startCol": 1,
+			"rdt:endLine": 59,
+			"rdt:endCol": 3
+		},
+		"p24": {
+			"rdt:name": "jd_vector <- c(min(met_df$jd, na.rm = TRUE):max(met_df$jd, n",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.85,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 62,
+			"rdt:startCol": 1,
+			"rdt:endLine": 62,
+			"rdt:endCol": 73
+		},
+		"p25": {
+			"rdt:name": "jd_vector",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 109.88,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 63,
+			"rdt:startCol": 1,
+			"rdt:endLine": 63,
+			"rdt:endCol": 9
+		},
+		"p26": {
+			"rdt:name": "temp_vector <- sapply(jd_vector, f)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.175,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 66,
+			"rdt:startCol": 1,
+			"rdt:endLine": 66,
+			"rdt:endCol": 35
+		},
+		"p27": {
+			"rdt:name": "highs_df <- data.frame(date = jd_vector, temp = temp_vector)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.219,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 67,
+			"rdt:startCol": 1,
+			"rdt:endLine": 67,
+			"rdt:endCol": 60
+		},
+		"p28": {
+			"rdt:name": "highs_df",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.238,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 68,
+			"rdt:startCol": 1,
+			"rdt:endLine": 68,
+			"rdt:endCol": 8
+		},
+		"p29": {
+			"rdt:name": "p <- function(x) { sum(met_df[met_df$jd == x, \"prec\"], na",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.245,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 71,
+			"rdt:startCol": 1,
+			"rdt:endLine": 73,
+			"rdt:endCol": 1
+		},
+		"p30": {
+			"rdt:name": "prec_vector <- sapply(jd_vector, p)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.471,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 75,
+			"rdt:startCol": 1,
+			"rdt:endLine": 75,
+			"rdt:endCol": 35
+		},
+		"p31": {
+			"rdt:name": "return_df <- data.frame(date = jd_vector, precipitation = pr",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.498,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 76,
+			"rdt:startCol": 1,
+			"rdt:endLine": 76,
+			"rdt:endCol": 70
+		},
+		"p32": {
+			"rdt:name": "return_df",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.524,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 77,
+			"rdt:startCol": 1,
+			"rdt:endLine": 77,
+			"rdt:endCol": 9
+		},
+		"p33": {
+			"rdt:name": "nrow(return_df[return_df$precipitation > 0, ])",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.535,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 80,
+			"rdt:startCol": 1,
+			"rdt:endLine": 80,
+			"rdt:endCol": 46
+		},
+		"p34": {
+			"rdt:name": "plot(jd_vector, temp_vector, type = \"l\", xlab = \"Julian Date",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.584,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 83,
+			"rdt:startCol": 1,
+			"rdt:endLine": 83,
+			"rdt:endCol": 84
+		},
+		"p35": {
+			"rdt:name": "z <- line(jd_vector, temp_vector)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.607,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 86,
+			"rdt:startCol": 1,
+			"rdt:endLine": 86,
+			"rdt:endCol": 33
+		},
+		"p36": {
+			"rdt:name": "abline(coef(z))",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": 110.649,
+			"rdt:scriptNum": 0,
+			"rdt:startLine": 87,
+			"rdt:startCol": 1,
+			"rdt:endLine": 87,
+			"rdt:endCol": 15
+		},
+		"p37": {
+			"rdt:name": "exercise.R",
+			"rdt:type": "Finish",
+			"rdt:elapsedTime": 110.675,
+			"rdt:scriptNum": "NA",
+			"rdt:startLine": "NA",
+			"rdt:startCol": "NA",
+			"rdt:endLine": "NA",
+			"rdt:endCol": "NA"
+		}
+	},
+
+	"entity" : {
+		// data nodes
+		"d1": {
+			"rdt:name": "http://harvardforest.fas.harvard.edu/sites/harvardforest.fas.harvard.edu/files/weather/metsta.dat",
+			"rdt:value": "data/1-metsta.dat",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "URL",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.22EDT",
+			"rdt:location": ""
+		},
+		"d2": {
+			"rdt:name": "met_df",
+			"rdt:value": "data/2-met_df-PARTIAL.csv",
+			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[49822,18], \"type\":[\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.22EDT",
+			"rdt:location": ""
+		},
+		"d3": {
+			"rdt:name": "met_df",
+			"rdt:value": "data/3-met_df-PARTIAL.csv",
+			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[49822,18], \"type\":[\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.22EDT",
+			"rdt:location": ""
+		},
+		"d4": {
+			"rdt:name": "met_df",
+			"rdt:value": "data/4-met_df-PARTIAL.csv",
+			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[48807,18], \"type\":[\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.22EDT",
+			"rdt:location": ""
+		},
+		"d5": {
+			"rdt:name": "met_df",
+			"rdt:value": "data/5-met_df-PARTIAL.csv",
+			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[48807,19], \"type\":[\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"numeric\",\"logical\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.22EDT",
+			"rdt:location": ""
+		},
+		"d6": {
+			"rdt:name": "f",
+			"rdt:value": "#ddg.function",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "Data",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"d7": {
+			"rdt:name": "jd_vector",
+			"rdt:value": "data/7-jd_vector.csv",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[365], \"type\":[\"integer\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.23EDT",
+			"rdt:location": ""
+		},
+		"d8": {
+			"rdt:name": "temp_vector",
+			"rdt:value": "data/8-temp_vector.csv",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[365], \"type\":[\"numeric\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.23EDT",
+			"rdt:location": ""
+		},
+		"d9": {
+			"rdt:name": "highs_df",
+			"rdt:value": "data/9-highs_df.csv",
+			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[365,2], \"type\":[\"integer\",\"numeric\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.23EDT",
+			"rdt:location": ""
+		},
+		"d10": {
+			"rdt:name": "p",
+			"rdt:value": "#ddg.function",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "Data",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"d11": {
+			"rdt:name": "prec_vector",
+			"rdt:value": "data/11-prec_vector.csv",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[365], \"type\":[\"numeric\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.23EDT",
+			"rdt:location": ""
+		},
+		"d12": {
+			"rdt:name": "return_df",
+			"rdt:value": "data/12-return_df.csv",
+			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[365,2], \"type\":[\"integer\",\"numeric\"]}",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.23EDT",
+			"rdt:location": ""
+		},
+		"d13": {
+			"rdt:name": "dev.2",
+			"rdt:value": "\"graph\"",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "Data",
+			"rdt:scope": "undefined",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"d14": {
+			"rdt:name": "z",
+			"rdt:value": "data/14-z.txt",
+			"rdt:valType": "\"list\"",
+			"rdt:type": "Snapshot",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "2018-05-24T11.06.23EDT",
+			"rdt:location": ""
+		},
+		"d15": {
+			"rdt:name": "dev.2",
+			"rdt:value": "\"graph\"",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "Data",
+			"rdt:scope": "undefined",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"d16": {
+			"rdt:name": "dev.off.16.pdf",
+			"rdt:value": "data/16-dev.off.16.pdf",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "File",
+			"rdt:scope": "undefined",
+			"rdt:fromEnv": false,
+			"rdt:MD5hash": "de972f9aeed5a58b619bf796d650b72d",
+			"rdt:timestamp": "2018-05-24T11.06.23EDT",
+			"rdt:location": "/Users/orenna/dev.off.16.pdf"
+		},
+
+		// environment
+		"environment": {
+			"rdt:name": "environment",
+			"rdt:architecture": "x86_64",
+			"rdt:operatingSystem": "unix",
+			"rdt:language": "R",
+			"rdt:rVersion": "R version 3.5.0 (2018-04-23)",
+			"rdt:script": "/Users/orenna/exercise.R",
+			"rdt:scriptTimeStamp": "2018-05-23T16.27.29EDT",
+			"rdt:sourcedScripts": "",
+			"rdt:sourcedScriptTimeStamps": "",
+			"rdt:workingDirectory": "/Users/orenna",
+			"rdt:ddgDirectory": "./exercise_ddg",
+			"rdt:ddgTimeStamp": "2018-05-24T11.06.19EDT",
+			"rdt:rdatatrackerVersion": "2.27.0",
+			"rdt:hashAlgorithm": "md5"
+		},
+
+		// library nodes - prov collections
+		"l1": {
+			"name": "base",
+			"version": "3.5.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l2": {
+			"name": "datasets",
+			"version": "3.5.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l3": {
+			"name": "devtools",
+			"version": "1.13.5",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l4": {
+			"name": "formatR",
+			"version": "1.5",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l5": {
+			"name": "graphics",
+			"version": "3.5.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l6": {
+			"name": "grDevices",
+			"version": "3.5.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l7": {
+			"name": "jsonlite",
+			"version": "1.5",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l8": {
+			"name": "methods",
+			"version": "3.5.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l9": {
+			"name": "provR",
+			"version": "0.1.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l10": {
+			"name": "Rclean",
+			"version": "1.0.1",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l11": {
+			"name": "RDataTracker",
+			"version": "2.27.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l12": {
+			"name": "stats",
+			"version": "3.5.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+		"l13": {
+			"name": "utils",
+			"version": "3.5.0",
+			"prov:type": {
+				"$": "prov:Collection",
+				"type": "xsd:QName"
+			}
+		},
+
+		// function nodes
+		"f1": {
+			"name": "read.csv"
+		},
+		"f2": {
+			"name": "head"
+		},
+		"f3": {
+			"name": "tail"
+		},
+		"f4": {
+			"name": "str"
+		},
+		"f5": {
+			"name": "plot"
+		},
+		"f6": {
+			"name": "line"
+		},
+		"f7": {
+			"name": "abline"
+		},
+		"f8": {
+			"name": "coef"
+		}
+	},
+
+	"wasInformedBy" : {
+		// procedure-to-procedure edges
+		"pp1": {
+			"prov:informant": "rdt:p1",
+			"prov:informed": "rdt:p2"
+		},
+		"pp2": {
+			"prov:informant": "rdt:p2",
+			"prov:informed": "rdt:p3"
+		},
+		"pp3": {
+			"prov:informant": "rdt:p3",
+			"prov:informed": "rdt:p4"
+		},
+		"pp4": {
+			"prov:informant": "rdt:p4",
+			"prov:informed": "rdt:p5"
+		},
+		"pp5": {
+			"prov:informant": "rdt:p5",
+			"prov:informed": "rdt:p6"
+		},
+		"pp6": {
+			"prov:informant": "rdt:p6",
+			"prov:informed": "rdt:p7"
+		},
+		"pp7": {
+			"prov:informant": "rdt:p7",
+			"prov:informed": "rdt:p8"
+		},
+		"pp8": {
+			"prov:informant": "rdt:p8",
+			"prov:informed": "rdt:p9"
+		},
+		"pp9": {
+			"prov:informant": "rdt:p9",
+			"prov:informed": "rdt:p10"
+		},
+		"pp10": {
+			"prov:informant": "rdt:p10",
+			"prov:informed": "rdt:p11"
+		},
+		"pp11": {
+			"prov:informant": "rdt:p11",
+			"prov:informed": "rdt:p12"
+		},
+		"pp12": {
+			"prov:informant": "rdt:p12",
+			"prov:informed": "rdt:p13"
+		},
+		"pp13": {
+			"prov:informant": "rdt:p13",
+			"prov:informed": "rdt:p14"
+		},
+		"pp14": {
+			"prov:informant": "rdt:p14",
+			"prov:informed": "rdt:p15"
+		},
+		"pp15": {
+			"prov:informant": "rdt:p15",
+			"prov:informed": "rdt:p16"
+		},
+		"pp16": {
+			"prov:informant": "rdt:p16",
+			"prov:informed": "rdt:p17"
+		},
+		"pp17": {
+			"prov:informant": "rdt:p17",
+			"prov:informed": "rdt:p18"
+		},
+		"pp18": {
+			"prov:informant": "rdt:p18",
+			"prov:informed": "rdt:p19"
+		},
+		"pp19": {
+			"prov:informant": "rdt:p19",
+			"prov:informed": "rdt:p20"
+		},
+		"pp20": {
+			"prov:informant": "rdt:p20",
+			"prov:informed": "rdt:p21"
+		},
+		"pp21": {
+			"prov:informant": "rdt:p21",
+			"prov:informed": "rdt:p22"
+		},
+		"pp22": {
+			"prov:informant": "rdt:p22",
+			"prov:informed": "rdt:p23"
+		},
+		"pp23": {
+			"prov:informant": "rdt:p23",
+			"prov:informed": "rdt:p24"
+		},
+		"pp24": {
+			"prov:informant": "rdt:p24",
+			"prov:informed": "rdt:p25"
+		},
+		"pp25": {
+			"prov:informant": "rdt:p25",
+			"prov:informed": "rdt:p26"
+		},
+		"pp26": {
+			"prov:informant": "rdt:p26",
+			"prov:informed": "rdt:p27"
+		},
+		"pp27": {
+			"prov:informant": "rdt:p27",
+			"prov:informed": "rdt:p28"
+		},
+		"pp28": {
+			"prov:informant": "rdt:p28",
+			"prov:informed": "rdt:p29"
+		},
+		"pp29": {
+			"prov:informant": "rdt:p29",
+			"prov:informed": "rdt:p30"
+		},
+		"pp30": {
+			"prov:informant": "rdt:p30",
+			"prov:informed": "rdt:p31"
+		},
+		"pp31": {
+			"prov:informant": "rdt:p31",
+			"prov:informed": "rdt:p32"
+		},
+		"pp32": {
+			"prov:informant": "rdt:p32",
+			"prov:informed": "rdt:p33"
+		},
+		"pp33": {
+			"prov:informant": "rdt:p33",
+			"prov:informed": "rdt:p34"
+		},
+		"pp34": {
+			"prov:informant": "rdt:p34",
+			"prov:informed": "rdt:p35"
+		},
+		"pp35": {
+			"prov:informant": "rdt:p35",
+			"prov:informed": "rdt:p36"
+		},
+		"pp36": {
+			"prov:informant": "rdt:p36",
+			"prov:informed": "rdt:p37"
+		}
+	},
+
+	"wasGeneratedBy" : {
+		// procedure-to-data edges
+		"pd1": {
+			"prov:activity": "rdt:p2",
+			"prov:entity": "rdt:d2"
+		},
+		"pd2": {
+			"prov:activity": "rdt:p3",
+			"prov:entity": "rdt:d3"
+		},
+		"pd3": {
+			"prov:activity": "rdt:p4",
+			"prov:entity": "rdt:d4"
+		},
+		"pd4": {
+			"prov:activity": "rdt:p17",
+			"prov:entity": "rdt:d5"
+		},
+		"pd5": {
+			"prov:activity": "rdt:p18",
+			"prov:entity": "rdt:d6"
+		},
+		"pd6": {
+			"prov:activity": "rdt:p24",
+			"prov:entity": "rdt:d7"
+		},
+		"pd7": {
+			"prov:activity": "rdt:p26",
+			"prov:entity": "rdt:d8"
+		},
+		"pd8": {
+			"prov:activity": "rdt:p27",
+			"prov:entity": "rdt:d9"
+		},
+		"pd9": {
+			"prov:activity": "rdt:p29",
+			"prov:entity": "rdt:d10"
+		},
+		"pd10": {
+			"prov:activity": "rdt:p30",
+			"prov:entity": "rdt:d11"
+		},
+		"pd11": {
+			"prov:activity": "rdt:p31",
+			"prov:entity": "rdt:d12"
+		},
+		"pd12": {
+			"prov:activity": "rdt:p34",
+			"prov:entity": "rdt:d13"
+		},
+		"pd13": {
+			"prov:activity": "rdt:p35",
+			"prov:entity": "rdt:d14"
+		},
+		"pd14": {
+			"prov:activity": "rdt:p36",
+			"prov:entity": "rdt:d15"
+		},
+		"pd15": {
+			"prov:activity": "rdt:p37",
+			"prov:entity": "rdt:d16"
+		}
+	},
+
+	"used" : {
+		// data-to-procedure edges
+		"dp1": {
+			"prov:entity": "rdt:d1",
+			"prov:activity": "rdt:p2"
+		},
+		"dp2": {
+			"prov:entity": "rdt:d2",
+			"prov:activity": "rdt:p3"
+		},
+		"dp3": {
+			"prov:entity": "rdt:d3",
+			"prov:activity": "rdt:p4"
+		},
+		"dp4": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p5"
+		},
+		"dp5": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p6"
+		},
+		"dp6": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p7"
+		},
+		"dp7": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p8"
+		},
+		"dp8": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p9"
+		},
+		"dp9": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p10"
+		},
+		"dp10": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p11"
+		},
+		"dp11": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p12"
+		},
+		"dp12": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p13"
+		},
+		"dp13": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p14"
+		},
+		"dp14": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p15"
+		},
+		"dp15": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p16"
+		},
+		"dp16": {
+			"prov:entity": "rdt:d4",
+			"prov:activity": "rdt:p17"
+		},
+		"dp17": {
+			"prov:entity": "rdt:d6",
+			"prov:activity": "rdt:p19"
+		},
+		"dp18": {
+			"prov:entity": "rdt:d5",
+			"prov:activity": "rdt:p20"
+		},
+		"dp19": {
+			"prov:entity": "rdt:d5",
+			"prov:activity": "rdt:p22"
+		},
+		"dp20": {
+			"prov:entity": "rdt:d5",
+			"prov:activity": "rdt:p24"
+		},
+		"dp21": {
+			"prov:entity": "rdt:d7",
+			"prov:activity": "rdt:p25"
+		},
+		"dp22": {
+			"prov:entity": "rdt:d7",
+			"prov:activity": "rdt:p26"
+		},
+		"dp23": {
+			"prov:entity": "rdt:d6",
+			"prov:activity": "rdt:p26"
+		},
+		"dp24": {
+			"prov:entity": "rdt:d7",
+			"prov:activity": "rdt:p27"
+		},
+		"dp25": {
+			"prov:entity": "rdt:d8",
+			"prov:activity": "rdt:p27"
+		},
+		"dp26": {
+			"prov:entity": "rdt:d9",
+			"prov:activity": "rdt:p28"
+		},
+		"dp27": {
+			"prov:entity": "rdt:d7",
+			"prov:activity": "rdt:p30"
+		},
+		"dp28": {
+			"prov:entity": "rdt:d10",
+			"prov:activity": "rdt:p30"
+		},
+		"dp29": {
+			"prov:entity": "rdt:d7",
+			"prov:activity": "rdt:p31"
+		},
+		"dp30": {
+			"prov:entity": "rdt:d11",
+			"prov:activity": "rdt:p31"
+		},
+		"dp31": {
+			"prov:entity": "rdt:d12",
+			"prov:activity": "rdt:p32"
+		},
+		"dp32": {
+			"prov:entity": "rdt:d12",
+			"prov:activity": "rdt:p33"
+		},
+		"dp33": {
+			"prov:entity": "rdt:d7",
+			"prov:activity": "rdt:p34"
+		},
+		"dp34": {
+			"prov:entity": "rdt:d8",
+			"prov:activity": "rdt:p34"
+		},
+		"dp35": {
+			"prov:entity": "rdt:d7",
+			"prov:activity": "rdt:p35"
+		},
+		"dp36": {
+			"prov:entity": "rdt:d8",
+			"prov:activity": "rdt:p35"
+		},
+		"dp37": {
+			"prov:entity": "rdt:d14",
+			"prov:activity": "rdt:p36"
+		},
+		"dp38": {
+			"prov:entity": "rdt:d13",
+			"prov:activity": "rdt:p36"
+		},
+		"dp39": {
+			"prov:entity": "rdt:d15",
+			"prov:activity": "rdt:p37"
+		},
+
+		// function-to-procedure edges
+		"fp1": {
+			"prov:entity": "rdt:f1",
+			"prov:activity": "rdt:p2"
+		},
+		"fp2": {
+			"prov:entity": "rdt:f2",
+			"prov:activity": "rdt:p6"
+		},
+		"fp3": {
+			"prov:entity": "rdt:f3",
+			"prov:activity": "rdt:p7"
+		},
+		"fp4": {
+			"prov:entity": "rdt:f4",
+			"prov:activity": "rdt:p8"
+		},
+		"fp5": {
+			"prov:entity": "rdt:f5",
+			"prov:activity": "rdt:p34"
+		},
+		"fp6": {
+			"prov:entity": "rdt:f6",
+			"prov:activity": "rdt:p35"
+		},
+		"fp7": {
+			"prov:entity": "rdt:f7",
+			"prov:activity": "rdt:p36"
+		},
+		"fp8": {
+			"prov:entity": "rdt:f8",
+			"prov:activity": "rdt:p36"
+		}
+	},
+
+	"hadMember" : {
+		// groups function nodes with their library nodes
+		"m1": {
+			"prov:collection": "rdt:l5",
+			"prov:entity": "rdt:f5"
+		},
+		"m2": {
+			"prov:collection": "rdt:l5",
+			"prov:entity": "rdt:f7"
+		},
+		"m3": {
+			"prov:collection": "rdt:l12",
+			"prov:entity": "rdt:f6"
+		},
+		"m4": {
+			"prov:collection": "rdt:l12",
+			"prov:entity": "rdt:f8"
+		},
+		"m5": {
+			"prov:collection": "rdt:l13",
+			"prov:entity": "rdt:f1"
+		},
+		"m6": {
+			"prov:collection": "rdt:l13",
+			"prov:entity": "rdt:f2"
+		},
+		"m7": {
+			"prov:collection": "rdt:l13",
+			"prov:entity": "rdt:f3"
+		},
+		"m8": {
+			"prov:collection": "rdt:l13",
+			"prov:entity": "rdt:f4"
+		}
+	}
+}
