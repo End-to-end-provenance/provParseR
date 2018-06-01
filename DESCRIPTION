@@ -1,13 +1,19 @@
 Package: EnviR
-Title: Pulls Computing Environment and Libraries From Provenance 
-Version: 0.0.0.9000
+Title: Pulls Information From Prov.Json files
+Version: 0.1.0.9000
 Authors@R: c(
-    person("Orenna", "Brand", email = "o.brand@columbia.edu", role = c("aut", "cre")),
-    person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = "ctb")
+    person("Orenna", "Brand", email = "o.brand@columbia.edu", role = "aut"),
+    person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = c("aut", "cre"))
     )
-Description: What the package does (one paragraph).
+Description: This package will allow information from prov.json files to be extracted and converted
+    to a usable data frame format. The information can be accessed through access functions that will 
+    return the requested data. 
 Depends: R (>= 3.5.0)
-License: What license is it under?
+License: GPL 3.0
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    jsonlite
 Suggests: testthat
+URL: https://github.com/End-to-end-provenance
+RoxygenNote: 6.0.1
