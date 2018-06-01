@@ -1,9 +1,0 @@
-Procedure nodes - X
-Data nodes - X
-Libraries - X
-Functions - X
-Control Flow Edges - Joe
-Data Flow Edges -
-Function-library edges - X
-Procedure function edges - Orenna
-environment - X

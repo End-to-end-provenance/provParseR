@@ -1,7 +1,4 @@
-context("Environment capture")
 library(EnviR)
-library(testthat)
-library(jsonlite)
 
 ## Loading test data
 test.data <- system.file("tests", "ddg.json", package = "EnviR")
