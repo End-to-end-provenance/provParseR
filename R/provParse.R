@@ -46,9 +46,10 @@ parse.envi <- function(m.list) {
   
   # Swap rows and columns for clarity and apply name the column
   environment <- t(as.data.frame(env))
-  colnames(environment) <- c("Value")
+  environment <- data.frame(environment, stringsAsFactors =F)
+  colnames(environment) <- c("value")
   
-  return(data.frame(environment))
+  return(environment)
 }
 
 # Libraries parser
