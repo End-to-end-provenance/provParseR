@@ -13,7 +13,6 @@ devtools::install_github("oebrand/EnviR")
 Once installed, load the package:
 ```{r}
 library("EnviR")
-library("devtools")
 ```
 
 
