@@ -15,9 +15,23 @@ parse.general <- function(requested, m.list) {
   # nodes/edges from the master list.
   nodes <- m.list[grep(grep.arg, names(m.list))]
   
+  col.length <- 1:length(nodes[[1]])
+  
+  col.list <- lapply(col.length, function(x){
+    return(mapply(`[`, nodes, x))
+  })
+  
+  node.vec <- lapply(col.length, function(x){
+    col <- mapply(`[`, nodes, x)
+    col[col=="NA"] <- NA
+    return(mapply(`[`, col, 1))
+  })
+  
+  nodes.df <- data.frame(node.vec, stringsAsFactors = F)
+  colnames(nodes.df) <- names(nodes[[1]])
   
   # Combine into a single data frame.
-  return(data.frame(do.call(rbind, nodes), stringsAsFactors = FALSE))
+  return(nodes.df)
 }
 
 # Environment parser
