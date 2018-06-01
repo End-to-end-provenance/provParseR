@@ -13,20 +13,31 @@ parse.general <- function(requested, m.list) {
   
   # Using the pattern to pull out only the requested
   # nodes/edges from the master list.
+  # This list had data stored in rows not columns
   nodes <- m.list[grep(grep.arg, names(m.list))]
   
+  # The num of columns are stored in each row in the list
+  # Pull out how many columns so we can index through each
+  # row and receive the columns
   col.length <- 1:length(nodes[[1]])
   
-  col.list <- lapply(col.length, function(x){
+  # Use index nums to pull out each column so they are
+  # no longer stored as rows but columns
+  col.list <- lapply(col.length, function(x) {
     return(mapply(`[`, nodes, x))
   })
   
-  node.vec <- lapply(col.length, function(x){
+  # To each column, replace the string "NA" with
+  # an actual R value of NA, the extract the column 
+  # as a vector to coerce into one type
+  node.vec <- lapply(col.length, function(x) {
     col <- mapply(`[`, nodes, x)
     col[col=="NA"] <- NA
     return(mapply(`[`, col, 1))
   })
   
+  # Convert the data frame, we do not have factors
+  # in data so keep them as strings
   nodes.df <- data.frame(node.vec, stringsAsFactors = F)
   colnames(nodes.df) <- names(nodes[[1]])
   
