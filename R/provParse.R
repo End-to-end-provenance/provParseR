@@ -75,7 +75,7 @@ parse.libs <- function(m.list) {
   
   # Remove unnecessary data (is it? TODO: determine if we keep
   # this step)
-  libraries <- libraries[-which(names(libraries) == "prov.type")]
+  libraries <- libraries[-which(names(libraries) == "type")]
   
   return(libraries)
 }

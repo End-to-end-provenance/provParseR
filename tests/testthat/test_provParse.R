@@ -75,7 +75,13 @@ expect_match(typeof(func.lib.df$entity), "character")
 context("Library nodes access function")
 libs.df <- get.libs()
 expect_match(class(libs.df), "data.frame")
+expect_match(typeof(libs.df$name), "character")
+expect_match(typeof(libs.df$version), "character")
 
 context("Scripts access function")
 scripts.df <- get.scripts()
 expect_match(class(scripts.df), "data.frame")
+if(nrow(scripts.df) > 0){
+  expect_match(typeof(scripts.df$scripts), "character")
+  expect_match(typeof(scripts.df$timestamps), "character")
+}
