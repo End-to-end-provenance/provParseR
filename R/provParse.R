@@ -65,17 +65,12 @@ parse.envi <- function(m.list) {
 
 # Libraries parser
 parse.libs <- function(m.list) {
+  # Use the general function, however it will 
+  # add unneeded columns
+  libraries <- parse.general("l", m.list)
   
-  # Locate all the library nodes, all start with 'l'
-  libraries <- m.list[grep("^l", names(m.list))]
-  
-  # Combine the libraries into a data frame to return to the
-  # user
-  libraries <- data.frame(do.call(rbind, libraries))
-  
-  # Remove unnecessary data (is it? TODO: determine if we keep
-  # this step)
-  libraries <- libraries[-which(names(libraries) == "type")]
+  # Pull out two columns of info wanted
+  libraries <- libraries[,c("name", "version")]
   
   return(libraries)
 }
