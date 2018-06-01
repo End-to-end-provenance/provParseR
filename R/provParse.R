@@ -94,7 +94,7 @@ parse.scripts <- function(m.list) {
   
   # If there are scripts, append names to the data frame
   if (length(scripts) > 0) 
-    names(scripts) <- c("Scripts", "Timestamps")
+    names(scripts) <- c("scripts", "timestamps")
   
   return(scripts)
 }
