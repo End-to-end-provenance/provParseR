@@ -5,7 +5,7 @@ This R package can be used with RDataTracker.
 
 
 # Installation
-Install the development version from GitHub:
+Install from GitHub:
 ```{r}
 # install.packages("devtools")
 devtools::install_github("oebrand/EnviR")
