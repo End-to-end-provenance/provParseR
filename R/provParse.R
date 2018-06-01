@@ -46,7 +46,7 @@ parse.envi <- function(m.list) {
   
   # Swap rows and columns for clarity and apply name the column
   environment <- t(as.data.frame(env))
-  environment <- data.frame(environment, stringsAsFactors =F)
+  environment <- data.frame(environment, stringsAsFactors = F)
   colnames(environment) <- c("value")
   
   return(environment)
@@ -223,3 +223,4 @@ prov.parse <- function(filename) {
   
   assign("prov.df", prov.df, envir = prov.env)
 }
+
