@@ -3,7 +3,7 @@
 \name{prov.parse}
 \alias{prov.parse}
 \title{Parses the information in a prov.json file and makes it available to be 
-when accessed through an access function.}
+when accessed through the access functions.}
 \usage{
 prov.parse(filename)
 }
@@ -15,7 +15,7 @@ Does not return a value, but opens up the use of the access functions
 }
 \description{
 Parses the information in a prov.json file and makes it available to be 
-when accessed through an access function.
+when accessed through the access functions.
 }
 \examples{
 prov.parse("ddg.json")
