@@ -16,31 +16,35 @@ parse.general <- function(requested, m.list) {
   # This list had data stored in rows not columns
   nodes <- m.list[grep(grep.arg, names(m.list))]
   
-  # The num of columns are stored in each row in the list
-  # Pull out how many columns so we can index through each
-  # row and receive the columns
-  col.length <- 1:length(nodes[[1]])
+  nodes.df <- data.frame(NULL)
   
-  # Use index nums to pull out each column so they are
-  # no longer stored as rows but columns
-  col.list <- lapply(col.length, function(x) {
-    return(mapply(`[`, nodes, x))
-  })
-  
-  # To each column, replace the string "NA" with
-  # an actual R value of NA, the extract the column 
-  # as a vector to coerce into one type
-  node.vec <- lapply(col.length, function(x) {
-    col <- mapply(`[`, nodes, x)
-    col[col=="NA"] <- NA
-    return(mapply(`[`, col, 1))
-  })
-  
-  # Convert the data frame, we do not have factors
-  # in data so keep them as strings
-  nodes.df <- data.frame(node.vec, stringsAsFactors = F)
-  colnames(nodes.df) <- names(nodes[[1]])
-  rownames(nodes.df) <- names(nodes)
+  if(length(nodes) > 0) {
+    # The num of columns are stored in each row in the list
+    # Pull out how many columns so we can index through each
+    # row and receive the columns
+    col.length <- 1:length(nodes[[1]])
+    
+    # Use index nums to pull out each column so they are
+    # no longer stored as rows but columns
+    col.list <- lapply(col.length, function(x) {
+      return(mapply(`[`, nodes, x))
+    })
+    
+    # To each column, replace the string "NA" with
+    # an actual R value of NA, the extract the column 
+    # as a vector to coerce into one type
+    node.vec <- lapply(col.length, function(x) {
+      col <- mapply(`[`, nodes, x)
+      col[col=="NA"] <- NA
+      return(mapply(`[`, col, 1))
+    })
+    
+    # Convert the data frame, we do not have factors
+    # in data so keep them as strings
+    nodes.df <- data.frame(node.vec, stringsAsFactors = F)
+    colnames(nodes.df) <- names(nodes[[1]])
+    rownames(nodes.df) <- names(nodes)
+  }
   
   # Combine into a single data frame.
   return(nodes.df)
@@ -115,6 +119,7 @@ parse.scripts <- function(m.list) {
 #' get.libs()
 #' get.scripts()
 #' get.environment()
+#' get.all.df()
 #' 
 #' @name access
 #' 
@@ -216,6 +221,16 @@ get.libs <- function() {
 get.scripts <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["scripts"]]
+  } else {
+    stop("No provenance parsed yet, try running prov.parse first")
+  })
+}
+
+#' @rdname access
+#' @export
+get.all.df <- function() {
+  return(if (!is.null(prov.env$prov.df)) {
+    prov.env$prov.df
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })

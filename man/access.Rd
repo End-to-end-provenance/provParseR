@@ -13,6 +13,7 @@
 \alias{get.func.lib}
 \alias{get.libs}
 \alias{get.scripts}
+\alias{get.all.df}
 \title{Access functions that will retrieve information that has been parsed from the prov.json file.
 The function prov.parse MUST be run before using these functions.}
 \usage{
@@ -37,6 +38,8 @@ get.func.lib()
 get.libs()
 
 get.scripts()
+
+get.all.df()
 }
 \value{
 The data frame of the requested information.
@@ -57,5 +60,6 @@ get.func.lib()
 get.libs()
 get.scripts()
 get.environment()
+get.all.df()
 
 }
