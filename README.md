@@ -10,7 +10,7 @@ This R package can be used with RDataTracker.
 Install from GitHub:
 ```{r}
 # install.packages("devtools")
-devtools::install_github("provtools/provParseR")
+devtools::install_github("ProvTools/provParseR")
 ```
 Once installed, load the package:
 ```{r}
