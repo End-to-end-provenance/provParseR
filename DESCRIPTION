@@ -1,11 +1,11 @@
 Package: provParseR
-Title: Pulls Information From Prov.Json files
-Version: 0.1.0.9000
+Title: Parses Prov JSON files
+Version: 0.1.0
 Authors@R: c(
     person("Orenna", "Brand", email = "o.brand@columbia.edu", role = "aut"),
     person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = c("aut", "cre"))
     )
-Description: This package will allow information from prov.json files to be extracted and converted
+Description: R functions to extract information from prov.json files convert it
     to a usable data frame format. The information can be accessed through access functions that will 
     return the requested data. 
 Depends: R (>= 3.5.0)
