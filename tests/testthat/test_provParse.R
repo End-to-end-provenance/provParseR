@@ -1,4 +1,4 @@
-library(EnviR)
+library(provParseR)
 
 ## Loading test data
 test.data <- system.file("tests", "ddg.json", package = "provParseR")
