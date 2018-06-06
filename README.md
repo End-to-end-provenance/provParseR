@@ -1,4 +1,6 @@
-# EnviR
+[![Travis-CI Build Status](https://travis-ci.org/ProvTools/provParseR.svg?branch=master)](https://travis-ci.org/ProvTools/provParseR)
+
+# provParseR
 Given prov JSON files, returns details of the user's computing environment, including versions of all libraries used. For R scripts.
 
 This R package can be used with RDataTracker.
@@ -8,11 +10,11 @@ This R package can be used with RDataTracker.
 Install from GitHub:
 ```{r}
 # install.packages("devtools")
-devtools::install_github("oebrand/EnviR")
+devtools::install_github("provtools/provParseR")
 ```
 Once installed, load the package:
 ```{r}
-library("EnviR")
+library("provParseR")
 ```
 
 
