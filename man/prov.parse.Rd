@@ -18,5 +18,5 @@ Parses the information in a prov.json file and makes it available to be
 when accessed through the access functions.
 }
 \examples{
-prov.parse("ddg.json")
+prov.parse(system.file ("testdata", "ddg.json", package="provParseR", mustWork=TRUE))
 }

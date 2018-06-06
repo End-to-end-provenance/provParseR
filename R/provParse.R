@@ -108,6 +108,7 @@ parse.scripts <- function(m.list) {
 #' @return The data frame of the requested information.
 #'
 #' @examples
+#' prov.parse(system.file ("testdata", "ddg.json", package="provParseR", mustWork=TRUE))
 #' get.proc.nodes()
 #' get.data.nodes()
 #' get.func.nodes()
@@ -137,6 +138,7 @@ get.environment <- function() {
 }
 
 #' @rdname access
+#' @export
 get.proc.nodes <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["procNodes"]]
@@ -146,6 +148,7 @@ get.proc.nodes <- function() {
 }
 
 #' @rdname access
+#' @export
 get.data.nodes <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["dataNodes"]]
@@ -155,6 +158,7 @@ get.data.nodes <- function() {
 }
 
 #' @rdname access
+#' @export
 get.func.nodes <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["funcNodes"]]
@@ -164,6 +168,7 @@ get.func.nodes <- function() {
 }
 
 #' @rdname access
+#' @export
 get.proc.proc <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["procProcEdges"]]
@@ -173,6 +178,7 @@ get.proc.proc <- function() {
 }
 
 #' @rdname access
+#' @export
 get.data.proc <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["dataProcEdges"]]
@@ -182,6 +188,7 @@ get.data.proc <- function() {
 }
 
 #' @rdname access
+#' @export
 get.proc.data <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["procDataEdges"]]
@@ -191,6 +198,7 @@ get.proc.data <- function() {
 }
 
 #' @rdname access
+#' @export
 get.func.proc <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["funcProcEdges"]]
@@ -200,6 +208,7 @@ get.func.proc <- function() {
 }
 
 #' @rdname access
+#' @export
 get.func.lib <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["funcLibEdges"]]
@@ -209,6 +218,7 @@ get.func.lib <- function() {
 }
 
 #' @rdname access
+#' @export
 get.libs <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["libs"]]
@@ -218,6 +228,7 @@ get.libs <- function() {
 }
 
 #' @rdname access
+#' @export
 get.scripts <- function() {
   return(if (!is.null(prov.env$prov.df)) {
     prov.env$prov.df[["scripts"]]
@@ -245,17 +256,19 @@ get.all.df <- function() {
 #' @return Does not return a value, but opens up the use of the access functions
 #' @export
 #' @examples
-#' prov.parse("ddg.json")
+#' prov.parse(system.file ("testdata", "ddg.json", package="provParseR", mustWork=TRUE))
 prov.parse <- function(filename) {
-  library("jsonlite")
+#  library("jsonlite")
+  print (paste ("Parsing", filename))
   
   # Removing 'rdt:' prefix for legibility of data.
   prov <- readLines(filename)
+  if (length(prov) == 0) warning ("Provenance is empty")
   prov <- gsub("rdt:", "", prov)
   prov <- gsub("prov:", "", prov)
   
   # Converting to an R-useable data structure.
-  prov.data <- fromJSON(prov)
+  prov.data <- jsonlite::fromJSON(prov)
   
   # Creating the master list by unlisting the nodes/edges.
   master.list <- unlist(prov.data, recursive = F)

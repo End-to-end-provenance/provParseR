@@ -49,6 +49,7 @@ Access functions that will retrieve information that has been parsed from the pr
 The function prov.parse MUST be run before using these functions.
 }
 \examples{
+prov.parse(system.file ("testdata", "ddg.json", package="provParseR", mustWork=TRUE))
 get.proc.nodes()
 get.data.nodes()
 get.func.nodes()

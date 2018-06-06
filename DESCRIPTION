@@ -1,4 +1,4 @@
-Package: EnviR
+Package: provParseR
 Title: Pulls Information From Prov.Json files
 Version: 0.1.0.9000
 Authors@R: c(
@@ -9,7 +9,7 @@ Description: This package will allow information from prov.json files to be extr
     to a usable data frame format. The information can be accessed through access functions that will 
     return the requested data. 
 Depends: R (>= 3.5.0)
-License: GPL 3.0
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
