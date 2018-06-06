@@ -1,7 +1,7 @@
 library(provParseR)
 
 ## Loading test data
-test.data <- system.file("tests", "ddg.json", package = "provParseR")
+test.data <- system.file("testdata", "ddg.json", package = "provParseR")
 prov.parse(test.data)
 
 context("Environment access function")
