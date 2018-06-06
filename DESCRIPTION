@@ -1,9 +1,10 @@
-Package: EnviR
+Package: provParseR
 Title: Pulls Information From Prov.Json files
 Version: 0.1.0.9000
 Authors@R: c(
     person("Orenna", "Brand", email = "o.brand@columbia.edu", role = "aut"),
-    person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = c("aut", "cre"))
+    person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = "aut"),
+    person("Emery", "Boose", email = "boose@fas.harvard.edu", role = "cre")
     )
 Description: This package will allow information from prov.json files to be extracted and converted
     to a usable data frame format. The information can be accessed through access functions that will 
