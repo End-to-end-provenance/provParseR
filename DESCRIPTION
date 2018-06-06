@@ -8,7 +8,7 @@ Authors@R: c(
 Description: R functions to extract information from prov.json files convert it
     to a usable data frame format. The information can be accessed through access functions that will 
     return the requested data. 
-Depends: R (>= 3.3.3)
+Depends: R (>= 3.3)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
