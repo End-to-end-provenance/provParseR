@@ -141,7 +141,7 @@ get.environment <- function() {
 #' @export
 get.proc.nodes <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["procNodes"]]
+    prov.env$prov.df[["proc.nodes"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -151,7 +151,7 @@ get.proc.nodes <- function() {
 #' @export
 get.data.nodes <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["dataNodes"]]
+    prov.env$prov.df[["data.nodes"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -161,7 +161,7 @@ get.data.nodes <- function() {
 #' @export
 get.func.nodes <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["funcNodes"]]
+    prov.env$prov.df[["func.nodes"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -171,7 +171,7 @@ get.func.nodes <- function() {
 #' @export
 get.proc.proc <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["procProcEdges"]]
+    prov.env$prov.df[["proc.proc.edges"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -181,7 +181,7 @@ get.proc.proc <- function() {
 #' @export
 get.data.proc <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["dataProcEdges"]]
+    prov.env$prov.df[["data.proc.edges"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -191,7 +191,7 @@ get.data.proc <- function() {
 #' @export
 get.proc.data <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["procDataEdges"]]
+    prov.env$prov.df[["proc.data.edges"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -201,7 +201,7 @@ get.proc.data <- function() {
 #' @export
 get.func.proc <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["funcProcEdges"]]
+    prov.env$prov.df[["func.proc.edges"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -211,7 +211,7 @@ get.func.proc <- function() {
 #' @export
 get.func.lib <- function() {
   return(if (!is.null(prov.env$prov.df)) {
-    prov.env$prov.df[["funcLibEdges"]]
+    prov.env$prov.df[["func.lib.edges"]]
   } else {
     stop("No provenance parsed yet, try running prov.parse first")
   })
@@ -291,9 +291,9 @@ prov.parse <- function(filename) {
   # Utilizes char codes to produce the list of data frames.
   prov.df <- lapply(obj.chars, parse.general, m.list = master.list)
   
-  names(prov.df) <- c("procNodes", "dataNodes", "funcNodes", 
-    "procProcEdges", "procDataEdges", "dataProcEdges", "funcProcEdges", 
-    "funcLibEdges")
+  names(prov.df) <- c("proc.nodes", "data.nodes", "func.nodes", 
+    "proc.proc.edges", "proc.data.edges", "data.proc.edges", "func.proc.edges", 
+    "func.lib.edges")
   
   # Appending hard-coded data to list of data frames.
   prov.df[["envi"]] <- envi.df
