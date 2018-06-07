@@ -43,8 +43,8 @@ parse.general <- function(requested, m.list) {
     # in data so keep them as strings
     nodes.df <- data.frame(node.vec, stringsAsFactors = F)
     colnames(nodes.df) <- names(nodes[[1]])
-    nodes.df <- cbind(names(nodes), nodes.df)
-    names(nodes.df)[names(nodes.df) == "names(nodes)"] <- ""
+    nodes.df <- cbind.data.frame(names(nodes), nodes.df, stringsAsFactors = F)
+    names(nodes.df)[names(nodes.df) == "names(nodes)"] <- "label"
     rownames(nodes.df) <- NULL
   }
   
@@ -66,8 +66,8 @@ parse.envi <- function(m.list) {
   environment <- t(as.data.frame(env))
   environment <- data.frame(environment, stringsAsFactors = F)
   colnames(environment) <- c("value")
-  environment <- cbind(rownames(environment), environment)
-  names(environment)[names(environment) == "rownames(environment)"] <- ""
+  environment <- cbind.data.frame(rownames(environment), environment, stringsAsFactors = F)
+  names(environment)[names(environment) == "rownames(environment)"] <- "label"
   rownames(environment) <- NULL
   
   return(environment)
@@ -99,7 +99,7 @@ parse.scripts <- function(m.list) {
   scripts <- env$`sourcedScripts`
   if (length(scripts) > 1) {
     # Append the script time stamps to the end
-    scripts.df <- as.data.frame(cbind(scripts, env$`sourcedScriptTimeStamps`))
+    scripts.df <- as.data.frame(cbind(scripts, env$`sourcedScriptTimeStamps`), stringsAsFactors = F)
     
     # If there are scripts, append names to the data frame
     names(scripts.df) <- c("scripts", "timestamps")
