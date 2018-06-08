@@ -159,9 +159,9 @@ prov.parse <- function(prov.input, isFile = T) {
   # Utilizes char codes to produce the list of data frames.
   prov.df <- lapply(obj.chars, parse.general, m.list = master.list)
   
-  names(prov.df) <- c("procNodes", "dataNodes", "funcNodes", 
-    "procProcEdges", "procDataEdges", "dataProcEdges", "funcProcEdges", 
-    "funcLibEdges")
+  names(prov.df) <- c("proc.nodes", "data.nodes", "func.nodes", 
+                      "proc.proc.edges", "proc.data.edges", "data.proc.edges", "func.proc.edges", 
+                      "func.lib.edges")
   
   # Appending hard-coded data to list of data frames.
   prov.df[["envi"]] <- envi.df
