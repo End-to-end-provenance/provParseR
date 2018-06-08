@@ -121,12 +121,12 @@ parse.scripts <- function(m.list) {
 #' prov.parse(system.file ("testdata", "ddg.json", package="provParseR", mustWork=TRUE))
 prov.parse <- function(prov.input, isFile = T) {
 
-  print (paste ("Parsing", prov.input))
-  
   # If the input is a string does not need to be read from the file system
   if (isFile) {
+    print (paste ("Parsing", prov.input))
     prov <- readLines(prov.input)
   } else {
+    print (paste ("Parsing string input"))
     prov <- prov.input
   }
   
