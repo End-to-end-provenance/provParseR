@@ -105,3 +105,31 @@ if(nrow(scripts.df) > 0){
   expect_match(typeof(scripts.df$timestamps), "character")
   expect_equal(ncol(scripts.df), 2)
 }
+
+## If input is a string
+
+context("String prov")
+prov.parse(readLines(test.data), isFile = FALSE)
+
+context("String prov - Environment access function")
+envi.df <- get.environment()
+expect_match(class(envi.df), "data.frame")
+expect_match(typeof(envi.df$value), "character")
+expect_equal(nrow(envi.df), 12)
+expect_equal(ncol(envi.df), 2)
+
+context("String prov - Procedure nodes access function")
+proc.df <- get.proc.nodes()
+expect_match(class(proc.df), "data.frame")
+expect_match(typeof(proc.df$name), "character")
+expect_match(typeof(proc.df$type), "character")
+expect_match(typeof(proc.df$elapsedTime), "double")
+expect_match(typeof(proc.df$scriptNum), "integer")
+expect_match(typeof(proc.df$startLine), "integer")
+expect_match(typeof(proc.df$startCol), "integer")
+expect_match(typeof(proc.df$endLine), "integer")
+expect_match(typeof(proc.df$endCol), "integer")
+expect_equal(nrow(proc.df), 37)
+expect_equal(ncol(proc.df), 9)
+
+
