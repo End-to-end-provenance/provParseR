@@ -1,4 +1,4 @@
 library(testthat)
-library(EnviR)
+library(provParseR)
 
-test_check("EnviR")
+test_check("provParseR")

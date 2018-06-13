@@ -1,0 +1,21 @@
+language: r
+r:
+  - oldrel
+  - release
+  - devel
+
+sudo: false
+cache: packages
+
+warnings_are_errors: true
+
+r_packages:
+  - devtools
+
+r_github_packages:
+  - ProvTools/provParseR
+
+notifications:
+  slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
+
+

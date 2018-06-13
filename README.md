@@ -1,5 +1,7 @@
+[![Travis-CI Build Status](https://travis-ci.org/ProvTools/provParseR.svg?branch=master)](https://travis-ci.org/ProvTools/provParseR)
+
 # provParseR
-Given prov.JSON files, returns metadata of the user's R scripts from computing environment to flow of control.
+Given prov JSON files, returns details of the user's computing environment, including versions of all libraries used. For R scripts.
 
 This package requires the use of the provenance collection tool RDataTracker.
 

@@ -6,11 +6,11 @@ Authors@R: c(
     person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = "aut"),
     person("Emery", "Boose", email = "boose@fas.harvard.edu", role = "cre")
     )
-Description: This package will allow information from prov.json files to be extracted and converted
+Description: R functions to extract information from prov.json files convert it
     to a usable data frame format. The information can be accessed through access functions that will 
     return the requested data. 
-Depends: R (>= 3.5.0)
-License: GPL 3.0
+Depends: R (>= 3.3)
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 

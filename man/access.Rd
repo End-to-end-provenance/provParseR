@@ -3,6 +3,8 @@
 \name{access}
 \alias{access}
 \alias{get.environment}
+\alias{get.libs}
+\alias{get.scripts}
 \alias{get.proc.nodes}
 \alias{get.data.nodes}
 \alias{get.func.nodes}
@@ -11,13 +13,15 @@
 \alias{get.proc.data}
 \alias{get.func.proc}
 \alias{get.func.lib}
-\alias{get.libs}
-\alias{get.scripts}
 \alias{get.all.df}
 \title{Access functions that will retrieve information that has been parsed from the prov.json file.
 The function prov.parse MUST be run before using these functions.}
 \usage{
 get.environment()
+
+get.libs()
+
+get.scripts()
 
 get.proc.nodes()
 
@@ -35,10 +39,6 @@ get.func.proc()
 
 get.func.lib()
 
-get.libs()
-
-get.scripts()
-
 get.all.df()
 }
 \value{
@@ -49,6 +49,7 @@ Access functions that will retrieve information that has been parsed from the pr
 The function prov.parse MUST be run before using these functions.
 }
 \examples{
+prov.parse(system.file ("testdata", "ddg.json", package="provParseR", mustWork=TRUE))
 get.proc.nodes()
 get.data.nodes()
 get.func.nodes()
