@@ -4,7 +4,7 @@ Version: 0.1.1
 Authors@R: c(
     person("Orenna", "Brand", email = "o.brand@columbia.edu", role = "aut"),
     person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = "aut"),
-    person("Emery", "Boose", email = "boose@fas.harvard.edu", role = "cre")
+    person("Emery", "Boose", email = "boose@fas.harvard.edu", role = "cre"),
     person("Barbara", "Lerner", email = "blerner@cs.mtholyoke.edu", role = "aut")
     )
 Description: R functions to extract information from prov.json files convert it
