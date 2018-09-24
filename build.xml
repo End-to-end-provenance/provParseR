@@ -36,8 +36,8 @@
     </target>
 
     <target name="clean">
-        <delete dir="provParseR.Rcheck" verbose="true"/>
-        <delete file="${tarfile}" verbose="true"/>
+        <delete dir="provParseR.Rcheck" verbose="false"/>
+        <delete file="${tarfile}" verbose="false"/>
     </target>
 
 	
