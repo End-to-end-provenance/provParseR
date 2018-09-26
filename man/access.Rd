@@ -5,6 +5,7 @@
 \alias{get.libs}
 \alias{get.tool.info}
 \alias{get.scripts}
+\alias{get.saved.scripts}
 \alias{get.proc.nodes}
 \alias{get.data.nodes}
 \alias{get.func.nodes}
@@ -26,6 +27,8 @@ get.libs()
 get.tool.info()
 
 get.scripts()
+
+get.saved.scripts()
 
 get.proc.nodes()
 
@@ -59,7 +62,7 @@ All access functions return NULL if there is no parsed provenance.  If parsed pr
 get.environment returns a data frame containing information about how the provenance was collected.
    The data frame has 2 columns:  label and value.  The labels are: 
    \itemize{
-   \item {name} whose value will always be "environment"
+   \item {name} {- whose value will always be "environment"}
    \item {architecture}
    \item {operatingSystem}
    \item {language}
@@ -71,22 +74,22 @@ get.environment returns a data frame containing information about how the proven
    \item {ddgTimeStamp} {- when the provenance was collected}
    \item {hashAlgorithm}
    }
-   Returns NULL
-   if there is no provenance available.
 
 get.libs returns a data frame describing the libraries used by the 
-  script.  It contains 3 columns:  id, name, and version.  Returns NULL
-   if there is no provenance available.
+  script.  It contains 3 columns:  id, name, and version.
 
 get.tool.info returns a data frame describing the tool that 
   collected the provenance.  It contains 3 columns:  tool.name, tool.version
-  and json.version.  Returns NULL
-  if there is no provenance available.
+  and json.version.
 
 get.scripts returns a data frame identifying all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
-   2 columns:  name and timestamp (when the script was last modified).  Returns NULL
-   if there is no provenance available.
+   2 columns:  name and timestamp (when the script was last modified).
+
+get.scripts returns a data frame identifying the location of saved copies
+   of all the scripts executed.  The main script
+   will be first, followed by all sourced scripts.  The data frame contains 
+   2 columns:  name and timestamp (when the script was last modified).
 
 get.proc.nodes returns a data frame identifying all the procedural nodes executed.  
    These are represented in PROV-JSON as activities and include nodes
@@ -108,8 +111,6 @@ get.proc.nodes returns a data frame identifying all the procedural nodes execute
      \item {endLine}
      \item {endCol}
    }
-   Returns NULL
-   if there is no provenance available.
 
 get.data.nodes returns a data frame with an entry for each data node
   in the provenance.  The data frame contains the following columns:
@@ -119,69 +120,56 @@ get.data.nodes returns a data frame with an entry for each data node
 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
 			\item {valType} {- a description of the value's type, including its container, dimensions and member types}
 			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, or Device}
-			\item {scope} {- a hex number identifying the scope for node's of type Data or Snapshot}
+			\item {scope} {- a hex number identifying the scope.  This is only used for node's with type Data or Snapshot}
 			\item {fromEnv} {- a logical value.  If true, it means the variable had a value before the script began execution}
 			\item {hash} {- the hash value for File nodes}
 			\item {timestamp} {- the time at which the node was created}
 			\item {location} {- for file nodes, the absolute path to the file}
   }
-  Returns NULL
-   if there is no provenance available.
 
 get.func.nodes returns a data frame containing information about the functions
   used from other libraries within the script.  The data frame has 2 columns:  id 
-  (a unique id) and name (the name of the function called).  Returns NULL
-  if there is no provenance available.  Returns an empty data frame if there is
-  provenance but it contains no calls to externally-defined functions.
+  (a unique id) and name (the name of the function called).
 
 get.proc.proc returns a data frame containing information about the edges
-  that go between two procedural nodes.  This edges indicate a control-flow relationship
+  that go between two procedural nodes.  These edges indicate a control-flow relationship
   between the two activities.  The data frame has 3 columns:  id 
-  (a unique id), informant (the tail of the edge), and informed (the head of the edge).  Returns NULL
-   if there is no provenance available.
+  (a unique id), informant (the tail of the edge), and informed (the head of the edge).
 
 get.data.proc returns a data frame containing information about the edges
   that go from data nodes to procedural nodes.  These edges indicate an input relationship
   where the data is used by the activity.  The data frame has 3 columns:  id 
   (a unique id), entity (the input data), and activity (the procedural node that uses the
-  data).  Returns NULL
-   if there is no provenance available.
+  data).
 
 get.proc.data returns a data frame containing information about the edges
   that go from procedural nodes to data nodes.  These edges indicate an output relationship
   where the data is produed by the activity.  The data frame has 3 columns:  id 
   (a unique id), entity (the output data), and activity (the procedural node that produces the
-  data).  Returns NULL
-   if there is no provenance available.
+  data).
 
 get.proc.func returns a data frame containing information about where externally-defined
   functions are used in the script.  The data frame has 3 columns:  func_id (the id of the
   function node), activity (the procedural node 
-  that calls the function) and function (the function's name).  Returns NULL
-   if there is no provenance available.
+  that calls the function) and function (the function's name).
 
 get.func.lib returns a data frame containing information about what
   libraries externally-defined
   functions come from.  The data frame has 3 columns:  func_id (the id of the
   function node), library (a library node)
-  and function (the name of a function).  Returns NULL
-   if there is no provenance available.
+  and function (the name of a function).
 
-A data frame containing a subset of the data nodes that correspond to files or URLs that are 
-  read by the script.  Returns NULL
-   if there is no provenance available.
+get.input.files returns a data frame containing a subset of the data nodes that correspond to files or URLs that are 
+  read by the script.
 
-A data frame containing a subset of the data nodes that correspond to files that are 
-  written by the script.  Returns NULL
-   if there is no provenance available.
+get.output.files returns a data frame containing a subset of the data nodes that correspond to files that are 
+  written by the script.
 
-A data frame containing a subset of the data nodes that correspond to variables
-  assigned to in the script.  Returns NULL
-   if there is no provenance available.
+get.variables.set returns a data frame containing a subset of the data nodes that correspond to variables
+  assigned to in the script.
 
-A data frame containing a subset of the data nodes that correspond to variables
-  whose values are used in the script.  Returns NULL
-   if there is no provenance available.
+get.variables.used returns a data frame containing a subset of the data nodes that correspond to variables
+  whose values are used in the script.
 }
 \description{
 The provParserR package provides a parser and access functions to retrieve provenance information 
