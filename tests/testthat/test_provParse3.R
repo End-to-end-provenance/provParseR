@@ -9,3 +9,9 @@ context("Scripts access function")
 scripts.df <- get.scripts()
 expect_match(class(scripts.df), "data.frame")
 expect_equal (nrow(scripts.df), 5)
+
+saved.scripts.df <- get.saved.scripts()
+expect_equal (nrow(saved.scripts.df), 5)
+directory <- dirname (saved.scripts.df$script[1])
+expect_equal (directory, 
+    "/Users/blerner/Documents/Process/DataProvenance/github/RDataTracker/scriptTests/SourceFuncTest/prov_SourceFuncTest/data")

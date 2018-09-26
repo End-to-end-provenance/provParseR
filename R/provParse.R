@@ -268,6 +268,20 @@ get.scripts <- function() {
   })
 }
 
+#' @return get.scripts returns a data frame identifying the location of saved copies
+#'    of all the scripts executed.  The main script
+#'    will be first, followed by all sourced scripts.  The data frame contains 
+#'    2 columns:  name and timestamp (when the script was last modified).  
+#' @rdname access
+#' @export
+get.saved.scripts <- function () {
+  scripts <- get.scripts()
+  env <- get.environment()
+  prov.dir <- env[env$label == "ddgDirectory", ]$value
+  names <- paste0 (prov.dir, "/data/", basename (scripts$script))
+  return (data.frame (script = names, timestamp = scripts$timestamp, stringsAsFactors=FALSE))
+}
+
 #' @return get.proc.nodes returns a data frame identifying all the procedural nodes executed.  
 #'    These are represented in PROV-JSON as activities and include nodes
 #'    corresponding to lines of code, start or finish nodes that surround
