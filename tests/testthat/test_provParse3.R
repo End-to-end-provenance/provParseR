@@ -14,4 +14,4 @@ saved.scripts.df <- get.saved.scripts()
 expect_equal (nrow(saved.scripts.df), 5)
 directory <- dirname (saved.scripts.df$script[1])
 expect_equal (directory, 
-    "/Users/blerner/Documents/Process/DataProvenance/github/RDataTracker/scriptTests/SourceFuncTest/prov_SourceFuncTest/data")
+    "/Users/blerner/Documents/Process/DataProvenance/github/RDataTracker/scriptTests/SourceFuncTest/prov_SourceFuncTest/scripts")

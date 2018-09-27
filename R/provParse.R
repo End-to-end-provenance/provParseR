@@ -278,7 +278,7 @@ get.saved.scripts <- function () {
   scripts <- get.scripts()
   env <- get.environment()
   prov.dir <- env[env$label == "ddgDirectory", ]$value
-  names <- paste0 (prov.dir, "/data/", basename (scripts$script))
+  names <- paste0 (prov.dir, "/scripts/", basename (scripts$script))
   return (data.frame (script = names, timestamp = scripts$timestamp, stringsAsFactors=FALSE))
 }
 
