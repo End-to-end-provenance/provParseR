@@ -7,15 +7,17 @@ Authors@R: c(
     person("Emery", "Boose", email = "boose@fas.harvard.edu", role = "aut"),
     person("Barbara", "Lerner", email = "blerner@cs.mtholyoke.edu", role = "cre")
     )
-Description: R functions to extract information from prov.json files convert it
-    to a usable data frame format. The information can be accessed through access functions that will 
-    return the requested data. 
+Description: R functions to access provenance information collected by provR or RDataTracker.  The 
+    information is stored inside a ProvInfo object and can be accessed through a collection of functions that will 
+    return the requested data. The exact format of the JSON created by provR and RDataTracker is described in 
+    https://github.com/End-to-end-provenance/RDataTracker/blob/development/vignettes/ExtendingProvJson.pdf.
 Depends: R (>= 3.3)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    jsonlite
+    jsonlite,
+    methods
 Suggests: testthat
 URL: https://github.com/End-to-end-provenance
 RoxygenNote: 6.0.1

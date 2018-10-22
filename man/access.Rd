@@ -20,39 +20,42 @@
 \alias{get.variables.used}
 \title{Provenance access functions}
 \usage{
-get.environment()
+get.environment(prov)
 
-get.libs()
+get.libs(prov)
 
-get.tool.info()
+get.tool.info(prov)
 
-get.scripts()
+get.scripts(prov)
 
-get.saved.scripts()
+get.saved.scripts(prov)
 
-get.proc.nodes()
+get.proc.nodes(prov)
 
-get.data.nodes()
+get.data.nodes(prov)
 
-get.func.nodes()
+get.func.nodes(prov)
 
-get.proc.proc()
+get.proc.proc(prov)
 
-get.data.proc()
+get.data.proc(prov)
 
-get.proc.data()
+get.proc.data(prov)
 
-get.func.proc()
+get.func.proc(prov)
 
-get.func.lib()
+get.func.lib(prov)
 
-get.input.files()
+get.input.files(prov)
 
-get.output.files()
+get.output.files(prov)
 
-get.variables.set()
+get.variables.set(prov)
 
-get.variables.used()
+get.variables.used(prov)
+}
+\arguments{
+\item{prov}{a ProvInfo object created by calling \code{\link{prov.parse}}.}
 }
 \value{
 All access functions return NULL if there is no parsed provenance.  If parsed provenance
@@ -70,8 +73,8 @@ get.environment returns a data frame containing information about how the proven
    \item {script} {- the absolute path to the script executed}
    \item {scriptTimeStamp} {- when the script was last modified}
    \item {workingDirectory}
-   \item {ddgDirectory} {- where the provenance is stored}
-   \item {ddgTimeStamp} {- when the provenance was collected}
+   \item {provDirectory} {- where the provenance is stored}
+   \item {provTimeStamp} {- when the provenance was collected}
    \item {hashAlgorithm}
    }
 
@@ -103,7 +106,7 @@ get.proc.nodes returns a data frame identifying all the procedural nodes execute
        the script, perhaps shortened}
      \item{type} {- one of Operation, Binding, Start, Finish, or Incomplete}
      \item{elapsedTime} {- when this executed relative to the start of the script}
-     \item {scriptNum} {- a number identifing the script it comes from, with script 0 being the main
+     \item {scriptNum} {- a number identifing the script it comes from, with script 1 being the main
        script}
      \item {startLine} {- the line in the script this corresponds to, which may be NA, and the following
        other position infofmation}
@@ -118,7 +121,8 @@ get.data.nodes returns a data frame with an entry for each data node
      \item {id} {- a unique id}
 			\item {name} {- the descriptive name for the node, which is generally a variable name, file name, or URL}
 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
-			\item {valType} {- a description of the value's type, including its container, dimensions and member types}
+			\item {valType} {- a description of the value's type, including its container (such as list, vector, etc.), 
+        dimensions and member types (such as character, numeric, etc.)}
 			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, or Device}
 			\item {scope} {- a hex number identifying the scope.  This is only used for node's with type Data or Snapshot}
 			\item {fromEnv} {- a logical value.  If true, it means the variable had a value before the script began execution}
@@ -172,28 +176,26 @@ get.variables.used returns a data frame containing a subset of the data nodes th
   whose values are used in the script.
 }
 \description{
-The provParserR package provides a parser and access functions to retrieve provenance information 
-from the execution of an R script.  These functions work with provenance 
-collected by provR and RDataTracker.  
-The function prov.parse must be called before calling any of the access functions.
+These functions extract information from a ProvInfo object created by the prov.parse function 
+and return this information as a data frame.
 }
 \examples{
-prov.parse(system.file ("testdata", "prov.json", package="provParseR", mustWork=TRUE))
-get.proc.nodes()
-get.input.files()
-get.output.files()
-get.variables.set()
-get.variables.used()
-get.data.nodes()
-get.func.nodes()
-get.proc.proc()
-get.data.proc()
-get.proc.data()
-get.func.proc()
-get.func.lib()
-get.libs()
-get.scripts()
-get.environment()
+prov <- prov.parse(system.file ("testdata", "prov.json", package="provParseR", mustWork=TRUE))
+get.proc.nodes(prov)
+get.input.files(prov)
+get.output.files(prov)
+get.variables.set(prov)
+get.variables.used(prov)
+get.data.nodes(prov)
+get.func.nodes(prov)
+get.proc.proc(prov)
+get.data.proc(prov)
+get.proc.data(prov)
+get.func.proc(prov)
+get.func.lib(prov)
+get.libs(prov)
+get.scripts(prov)
+get.environment(prov)
 
 }
 \seealso{
