@@ -17,7 +17,7 @@ methods::setClass("ProvInfo",
         scripts = "data.frame")
 )
 
-# This is called when a new DDG Statement is created.  It initializes all of the slots.
+# This is called when a new ProvInfo object is created.  It initializes all of the slots.
 methods::setMethod ("initialize",
     "ProvInfo",
     function(.Object, prov){
