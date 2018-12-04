@@ -5,7 +5,7 @@ Authors@R: c(
     person("Orenna", "Brand", email = "o.brand@columbia.edu", role = "aut"),
     person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = "aut"),
     person("Emery", "Boose", email = "boose@fas.harvard.edu", role = "aut"),
-    person("Barbara", "Lerner", email = "blerner@cs.mtholyoke.edu", role = "cre")
+    person("Barbara", "Lerner", email = "blerner@mtholyoke.edu", role = "cre")
     )
 Description: R functions to access provenance information collected by rdt or 
     rdtLite.  The information is stored inside a ProvInfo object and can be 
