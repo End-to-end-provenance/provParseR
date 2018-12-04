@@ -11,6 +11,7 @@ warnings_are_errors: true
 
 r_packages:
   - devtools
+  - jsonlite
 
 r_github_packages:
   - ProvTools/provParseR

@@ -7,8 +7,8 @@
 prov.parse(prov.input, isFile = T)
 }
 \arguments{
-\item{prov.input}{A path to a json file that has been created by RDataTracker
-or provR or a string that is in prov.json format.}
+\item{prov.input}{A path to a json file that has been created by rdt
+or rdtLite or a string that is in prov.json format.}
 
 \item{isFile}{A logical value that indicates whether the provenance information 
 is stored in a file (isFile=T) or in a string (isFile=F).}
@@ -18,7 +18,7 @@ A ProvInfo object that can be passed to the access functions provided
   by the provParseR package.
 }
 \description{
-The prov.parse function parses the provenance collected by provR or RDataTracker.  This 
+The prov.parse function parses the provenance collected by rdt or rdtLite.  This 
 provenance can be stored in a prov.json file or passed to prov.parse as a string.  
 The provParseR package also defines
 a number of functions that extract and return information from the parsed
