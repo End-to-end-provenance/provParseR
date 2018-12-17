@@ -7,10 +7,10 @@ Authors@R: c(
     person("Emery", "Boose", email = "boose@fas.harvard.edu", role = "aut"),
     person("Barbara", "Lerner", email = "blerner@mtholyoke.edu", role = "cre")
     )
-Description: R functions to access provenance information collected by rdt or 
-    rdtLite.  The information is stored inside a ProvInfo object and can be 
+Description: R functions to access provenance information collected by 'rdt' or 
+    'rdtLite'.  The information is stored inside a 'ProvInfo' object and can be 
     accessed through a collection of functions that will return the requested 
-    data. The exact format of the JSON created by rdt and rdtLite is described 
+    data. The exact format of the JSON created by 'rdt' and 'rdtLite' is described 
     in <https://github.com/End-to-end-provenance/ExtendedProvJson>.
 Depends: R (>= 3.3)
 License: GPL-3 | file LICENSE
