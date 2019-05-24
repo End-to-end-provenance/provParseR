@@ -78,6 +78,18 @@ methods::setMethod ("initialize",
       .Object@func.lib.edges <- prov.df[[8]]
       .Object@agents <- prov.df[[9]]
       
+      # Check the type of the elapsedTime column.
+      # Convert to a column of doubles if it is a column of strings.
+      if(length(.Object@proc.nodes) > 0) {
+        elapsedTime <- .Object@proc.nodes["elapsedTime"][ , 1]
+        
+        if(typeof(elapsedTime) == "character") {
+          elapsedTime <- parse.elapsed.time(elapsedTime)
+          .Object@proc.nodes["elapsedTime"] <- elapsedTime
+        }
+      }
+      
+      # Complete
       return (.Object)
     }
 )
@@ -181,6 +193,41 @@ parse.scripts <- function(m.list) {
     
   }
   return(scripts.df)
+}
+
+# Parse a vector of elapsedTime values from strings to a vector of doubles.
+# elapsedTime strings can have ',' and/or '.' for digit grouping and/or as a decimal separator.
+# elapsedTime values will always have at least a decimal separator.
+parse.elapsed.time <- function(vector) {
+	
+	vector <- sapply(
+		vector,
+		function(str) {
+			# Try to parse the string normally as a double.
+			# If and when it fails, a warning will be thrown and NA will be returned.
+			val <- suppressWarnings(as.double(str))
+			
+			# If parsing fails, manipulate the string into a format where it will parse.
+			# e.g. When ',' and/or '.' are used to group digits or as a decimal separator
+			if(is.na(val[1])) {
+				
+				# split string into array where ',' or '.' occurs
+				# there will always be at least a decimal separator
+				regex <- '(,|\\.)'
+				parts <- strsplit(str, regex)[[1]]
+				
+				# as the last part is always the part after the decimal separator,
+				# add a '.' before it before combining the parts back into a single string
+				parts[length(parts)] <- paste('.', parts[length(parts)], sep='')
+				str <- paste(parts, collapse='')
+				
+				val <- as.double(str)
+			}
+			
+			return(val)
+		})
+	
+	return(unname(vector))
 }
 
 #' Provenance parser
