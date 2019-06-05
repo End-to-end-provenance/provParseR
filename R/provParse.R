@@ -186,7 +186,7 @@ parse.scripts <- function(m.list) {
   
   # Grab the sourced script names
   scripts <- env$`sourcedScripts`
-  if (length(scripts) > 1) {
+  if (length(scripts) > 0) {
     # Append the sourced scripts
     scripts.df <- rbind (scripts.df, 
         cbind(script = scripts, timestamp = env$`sourcedScriptTimeStamps`))
