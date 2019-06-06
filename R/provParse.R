@@ -106,39 +106,36 @@ parse.general <- function(requested, m.list) {
   # This list had data stored in rows not columns
   nodes <- m.list[grep(grep.arg, names(m.list))]
   
-  nodes.df <- data.frame(NULL)
+  if (length(nodes) == 0) return(data.frame())
   
-  if(length(nodes) > 0) {
-    # The num of columns are stored in each row in the list
-    # Pull out how many columns so we can index through each
-    # row and receive the columns
-    col.length <- 1:length(nodes[[1]])
-    
-    # Use index nums to pull out each column so they are
-    # no longer stored as rows but columns
-    col.list <- lapply(col.length, function(x) {
-      return(mapply(`[`, nodes, x))
-    })
-    
-    # To each column, replace the string "NA" with
-    # an actual R value of NA, the extract the column 
-    # as a vector to coerce into one type
-    node.vec <- lapply(col.length, function(x) {
-      col <- mapply(`[`, nodes, x)
-      col[col=="NA"] <- NA
-      return(mapply(`[`, col, 1))
-    })
-    
-    # Convert the data frame, we do not have factors
-    # in data so keep them as strings
-    nodes.df <- data.frame(node.vec, stringsAsFactors = F)
-    colnames(nodes.df) <- names(nodes[[1]])
-    nodes.df <- cbind.data.frame(names(nodes), nodes.df, stringsAsFactors = F)
-    names(nodes.df)[names(nodes.df) == "names(nodes)"] <- "id"
-    rownames(nodes.df) <- NULL
-  }
+  # The num of columns are stored in each row in the list
+  # Pull out how many columns so we can index through each
+  # row and receive the columns
+  col.length <- 1:length(nodes[[1]])
   
-  # Combine into a single data frame.
+  # Use index nums to pull out each column so they are
+  # no longer stored as rows but columns
+  col.list <- lapply(col.length, function(x) {
+    return(mapply(`[`, nodes, x))
+  })
+  
+  # To each column, replace the string "NA" with
+  # an actual R value of NA, the extract the column 
+  # as a vector to coerce into one type
+  node.vec <- lapply(col.length, function(x) {
+    col <- mapply(`[`, nodes, x)
+    col[col=="NA"] <- NA
+    return(mapply(`[`, col, 1))
+  })
+  
+  # Convert the data frame, we do not have factors
+  # in data so keep them as strings
+  nodes.df <- data.frame(node.vec, stringsAsFactors = F)
+  colnames(nodes.df) <- names(nodes[[1]])
+  nodes.df <- cbind.data.frame(names(nodes), nodes.df, stringsAsFactors = F)
+  names(nodes.df)[names(nodes.df) == "names(nodes)"] <- "id"
+  rownames(nodes.df) <- NULL
+  
   return(nodes.df)
 }
 
@@ -396,11 +393,19 @@ get.saved.scripts <- function (prov) {
 #' @rdname access
 #' @export
 get.proc.nodes <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@proc.nodes
+  if (!is.null(prov)) {
+    proc.nodes <- prov@proc.nodes
+    if (ncol(proc.nodes) == 0) {
+      #   id      name      type elapsedTime scriptNum startLine startCol endLine endCol
+      # 1 p1 Issue10.R     Start       0.441        NA        NA       NA      NA     NA
+      proc.nodes <- data.frame (id=character(), name=character(), type=character(), 
+          elapsedTime=character(), scriptNum=integer(), startLine=integer(), 
+          startCol=integer(), endLine=integer(), endCol=integer(), stringsAsFactors=FALSE)
+    }
+    return (proc.nodes)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.data.nodes returns a data frame with an entry for each data node
@@ -422,11 +427,24 @@ get.proc.nodes <- function(prov) {
 #' @rdname access
 #' @export
 get.data.nodes <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@data.nodes
+  if (!is.null(prov)) {
+    data.nodes <- prov@data.nodes
+    if (ncol (data.nodes) == 0) {
+      #   id  name   value    valType                                                 type   scope
+      # 1 d1   y       5  {"container":"vector", "dimension":[1], "type":["numeric"]} Data R_GlobalEnv
+            
+      # fromEnv      hash    timestamp   location
+      #  FALSE
+      
+      data.nodes <- data.frame (id=character(), name=character(), value=character(), valType=character(),
+          type=character(), scope=character(), fromEnv=logical(), hash=character(), timestamp=character(), 
+          location=character(), stringsAsFactors=FALSE)
+    }
+    return (data.nodes)
+    
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.func.nodes returns a data frame containing information about the functions
@@ -435,11 +453,17 @@ get.data.nodes <- function(prov) {
 #' @rdname access
 #' @export
 get.func.nodes <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@func.nodes
+  if (!is.null(prov)) {
+    func.nodes <- prov@func.nodes
+    if (ncol(func.nodes) == 0) {
+      #   id    name
+      # 1 f1 str_to_upper
+      func.nodes <- data.frame(id=character(), name=character(), stringsAsFactors=FALSE)
+    }
+    return(func.nodes)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.proc.proc returns a data frame containing information about the edges
@@ -449,11 +473,19 @@ get.func.nodes <- function(prov) {
 #' @rdname access
 #' @export
 get.proc.proc <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@proc.proc.edges
+  if (!is.null(prov)) {
+    proc.proc.edges <- prov@proc.proc.edges
+    if (ncol(proc.proc.edges) == 0) {
+        #     id  informant informed
+        # 1   pp1    p1       p2
+      proc.proc.edges <- data.frame (id=character(), informant=character(), 
+          informed=character(), stringsAsFactors=FALSE)
+    }
+    return (proc.proc.edges)
+    
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.data.proc returns a data frame containing information about the edges
@@ -464,11 +496,18 @@ get.proc.proc <- function(prov) {
 #' @rdname access
 #' @export
 get.data.proc <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@data.proc.edges
+  if (!is.null(prov)) {
+    data.proc.edges <- prov@data.proc.edges
+    if (ncol (data.proc.edges) == 0) {
+      #     id    entity  activity
+      # 1   dp1     d1       p7
+      data.proc.edges <- data.frame (id=character(), entity=character(), 
+          activity=character(), stringsAsFactors=FALSE)
+    }
+    return (data.proc.edges)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.proc.data returns a data frame containing information about the edges
@@ -479,11 +518,18 @@ get.data.proc <- function(prov) {
 #' @rdname access
 #' @export
 get.proc.data <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@proc.data.edges
+  if (!is.null(prov)) {
+    proc.data.edges <- prov@proc.data.edges
+    if (ncol(proc.data.edges) == 0) {
+      #     id  activity entity
+      # 1   pd1   p6       d1
+      proc.data.edges <- data.frame (id=character(), activity=character(), 
+          entity=character(), stringsAsFactors=FALSE)
+    }
+    return (proc.data.edges)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.proc.func returns a data frame containing information about where externally-defined

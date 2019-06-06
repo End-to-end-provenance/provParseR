@@ -21,4 +21,4 @@ Imports:
     methods
 Suggests: testthat
 URL: https://github.com/End-to-end-provenance
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

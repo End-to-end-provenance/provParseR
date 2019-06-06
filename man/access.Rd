@@ -58,9 +58,8 @@ get.variables.used(prov)
 \item{prov}{a ProvInfo object created by calling \code{\link{prov.parse}}.}
 }
 \value{
-All access functions return NULL if there is no parsed provenance.  If parsed provenance
-  exists, but there is no provenance for the type of information requested, such as no input 
-  files, an empty data frame is returned.
+All access functions return NULL if there is no parsed provenance or there
+   are no values in that portion of the provenance.
 
 get.environment returns a data frame containing information about how the provenance was collected.
    The data frame has 2 columns:  label and value.  The labels are: 
