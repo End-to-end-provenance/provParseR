@@ -47,6 +47,10 @@ expect_match(typeof(data.df$location), "character")
 expect_equal(nrow(data.df), 16)
 expect_equal(ncol(data.df), 10)
 
+context("Exception nodes access function")
+errors.df <- get.error.nodes(prov)
+expect_equal(nrow(errors.df), 0)
+
 context("Function nodes access function")
 func.df <- get.func.nodes(prov)
 expect_match(class(func.df), "data.frame")
@@ -113,8 +117,12 @@ expect_equal(ncol(scripts.df), 2)
 
 context ("Input files")
 input.files <- get.input.files (prov)
-expect_equal (nrow (input.files), 1)
-expect_setequal (input.files$name, "http://harvardforest.fas.harvard.edu/sites/harvardforest.fas.harvard.edu/files/weather/metsta.dat")
+expect_equal (nrow (input.files), 0)
+
+context ("URLs")
+urls <- get.urls (prov)
+expect_equal (nrow (urls), 1)
+expect_equal (urls$name, "http://harvardforest.fas.harvard.edu/sites/harvardforest.fas.harvard.edu/files/weather/metsta.dat")
 
 context ("Output files")
 output.files <- get.output.files (prov)
