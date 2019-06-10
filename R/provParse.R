@@ -78,6 +78,18 @@ methods::setMethod ("initialize",
       .Object@func.lib.edges <- prov.df[[8]]
       .Object@agents <- prov.df[[9]]
       
+      # Check the type of the elapsedTime column.
+      # Convert to a column of doubles if it is a column of strings.
+      if(length(.Object@proc.nodes) > 0) {
+        elapsedTime <- .Object@proc.nodes["elapsedTime"][ , 1]
+        
+        if(typeof(elapsedTime) == "character") {
+          elapsedTime <- parse.elapsed.time(elapsedTime)
+          .Object@proc.nodes["elapsedTime"] <- elapsedTime
+        }
+      }
+      
+      # Complete
       return (.Object)
     }
 )
@@ -94,39 +106,36 @@ parse.general <- function(requested, m.list) {
   # This list had data stored in rows not columns
   nodes <- m.list[grep(grep.arg, names(m.list))]
   
-  nodes.df <- data.frame(NULL)
+  if (length(nodes) == 0) return(data.frame())
   
-  if(length(nodes) > 0) {
-    # The num of columns are stored in each row in the list
-    # Pull out how many columns so we can index through each
-    # row and receive the columns
-    col.length <- 1:length(nodes[[1]])
-    
-    # Use index nums to pull out each column so they are
-    # no longer stored as rows but columns
-    col.list <- lapply(col.length, function(x) {
-      return(mapply(`[`, nodes, x))
-    })
-    
-    # To each column, replace the string "NA" with
-    # an actual R value of NA, the extract the column 
-    # as a vector to coerce into one type
-    node.vec <- lapply(col.length, function(x) {
-      col <- mapply(`[`, nodes, x)
-      col[col=="NA"] <- NA
-      return(mapply(`[`, col, 1))
-    })
-    
-    # Convert the data frame, we do not have factors
-    # in data so keep them as strings
-    nodes.df <- data.frame(node.vec, stringsAsFactors = F)
-    colnames(nodes.df) <- names(nodes[[1]])
-    nodes.df <- cbind.data.frame(names(nodes), nodes.df, stringsAsFactors = F)
-    names(nodes.df)[names(nodes.df) == "names(nodes)"] <- "id"
-    rownames(nodes.df) <- NULL
-  }
+  # The num of columns are stored in each row in the list
+  # Pull out how many columns so we can index through each
+  # row and receive the columns
+  col.length <- 1:length(nodes[[1]])
   
-  # Combine into a single data frame.
+  # Use index nums to pull out each column so they are
+  # no longer stored as rows but columns
+  col.list <- lapply(col.length, function(x) {
+    return(mapply(`[`, nodes, x))
+  })
+  
+  # To each column, replace the string "NA" with
+  # an actual R value of NA, the extract the column 
+  # as a vector to coerce into one type
+  node.vec <- lapply(col.length, function(x) {
+    col <- mapply(`[`, nodes, x)
+    col[col=="NA"] <- NA
+    return(mapply(`[`, col, 1))
+  })
+  
+  # Convert the data frame, we do not have factors
+  # in data so keep them as strings
+  nodes.df <- data.frame(node.vec, stringsAsFactors = F)
+  colnames(nodes.df) <- names(nodes[[1]])
+  nodes.df <- cbind.data.frame(names(nodes), nodes.df, stringsAsFactors = F)
+  names(nodes.df)[names(nodes.df) == "names(nodes)"] <- "id"
+  rownames(nodes.df) <- NULL
+  
   return(nodes.df)
 }
 
@@ -174,13 +183,49 @@ parse.scripts <- function(m.list) {
   
   # Grab the sourced script names
   scripts <- env$`sourcedScripts`
-  if (length(scripts) > 1) {
+  
+  if (length(scripts) > 0 && scripts[1] != "") {
     # Append the sourced scripts
     scripts.df <- rbind (scripts.df, 
         cbind(script = scripts, timestamp = env$`sourcedScriptTimeStamps`))
-    
   }
+  
   return(scripts.df)
+}
+
+# Parse a vector of elapsedTime values from strings to a vector of doubles.
+# elapsedTime strings can have ',' and/or '.' for digit grouping and/or as a decimal separator.
+# elapsedTime values will always have at least a decimal separator.
+parse.elapsed.time <- function(vector) {
+	
+	vector <- sapply(
+		vector,
+		function(str) {
+			# Try to parse the string normally as a double.
+			# If and when it fails, a warning will be thrown and NA will be returned.
+			val <- suppressWarnings(as.double(str))
+			
+			# If parsing fails, manipulate the string into a format where it will parse.
+			# e.g. When ',' and/or '.' are used to group digits or as a decimal separator
+			if(is.na(val[1])) {
+				
+				# split string into array where ',' or '.' occurs
+				# there will always be at least a decimal separator
+				regex <- '(,|\\.)'
+				parts <- strsplit(str, regex)[[1]]
+				
+				# as the last part is always the part after the decimal separator,
+				# add a '.' before it before combining the parts back into a single string
+				parts[length(parts)] <- paste('.', parts[length(parts)], sep='')
+				str <- paste(parts, collapse='')
+				
+				val <- as.double(str)
+			}
+			
+			return(val)
+		})
+	
+	return(unname(vector))
 }
 
 #' Provenance parser
@@ -223,15 +268,22 @@ prov.parse <- function(prov.input, isFile = T) {
 #' and return this information as a data frame.
 #' 
 #' @param prov a ProvInfo object created by calling \code{\link{prov.parse}}.
+#' @param only.files If true, the output of get.input.files contains just files.  If false,
+#'    it contains both files and URLs.
+#' @param var.name a string containing the name of a variable used in the script the
+#'  provenance is for
 #' 
 #' @examples
 #' prov <- prov.parse(system.file ("testdata", "prov.json", package="provParseR", mustWork=TRUE))
 #' get.proc.nodes(prov)
 #' get.input.files(prov)
+#' get.urls(prov)
 #' get.output.files(prov)
 #' get.variables.set(prov)
 #' get.variables.used(prov)
+#' get.variable.named(prov, "z")
 #' get.data.nodes(prov)
+#' get.error.nodes(prov)
 #' get.func.nodes(prov)
 #' get.proc.proc(prov)
 #' get.data.proc(prov)
@@ -348,11 +400,19 @@ get.saved.scripts <- function (prov) {
 #' @rdname access
 #' @export
 get.proc.nodes <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@proc.nodes
+  if (!is.null(prov)) {
+    proc.nodes <- prov@proc.nodes
+    if (ncol(proc.nodes) == 0) {
+      #   id      name      type elapsedTime scriptNum startLine startCol endLine endCol
+      # 1 p1 Issue10.R     Start       0.441        NA        NA       NA      NA     NA
+      proc.nodes <- data.frame (id=character(), name=character(), type=character(), 
+          elapsedTime=character(), scriptNum=integer(), startLine=integer(), 
+          startCol=integer(), endLine=integer(), endCol=integer(), stringsAsFactors=FALSE)
+    }
+    return (proc.nodes)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.data.nodes returns a data frame with an entry for each data node
@@ -374,24 +434,59 @@ get.proc.nodes <- function(prov) {
 #' @rdname access
 #' @export
 get.data.nodes <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@data.nodes
+  if (!is.null(prov)) {
+    data.nodes <- prov@data.nodes
+    if (ncol (data.nodes) == 0) {
+      #   id  name   value    valType                                                 type   scope
+      # 1 d1   y       5  {"container":"vector", "dimension":[1], "type":["numeric"]} Data R_GlobalEnv
+            
+      # fromEnv      hash    timestamp   location
+      #  FALSE
+      
+      data.nodes <- data.frame (id=character(), name=character(), value=character(), valType=character(),
+          type=character(), scope=character(), fromEnv=logical(), hash=character(), timestamp=character(), 
+          location=character(), stringsAsFactors=FALSE)
+    }
+    return (data.nodes)
+    
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
+#' @return get.error.nodes returns a data frame with an entry for each error node
+#'   in the provenance.  The data frame contains the following columns:
+#'   \itemize{
+#'      \item {id} {- a unique id}
+#' 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+#' 			\item {timestamp} {- the time at which the node was created}
+#'   }
+#' @rdname access
+#' @export
+get.error.nodes <- function(prov) {
+  data.nodes <- get.data.nodes(prov)
+  error.nodes <- data.nodes[data.nodes$type=="Exception",]
+  error.table <- subset (error.nodes, select=c("id", "value", "timestamp"))
+  return (error.table)
+}
+  
 #' @return get.func.nodes returns a data frame containing information about the functions
 #'   used from other libraries within the script.  The data frame has 2 columns:  id 
 #'   (a unique id) and name (the name of the function called).  
 #' @rdname access
 #' @export
 get.func.nodes <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@func.nodes
+  if (!is.null(prov)) {
+    func.nodes <- prov@func.nodes
+    if (ncol(func.nodes) == 0) {
+      #   id    name
+      # 1 f1 str_to_upper
+      func.nodes <- data.frame(id=character(), name=character(), stringsAsFactors=FALSE)
+    }
+    return(func.nodes)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.proc.proc returns a data frame containing information about the edges
@@ -401,11 +496,19 @@ get.func.nodes <- function(prov) {
 #' @rdname access
 #' @export
 get.proc.proc <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@proc.proc.edges
+  if (!is.null(prov)) {
+    proc.proc.edges <- prov@proc.proc.edges
+    if (ncol(proc.proc.edges) == 0) {
+        #     id  informant informed
+        # 1   pp1    p1       p2
+      proc.proc.edges <- data.frame (id=character(), informant=character(), 
+          informed=character(), stringsAsFactors=FALSE)
+    }
+    return (proc.proc.edges)
+    
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.data.proc returns a data frame containing information about the edges
@@ -416,11 +519,18 @@ get.proc.proc <- function(prov) {
 #' @rdname access
 #' @export
 get.data.proc <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@data.proc.edges
+  if (!is.null(prov)) {
+    data.proc.edges <- prov@data.proc.edges
+    if (ncol (data.proc.edges) == 0) {
+      #     id    entity  activity
+      # 1   dp1     d1       p7
+      data.proc.edges <- data.frame (id=character(), entity=character(), 
+          activity=character(), stringsAsFactors=FALSE)
+    }
+    return (data.proc.edges)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.proc.data returns a data frame containing information about the edges
@@ -431,11 +541,18 @@ get.data.proc <- function(prov) {
 #' @rdname access
 #' @export
 get.proc.data <- function(prov) {
-  return(if (!is.null(prov)) {
-    prov@proc.data.edges
+  if (!is.null(prov)) {
+    proc.data.edges <- prov@proc.data.edges
+    if (ncol(proc.data.edges) == 0) {
+      #     id  activity entity
+      # 1   pd1   p6       d1
+      proc.data.edges <- data.frame (id=character(), activity=character(), 
+          entity=character(), stringsAsFactors=FALSE)
+    }
+    return (proc.data.edges)
   } else {
-    NULL
-  })
+    return (NULL)
+  }
 }
 
 #' @return get.proc.func returns a data frame containing information about where externally-defined
@@ -481,14 +598,19 @@ get.func.lib <- function(prov) {
 }
 
 #' @rdname access
-#' @return get.input.files returns a data frame containing a subset of the data nodes that correspond to files or URLs that are 
-#'   read by the script.  
+#' @return get.input.files returns a data frame containing a subset of the data nodes that correspond to files that are 
+#'   read by the script.  If only.files is False, the data frame contains information about both input files and URLs.
 #' @export
-get.input.files <- function (prov) {
+get.input.files <- function (prov, only.files=FALSE) {
   data.nodes <- get.data.nodes(prov)
   if (is.null (data.nodes)) return (NULL)
   
-  file.nodes <- data.nodes[data.nodes$type %in% c ("File", "URL"), ]
+  if (only.files) {
+    file.nodes <- data.nodes[data.nodes$type == "File", ]
+  }
+  else {
+    file.nodes <- data.nodes[data.nodes$type %in% c("File","URL"), ]
+  }
   if (nrow (file.nodes) == 0) {
     return (file.nodes)
   }
@@ -496,6 +618,18 @@ get.input.files <- function (prov) {
   input.data <- get.data.proc(prov)$entity
   input.files <- file.nodes[file.nodes$id %in% input.data, ]
   return (input.files)
+}
+
+#' @rdname access
+#' @return get.urls returns a data frame containing a subset of the data nodes that correspond to urls used 
+#'   in the script.  
+#' @export
+get.urls <- function (prov) {
+  data.nodes <- get.data.nodes(prov)
+  if (is.null (data.nodes)) return (NULL)
+  
+  url.nodes <- data.nodes[data.nodes$type == "URL", ]
+  return (url.nodes)
 }
 
 #' @rdname access
@@ -550,6 +684,19 @@ get.variables.used <- function (prov) {
   input.data <- get.data.proc(prov)$entity
   variables.used <- data.nodes[data.nodes$id %in% input.data, ]
   return (variables.used)
+}
+
+#' @rdname access
+#' @return get.variable.named returns a data frame containing a subset of the data nodes that correspond to variables
+#'   with the specified name.  
+#' @export
+get.variable.named <- function (prov, var.name) {
+  data.nodes <- get.data.nodes(prov)
+  if (is.null (data.nodes)) return (NULL)
+  
+  variable.nodes <- data.nodes[data.nodes$type %in% c ("Data", "Snapshot"), ]
+  variable.nodes <- variable.nodes[variable.nodes$name == var.name, ]
+  return (variable.nodes)
 }
 
 ## ====##

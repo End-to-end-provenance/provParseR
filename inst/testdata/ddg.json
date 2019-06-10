@@ -387,7 +387,7 @@
 			"rdt:type": "URL",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.22EDT",
 			"rdt:location": ""
 		},
@@ -398,7 +398,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.22EDT",
 			"rdt:location": ""
 		},
@@ -409,7 +409,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.22EDT",
 			"rdt:location": ""
 		},
@@ -420,7 +420,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.22EDT",
 			"rdt:location": ""
 		},
@@ -431,7 +431,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.22EDT",
 			"rdt:location": ""
 		},
@@ -442,7 +442,7 @@
 			"rdt:type": "Data",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "",
 			"rdt:location": ""
 		},
@@ -453,7 +453,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.23EDT",
 			"rdt:location": ""
 		},
@@ -464,7 +464,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.23EDT",
 			"rdt:location": ""
 		},
@@ -475,7 +475,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.23EDT",
 			"rdt:location": ""
 		},
@@ -486,7 +486,7 @@
 			"rdt:type": "Data",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "",
 			"rdt:location": ""
 		},
@@ -497,7 +497,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.23EDT",
 			"rdt:location": ""
 		},
@@ -508,7 +508,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.23EDT",
 			"rdt:location": ""
 		},
@@ -519,7 +519,7 @@
 			"rdt:type": "Data",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "",
 			"rdt:location": ""
 		},
@@ -530,7 +530,7 @@
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "2018-05-24T11.06.23EDT",
 			"rdt:location": ""
 		},
@@ -541,7 +541,7 @@
 			"rdt:type": "Data",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "",
+			"rdt:hash": "",
 			"rdt:timestamp": "",
 			"rdt:location": ""
 		},
@@ -552,7 +552,7 @@
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:MD5hash": "de972f9aeed5a58b619bf796d650b72d",
+			"rdt:hash": "de972f9aeed5a58b619bf796d650b72d",
 			"rdt:timestamp": "2018-05-24T11.06.23EDT",
 			"rdt:location": "/Users/orenna/dev.off.16.pdf"
 		},

@@ -56,6 +56,13 @@ expect_match(typeof(data.df$location), "character")
 expect_equal(nrow(data.df), 36)
 expect_equal(ncol(data.df), 10)
 
+context("Exception nodes access function")
+errors.df <- get.error.nodes(prov)
+expect_equal(nrow(errors.df), 1)
+expect_equal(errors.df$id, "d36")
+expect_equal(errors.df$value, "Error in FUN(newX[, i], ...): invalid 'type' (character) of argument\n")
+
+
 context("Function nodes access function")
 func.df <- get.func.nodes(prov)
 expect_match(class(func.df), "data.frame")
@@ -121,9 +128,19 @@ expect_equal (nrow (scripts.df), 1)
 expect_equal(ncol(scripts.df), 2)
 
 context ("Input files")
-input.files <- get.input.files (prov)
-expect_equal (nrow (input.files), 2)
-expect_setequal (input.files$name, c ("x.csv", "http://harvardforest.fas.harvard.edu/data/p00/hf000/hf000-01-daily-m.csv"))
+input.files.and.urls <- get.input.files (prov)
+expect_equal (nrow (input.files.and.urls), 2)
+expect_setequal (input.files.and.urls$name, c("x.csv", "http://harvardforest.fas.harvard.edu/data/p00/hf000/hf000-01-daily-m.csv"))
+
+input.files <- get.input.files (prov, only.files=TRUE)
+expect_equal (nrow (input.files), 1)
+expect_equal (input.files$name, "x.csv")
+
+
+context ("URLs")
+urls <- get.urls (prov)
+expect_equal (nrow (urls), 1)
+expect_equal (urls$name, "http://harvardforest.fas.harvard.edu/data/p00/hf000/hf000-01-daily-m.csv")
 
 context ("Output files")
 output.files <- get.output.files (prov)
@@ -137,6 +154,12 @@ expect_equal (nrow (variables.set), 29)
 context ("Variables used")
 variables.used <- get.variables.used (prov)
 expect_equal (nrow (variables.used), 24)
+
+context("Variable named")
+variables.named.z <- get.variable.named (prov, "z")
+expect_equal (nrow (variables.named.z), 3)
+variables.named.foo <- get.variable.named (prov, "foo")
+expect_equal (nrow (variables.named.foo), 0)
 
 ## If input is a string
 
