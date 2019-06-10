@@ -203,6 +203,8 @@ prov.parse <- function(prov.input, isFile = T) {
 #' and return this information as a data frame.
 #' 
 #' @param prov a ProvInfo object created by calling \code{\link{prov.parse}}.
+#' @param only.files If true, the output of get.input.files contains just files.  If false,
+#'    it contains both files and URLs.
 #' @param var.name a string containing the name of a variable used in the script the
 #'  provenance is for
 #' 
@@ -532,13 +534,18 @@ get.func.lib <- function(prov) {
 
 #' @rdname access
 #' @return get.input.files returns a data frame containing a subset of the data nodes that correspond to files that are 
-#'   read by the script.  
+#'   read by the script.  If only.files is False, the data frame contains information about both input files and URLs.
 #' @export
-get.input.files <- function (prov) {
+get.input.files <- function (prov, only.files=FALSE) {
   data.nodes <- get.data.nodes(prov)
   if (is.null (data.nodes)) return (NULL)
   
-  file.nodes <- data.nodes[data.nodes$type == "File", ]
+  if (only.files) {
+    file.nodes <- data.nodes[data.nodes$type == "File", ]
+  }
+  else {
+    file.nodes <- data.nodes[data.nodes$type %in% c("File","URL"), ]
+  }
   if (nrow (file.nodes) == 0) {
     return (file.nodes)
   }

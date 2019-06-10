@@ -128,9 +128,14 @@ expect_equal (nrow (scripts.df), 1)
 expect_equal(ncol(scripts.df), 2)
 
 context ("Input files")
-input.files <- get.input.files (prov)
+input.files.and.urls <- get.input.files (prov)
+expect_equal (nrow (input.files.and.urls), 2)
+expect_setequal (input.files.and.urls$name, c("x.csv", "http://harvardforest.fas.harvard.edu/data/p00/hf000/hf000-01-daily-m.csv"))
+
+input.files <- get.input.files (prov, only.files=TRUE)
 expect_equal (nrow (input.files), 1)
 expect_equal (input.files$name, "x.csv")
+
 
 context ("URLs")
 urls <- get.urls (prov)

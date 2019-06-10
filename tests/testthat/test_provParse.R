@@ -116,7 +116,7 @@ expect_match(typeof(scripts.df$timestamp), "character")
 expect_equal(ncol(scripts.df), 2)
 
 context ("Input files")
-input.files <- get.input.files (prov)
+input.files <- get.input.files (prov, only.files=TRUE)
 expect_equal (nrow (input.files), 0)
 
 context ("URLs")
