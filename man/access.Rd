@@ -51,7 +51,7 @@ get.func.proc(prov)
 
 get.func.lib(prov)
 
-get.input.files(prov)
+get.input.files(prov, only.files = FALSE)
 
 get.urls(prov)
 
@@ -65,6 +65,9 @@ get.variable.named(prov, var.name)
 }
 \arguments{
 \item{prov}{a ProvInfo object created by calling \code{\link{prov.parse}}.}
+
+\item{only.files}{If true, the output of get.input.files contains just files.  If false,
+it contains both files and URLs.}
 
 \item{var.name}{a string containing the name of a variable used in the script the
 provenance is for}
@@ -184,7 +187,7 @@ get.func.lib returns a data frame containing information about what
   and function (the name of a function).
 
 get.input.files returns a data frame containing a subset of the data nodes that correspond to files that are 
-  read by the script.
+  read by the script.  If only.files is False, the data frame contains information about both input files and URLs.
 
 get.urls returns a data frame containing a subset of the data nodes that correspond to urls used 
   in the script.
