@@ -8,6 +8,7 @@
 \alias{get.saved.scripts}
 \alias{get.proc.nodes}
 \alias{get.data.nodes}
+\alias{get.error.nodes}
 \alias{get.func.nodes}
 \alias{get.proc.proc}
 \alias{get.data.proc}
@@ -15,9 +16,11 @@
 \alias{get.func.proc}
 \alias{get.func.lib}
 \alias{get.input.files}
+\alias{get.urls}
 \alias{get.output.files}
 \alias{get.variables.set}
 \alias{get.variables.used}
+\alias{get.variable.named}
 \title{Provenance access functions}
 \usage{
 get.environment(prov)
@@ -34,6 +37,8 @@ get.proc.nodes(prov)
 
 get.data.nodes(prov)
 
+get.error.nodes(prov)
+
 get.func.nodes(prov)
 
 get.proc.proc(prov)
@@ -46,20 +51,31 @@ get.func.proc(prov)
 
 get.func.lib(prov)
 
-get.input.files(prov)
+get.input.files(prov, only.files = FALSE)
+
+get.urls(prov)
 
 get.output.files(prov)
 
 get.variables.set(prov)
 
 get.variables.used(prov)
+
+get.variable.named(prov, var.name)
 }
 \arguments{
 \item{prov}{a ProvInfo object created by calling \code{\link{prov.parse}}.}
+
+\item{only.files}{If true, the output of get.input.files contains just files.  If false,
+it contains both files and URLs.}
+
+\item{var.name}{a string containing the name of a variable used in the script the
+provenance is for}
 }
 \value{
-All access functions return NULL if there is no parsed provenance or there
-   are no values in that portion of the provenance.
+All access functions return NULL if there is no parsed provenance.  If parsed provenance
+  exists, but there is no provenance for the type of information requested, such as no input 
+  files, an empty data frame is returned.
 
 get.environment returns a data frame containing information about how the provenance was collected.
    The data frame has 2 columns:  label and value.  The labels are: 
@@ -130,6 +146,14 @@ get.data.nodes returns a data frame with an entry for each data node
 			\item {location} {- for file nodes, the absolute path to the file}
   }
 
+get.error.nodes returns a data frame with an entry for each error node
+  in the provenance.  The data frame contains the following columns:
+  \itemize{
+     \item {id} {- a unique id}
+			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+			\item {timestamp} {- the time at which the node was created}
+  }
+
 get.func.nodes returns a data frame containing information about the functions
   used from other libraries within the script.  The data frame has 2 columns:  id 
   (a unique id) and name (the name of the function called).
@@ -162,8 +186,11 @@ get.func.lib returns a data frame containing information about what
   function node), library (a library node)
   and function (the name of a function).
 
-get.input.files returns a data frame containing a subset of the data nodes that correspond to files or URLs that are 
-  read by the script.
+get.input.files returns a data frame containing a subset of the data nodes that correspond to files that are 
+  read by the script.  If only.files is False, the data frame contains information about both input files and URLs.
+
+get.urls returns a data frame containing a subset of the data nodes that correspond to urls used 
+  in the script.
 
 get.output.files returns a data frame containing a subset of the data nodes that correspond to files that are 
   written by the script.
@@ -173,6 +200,9 @@ get.variables.set returns a data frame containing a subset of the data nodes tha
 
 get.variables.used returns a data frame containing a subset of the data nodes that correspond to variables
   whose values are used in the script.
+
+get.variable.named returns a data frame containing a subset of the data nodes that correspond to variables
+  with the specified name.
 }
 \description{
 These functions extract information from a ProvInfo object created by the prov.parse function 
@@ -182,10 +212,13 @@ and return this information as a data frame.
 prov <- prov.parse(system.file ("testdata", "prov.json", package="provParseR", mustWork=TRUE))
 get.proc.nodes(prov)
 get.input.files(prov)
+get.urls(prov)
 get.output.files(prov)
 get.variables.set(prov)
 get.variables.used(prov)
+get.variable.named(prov, "z")
 get.data.nodes(prov)
+get.error.nodes(prov)
 get.func.nodes(prov)
 get.proc.proc(prov)
 get.data.proc(prov)

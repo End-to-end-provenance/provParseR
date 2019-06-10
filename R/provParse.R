@@ -268,15 +268,22 @@ prov.parse <- function(prov.input, isFile = T) {
 #' and return this information as a data frame.
 #' 
 #' @param prov a ProvInfo object created by calling \code{\link{prov.parse}}.
+#' @param only.files If true, the output of get.input.files contains just files.  If false,
+#'    it contains both files and URLs.
+#' @param var.name a string containing the name of a variable used in the script the
+#'  provenance is for
 #' 
 #' @examples
 #' prov <- prov.parse(system.file ("testdata", "prov.json", package="provParseR", mustWork=TRUE))
 #' get.proc.nodes(prov)
 #' get.input.files(prov)
+#' get.urls(prov)
 #' get.output.files(prov)
 #' get.variables.set(prov)
 #' get.variables.used(prov)
+#' get.variable.named(prov, "z")
 #' get.data.nodes(prov)
+#' get.error.nodes(prov)
 #' get.func.nodes(prov)
 #' get.proc.proc(prov)
 #' get.data.proc(prov)
@@ -447,6 +454,22 @@ get.data.nodes <- function(prov) {
   }
 }
 
+#' @return get.error.nodes returns a data frame with an entry for each error node
+#'   in the provenance.  The data frame contains the following columns:
+#'   \itemize{
+#'      \item {id} {- a unique id}
+#' 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+#' 			\item {timestamp} {- the time at which the node was created}
+#'   }
+#' @rdname access
+#' @export
+get.error.nodes <- function(prov) {
+  data.nodes <- get.data.nodes(prov)
+  error.nodes <- data.nodes[data.nodes$type=="Exception",]
+  error.table <- subset (error.nodes, select=c("id", "value", "timestamp"))
+  return (error.table)
+}
+  
 #' @return get.func.nodes returns a data frame containing information about the functions
 #'   used from other libraries within the script.  The data frame has 2 columns:  id 
 #'   (a unique id) and name (the name of the function called).  
@@ -575,14 +598,19 @@ get.func.lib <- function(prov) {
 }
 
 #' @rdname access
-#' @return get.input.files returns a data frame containing a subset of the data nodes that correspond to files or URLs that are 
-#'   read by the script.  
+#' @return get.input.files returns a data frame containing a subset of the data nodes that correspond to files that are 
+#'   read by the script.  If only.files is False, the data frame contains information about both input files and URLs.
 #' @export
-get.input.files <- function (prov) {
+get.input.files <- function (prov, only.files=FALSE) {
   data.nodes <- get.data.nodes(prov)
   if (is.null (data.nodes)) return (NULL)
   
-  file.nodes <- data.nodes[data.nodes$type %in% c ("File", "URL"), ]
+  if (only.files) {
+    file.nodes <- data.nodes[data.nodes$type == "File", ]
+  }
+  else {
+    file.nodes <- data.nodes[data.nodes$type %in% c("File","URL"), ]
+  }
   if (nrow (file.nodes) == 0) {
     return (file.nodes)
   }
@@ -590,6 +618,18 @@ get.input.files <- function (prov) {
   input.data <- get.data.proc(prov)$entity
   input.files <- file.nodes[file.nodes$id %in% input.data, ]
   return (input.files)
+}
+
+#' @rdname access
+#' @return get.urls returns a data frame containing a subset of the data nodes that correspond to urls used 
+#'   in the script.  
+#' @export
+get.urls <- function (prov) {
+  data.nodes <- get.data.nodes(prov)
+  if (is.null (data.nodes)) return (NULL)
+  
+  url.nodes <- data.nodes[data.nodes$type == "URL", ]
+  return (url.nodes)
 }
 
 #' @rdname access
@@ -644,6 +684,19 @@ get.variables.used <- function (prov) {
   input.data <- get.data.proc(prov)$entity
   variables.used <- data.nodes[data.nodes$id %in% input.data, ]
   return (variables.used)
+}
+
+#' @rdname access
+#' @return get.variable.named returns a data frame containing a subset of the data nodes that correspond to variables
+#'   with the specified name.  
+#' @export
+get.variable.named <- function (prov, var.name) {
+  data.nodes <- get.data.nodes(prov)
+  if (is.null (data.nodes)) return (NULL)
+  
+  variable.nodes <- data.nodes[data.nodes$type %in% c ("Data", "Snapshot"), ]
+  variable.nodes <- variable.nodes[variable.nodes$name == var.name, ]
+  return (variable.nodes)
 }
 
 ## ====##
