@@ -20,16 +20,16 @@ process.df <- function(df)
 }
 
 # cases - remove timestamp & file path from sourced script names
-c0 <- system.file("testdata/cases", "empty.json", package = "provParseR")
-c1 <- system.file("testdata/cases/test_sourcedScripts", "1SourcedScript.json", package = "provParseR")
-c4 <- system.file("testdata/cases/test_sourcedScripts", "4SourcedScripts.json", package = "provParseR")
+c0 <- system.file("testdata", "empty.json", package = "provParseR")
+c1 <- system.file("testdata", "sourcescript1.json", package = "provParseR")
+c4 <- system.file("testdata", "sourcescript4.json", package = "provParseR")
 
 t0 <- process.df(get.scripts(prov.parse(c0)))
 t1 <- process.df(get.scripts(prov.parse(c1)))
 t4 <- process.df(get.scripts(prov.parse(c4)))
 
 # expected
-expected.file <- system.file("testdata/expected", "sourced-scripts.csv", package = "provParseR")
+expected.file <- system.file("testexpected", "sourcescripts.csv", package = "provParseR")
 
 e4 <- read.csv(expected.file, header=TRUE, row.names=1, stringsAsFactors=FALSE)
 e0 <- e4[1, ]
