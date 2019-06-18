@@ -39,6 +39,9 @@
 		<!-- Note that source1.r, etc. do not need to be here.  They are sourced by
 		     other scripts but never run independently. -->
 		<antcall target="json">
+			<param name="theFile" value="empty.R"/>
+		</antcall>
+		<antcall target="json">
 			<param name="theFile" value="prov.R"/>
 		</antcall>
 		<antcall target="json">
@@ -46,6 +49,12 @@
 		</antcall>
 		<antcall target="json">
 			<param name="theFile" value="prov3.R"/>
+		</antcall>
+		<antcall target="json">
+			<param name="theFile" value="sourcescript1.R"/>
+		</antcall>
+		<antcall target="json">
+			<param name="theFile" value="sourcescript4.R"/>
 		</antcall>
 	</target>
 	
