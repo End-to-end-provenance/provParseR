@@ -363,7 +363,7 @@ get.scripts <- function(prov) {
   })
 }
 
-#' @return get.scripts returns a data frame identifying the location of saved copies
+#' @return get.saved.scripts returns a data frame identifying the location of saved copies
 #'    of all the scripts executed.  The main script
 #'    will be first, followed by all sourced scripts.  The data frame contains 
 #'    2 columns:  name and timestamp (when the script was last modified).  
