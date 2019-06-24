@@ -10,7 +10,7 @@ envi.df <- get.environment(prov)
 expect_match(class(envi.df), "data.frame")
 expect_match(typeof(envi.df$value), "character")
 expect_equal (envi.df$label, c("name", "architecture", "operatingSystem", "language", "langVersion",
-        "script", "scriptTimeStamp", "workingDirectory", "ddgDirectory", "ddgTimeStamp", 
+        "script", "scriptTimeStamp", "totalElapsedTime", "workingDirectory", "provDirectory", "provTimestamp", 
         "hashAlgorithm"))
 
 context ("Tool information")
@@ -21,9 +21,9 @@ expect_match(typeof(tool.df$tool.version), "character")
 expect_match(typeof(tool.df$json.version), "character")
 expect_equal(nrow(tool.df), 1)
 expect_equal(ncol(tool.df), 3)
-expect_equal (tool.df$tool.name, "provR")
-expect_equal (tool.df$tool.version, "1.0.1")
-expect_equal (tool.df$json.version, "2.1")
+expect_equal (tool.df$tool.name, "rdtLite")
+expect_equal (tool.df$tool.version, "1.1.1")
+expect_equal (tool.df$json.version, "2.2")
 
 context("Procedure nodes access function")
 proc.df <- get.proc.nodes(prov)
@@ -100,10 +100,10 @@ libs.df <- get.libs(prov)
 expect_match(class(libs.df), "data.frame")
 expect_match(typeof(libs.df$name), "character")
 expect_match(typeof(libs.df$version), "character")
-expect_equal(nrow(libs.df), 9)
+expect_equal(nrow(libs.df), 8)
 expect_equal(ncol(libs.df), 3)
 expect_setequal (libs.df$name, c("base", "datasets", "ggplot2", "graphics", "grDevices",
-        "methods", "provR", "stats", "utils"))
+        "methods", "stats", "utils"))
 
 context("Scripts access function")
 scripts.df <- get.scripts(prov)
