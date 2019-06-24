@@ -1,5 +1,5 @@
 # Copyright (C) President and Fellows of Harvard College and 
-# Trustees of Mount Holyoke College, 2018.
+# Trustees of Mount Holyoke College, 2018, 2019.
 
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -18,7 +18,30 @@
 # Created by Orenna Brand & Joe Wonsil, summer 2018
 # Updated by Barbara Lerner, fall 2018
 
-methods::setClass("ProvInfo",
+#' Collection of information gathered from parsing a PROV file
+#' 
+#' This is the class that stores provenance information.  It is created by 
+#' prov.parse.  Rather than access the slots directly, it is better to use
+#' the access functions the package provides.
+#' 
+#' @slot proc.nodes the procedure nodes
+#' @slot data.nodes the data nodes
+#' @slot func.nodes the function nodes
+#' @slot proc.proc.edges control flow edges
+#' @slot proc.data.edges output data edges
+#' @slot data.proc.edges input data edges
+#' @slot func.proc.edges function use edges
+#' @slot func.lib.edges function library edges
+#' @slot agents tool that created the provenance
+#' @slot envi environmental information
+#' @slot libs libraries
+#' @slot scripts scripts executed 
+#' 
+#' @seealso The parse function, which creates the ProvInfo object, \code{\link{prov.parse}}
+#' @seealso The access functions, including \code{\link{get.environment}}
+#' @import methods
+#' @exportClass ProvInfo
+ProvInfo <- methods::setClass("ProvInfo",
     slots = list(
         proc.nodes = "data.frame", 
         data.nodes = "data.frame", 
