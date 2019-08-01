@@ -722,13 +722,14 @@ get.variable.named <- function (prov, var.name) {
   return (variable.nodes)
 }
 
-#' @rdname access
+#' get.val.type parses the valTypes of each data node in the given provenance,
+#'	or the valType of the specified node, and returns it in a data frame.
 #'
-#' get.val.type parses the valTypes of each data node in the given provenance and
-#' 
-#' 
-# get val type of a specified data node. 
-# if unspecified, returns the val types of all data nodes
+#' @rdname access
+#' @return A data frame containing the valType of the specified data node, 
+#'	or the valTypes of all data nodes if no data node is specified. Return NULL
+#'	if there are no data nodes or if the specified data node is not found.
+#' @export
 get.val.type <- function(prov, node.id = NULL) {
 	
 	data.nodes <- get.data.nodes(prov)[ , c("id", "valType")]
@@ -760,9 +761,15 @@ get.val.type <- function(prov, node.id = NULL) {
 			
 			arr[1] <- val.type$container
 			
-			# JSON formatted so that we can put a list in a single element of a data frame
+			# format dimension and type into a list
+			# so that we can put it in a single element of a data frame
 			arr[2] <- paste(val.type$dimension, collapse = ",")
-			arr[3] <- paste(val.type$type, collapse= ",")
+			
+			# type could be null (e.g. list)
+			if(is.null(val.type$type))
+				arr[3] <- NA
+			else
+				arr[3] <- paste(val.type$type, collapse= ", ")
 			
 		} else {
 			arr[1] <- NA
