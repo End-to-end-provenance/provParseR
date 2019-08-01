@@ -14,9 +14,9 @@
 
 	"activity" : {
 		"rdt:p1": {
-			"rdt:name": "sourcescript4.R",
+			"rdt:name": "sourcescript3.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "1.27",
+			"rdt:elapsedTime": "0.79",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -24,9 +24,9 @@
 			"rdt:endCol": "NA"
 		},
 		"rdt:p2": {
-			"rdt:name": "source(\"source1.r\")",
+			"rdt:name": "source(\"source2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.19",
+			"rdt:elapsedTime": "0.03",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -34,9 +34,9 @@
 			"rdt:endCol": 19
 		},
 		"rdt:p3": {
-			"rdt:name": "source(\"source2.r\")",
+			"rdt:name": "source(\"source3.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.02",
+			"rdt:elapsedTime": "0.08",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
@@ -44,7 +44,7 @@
 			"rdt:endCol": 19
 		},
 		"rdt:p4": {
-			"rdt:name": "source(\"source3.r\")",
+			"rdt:name": "source(\"source4.r\")",
 			"rdt:type": "Operation",
 			"rdt:elapsedTime": "0.01",
 			"rdt:scriptNum": 1,
@@ -54,19 +54,9 @@
 			"rdt:endCol": 19
 		},
 		"rdt:p5": {
-			"rdt:name": "source(\"source4.r\")",
-			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.01",
-			"rdt:scriptNum": 1,
-			"rdt:startLine": 4,
-			"rdt:startCol": 1,
-			"rdt:endLine": 4,
-			"rdt:endCol": 19
-		},
-		"rdt:p6": {
-			"rdt:name": "sourcescript4.R",
+			"rdt:name": "sourcescript3.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.02",
+			"rdt:elapsedTime": "0.0",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -82,26 +72,22 @@
 			"rdt:operatingSystem": "mingw32",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/sourcescript4.R",
-			"rdt:scriptTimeStamp": "2019-07-31T14.27.02EDT",
-			"rdt:totalElapsedTime": "1.52",
+			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/sourcescript3.R",
+			"rdt:scriptTimeStamp": "2019-08-01T14.11.21EDT",
+			"rdt:totalElapsedTime": "0.91",
 			"rdt:sourcedScripts": [
-				"source1.r",
-				"source2.r",
 				"source2.r",
 				"source3.r",
 				"source4.r"
 			],
 			"rdt:sourcedScriptTimeStamps": [
-				"2019-08-01T11.26.19EDT",
-				"2019-07-31T14.27.02EDT",
 				"2019-07-31T14.27.02EDT",
 				"2019-07-31T14.27.02EDT",
 				"2019-07-31T14.27.02EDT"
 			],
 			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts",
-			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov_sourcescript4",
-			"rdt:provTimestamp": "2019-08-01T11.30.04EDT",
+			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov_sourcescript3",
+			"rdt:provTimestamp": "2019-08-01T14.12.08EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
@@ -187,10 +173,6 @@
 		"rdt:pp4": {
 			"prov:informant": "rdt:p4",
 			"prov:informed": "rdt:p5"
-		},
-		"rdt:pp5": {
-			"prov:informant": "rdt:p5",
-			"prov:informed": "rdt:p6"
 		}
 	}
 }

@@ -16,7 +16,7 @@
 		"rdt:p1": {
 			"rdt:name": "sourcescript1.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "1.23",
+			"rdt:elapsedTime": "0.76",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -24,9 +24,9 @@
 			"rdt:endCol": "NA"
 		},
 		"rdt:p2": {
-			"rdt:name": "source(\"source1.r\")",
+			"rdt:name": "source(\"source2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.16",
+			"rdt:elapsedTime": "0.02",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -53,19 +53,13 @@
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
 			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/sourcescript1.R",
-			"rdt:scriptTimeStamp": "2019-07-31T14.27.02EDT",
-			"rdt:totalElapsedTime": "1.39",
-			"rdt:sourcedScripts": [
-				"source1.r",
-				"source2.r"
-			],
-			"rdt:sourcedScriptTimeStamps": [
-				"2019-08-01T11.26.19EDT",
-				"2019-07-31T14.27.02EDT"
-			],
+			"rdt:scriptTimeStamp": "2019-08-01T14.11.14EDT",
+			"rdt:totalElapsedTime": "0.78",
+			"rdt:sourcedScripts": "source2.r",
+			"rdt:sourcedScriptTimeStamps": "2019-07-31T14.27.02EDT",
 			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts",
 			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov_sourcescript1",
-			"rdt:provTimestamp": "2019-08-01T11.30.01EDT",
+			"rdt:provTimestamp": "2019-08-01T14.12.06EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
