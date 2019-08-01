@@ -736,7 +736,7 @@ get.val.type <- function(prov, node.id = NULL) {
 	
 	# extract row for specified node, if applicable
 	if(! is.null(node.id))
-		data.nodes <- data.nodes[data.nodes$id == node.id, ]
+		data.nodes <- data.nodes[data.nodes$id %in% node.id, ]
 	
 	# node not found, return null.
 	if(nrow(data.nodes) == 0)
