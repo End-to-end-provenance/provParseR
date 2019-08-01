@@ -722,4 +722,64 @@ get.variable.named <- function (prov, var.name) {
   return (variable.nodes)
 }
 
-## ====##
+#' @rdname access
+#'
+#' get.val.type parses the valTypes of each data node in the given provenance and
+#' 
+#' 
+# get val type of a specified data node. 
+# if unspecified, returns the val types of all data nodes
+get.val.type <- function(prov, node.id = NULL) {
+	
+	data.nodes <- get.data.nodes(prov)[ , c("id", "valType")]
+	
+	# extract row for specified node, if applicable
+	if(! is.null(node.id))
+		data.nodes <- data.nodes[data.nodes$id == node.id, ]
+	
+	# node not found, return null.
+	if(nrow(data.nodes) == 0)
+		return(NULL)
+	
+	# use sapply to parse val.type into a matrix with 3 columns
+	# since it's a matrix, can query each column or just put into df!!
+	parsed.val.type <- sapply(data.nodes[ , "valType"], function(val.type) {
+		# a string vector to store the parsed valType
+		# keep all terms as strings in order for sapply to be able to convert
+		# the resulting list of character vectors into a matrix
+		# container, dim, type
+		arr = vector(mode = "character", length = 3L)
+		
+		# there are 2 types of valType:
+		# a json object as a string, or
+		# a simple string
+		if(grepl("^\\{(.+)\\}$", val.type)) {
+			
+			# Type is string parsed from entity valType
+			val.type <- jsonlite::fromJSON(val.type)
+			
+			arr[1] <- val.type$container
+			
+			# JSON formatted so that we can put a list in a single element of a data frame
+			arr[2] <- paste(val.type$dimension, collapse = ",")
+			arr[3] <- paste(val.type$type, collapse= ",")
+			
+		} else {
+			arr[1] <- NA
+			arr[2] <- NA
+			arr[3] <- val.type
+		}
+		
+		return(arr)
+	}, USE.NAMES = FALSE)
+	
+	# form result data frame and return
+	result <- data.frame("id" = data.nodes[ , "id"],
+						 "container" = parsed.val.type[1, ],
+						 "dimension" = parsed.val.type[2, ],
+						 "type" = parsed.val.type[3, ],
+						 stringsAsFactors = FALSE)
+	return(result)
+}
+
+## ==== ##

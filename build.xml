@@ -56,6 +56,9 @@
 		<antcall target="json">
 			<param name="theFile" value="sourcescript4.R"/>
 		</antcall>
+		<antcall target="json">
+			<param name="theFile" value="valType.R"/>
+		</antcall>
 	</target>
 	
 	<target name="json">
