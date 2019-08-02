@@ -21,6 +21,7 @@
 \alias{get.variables.set}
 \alias{get.variables.used}
 \alias{get.variable.named}
+\alias{get.val.type}
 \title{Provenance access functions}
 \usage{
 get.environment(prov)
@@ -62,6 +63,8 @@ get.variables.set(prov)
 get.variables.used(prov)
 
 get.variable.named(prov, var.name)
+
+get.val.type(prov, node.id = NULL)
 }
 \arguments{
 \item{prov}{a ProvInfo object created by calling \code{\link{prov.parse}}.}
@@ -104,7 +107,7 @@ get.scripts returns a data frame identifying all the scripts executed.  The main
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
 
-get.scripts returns a data frame identifying the location of saved copies
+get.saved.scripts returns a data frame identifying the location of saved copies
    of all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
@@ -203,6 +206,10 @@ get.variables.used returns a data frame containing a subset of the data nodes th
 
 get.variable.named returns a data frame containing a subset of the data nodes that correspond to variables
   with the specified name.
+
+A data frame containing the valType of the specified data node, 
+or the valTypes of all data nodes if no data node is specified. Return NULL
+if there are no data nodes or if the specified data node is not found.
 }
 \description{
 These functions extract information from a ProvInfo object created by the prov.parse function 
