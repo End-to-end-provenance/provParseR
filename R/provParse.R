@@ -725,7 +725,6 @@ get.variable.named <- function (prov, var.name) {
 #' get.val.type parses the valTypes of each data node in the given provenance,
 #'	or the valType of the specified node, and returns it in a data frame.
 #'
-#' @param prov The provenance object parsed from a json file using the function prov.parse
 #' @param node.id Optional. A vector containing the list of data node id for which 
 #'				  the valType field should be parsed.
 #' @return A data frame containing the valType of the specified data node, 

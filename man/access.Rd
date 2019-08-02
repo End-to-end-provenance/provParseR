@@ -77,8 +77,6 @@ provenance is for}
 
 \item{node.id}{Optional. A vector containing the list of data node id for which 
 the valType field should be parsed.}
-
-\item{prov}{The provenance object parsed from a json file using the function prov.parse}
 }
 \value{
 All access functions return NULL if there is no parsed provenance.  If parsed provenance
