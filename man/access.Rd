@@ -75,8 +75,7 @@ it contains both files and URLs.}
 \item{var.name}{a string containing the name of a variable used in the script the
 provenance is for}
 
-\item{node.id}{Optional. A vector containing the list of data node id for which 
-the valType field should be parsed.}
+\item{node.id}{A vector of node id.}
 }
 \value{
 All access functions return NULL if there is no parsed provenance.  If parsed provenance

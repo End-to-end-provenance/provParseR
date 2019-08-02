@@ -725,8 +725,7 @@ get.variable.named <- function (prov, var.name) {
 #' get.val.type parses the valTypes of each data node in the given provenance,
 #'	or the valType of the specified node, and returns it in a data frame.
 #'
-#' @param node.id Optional. A vector containing the list of data node id for which 
-#'				  the valType field should be parsed.
+#' @param node.id A vector of node id.
 #' @return A data frame containing the valType of the specified data node, 
 #'	or the valTypes of all data nodes if no data node is specified. Return NULL
 #'	if there are no data nodes or if the specified data node is not found.
