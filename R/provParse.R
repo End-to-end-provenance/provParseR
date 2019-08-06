@@ -477,6 +477,22 @@ get.data.nodes <- function(prov) {
   }
 }
 
+#' @return get.stdout.nodes returns a data frame with an entry for each standard output node
+#'   in the provenance.  The data frame contains the following columns:
+#'   \itemize{
+#'      \item {id} {- a unique id}
+#' 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+#' 			\item {timestamp} {- the time at which the node was created}
+#'   }
+#' @rdname access
+#' @export
+get.stdout.nodes <- function(prov) {
+  data.nodes <- get.data.nodes(prov)
+  stdout.nodes <- data.nodes[data.nodes$type=="StandardOutput",]
+  stdout.table <- subset (stdout.nodes, select=c("id", "value", "timestamp"))
+  return (stdout.table)
+}
+  
 #' @return get.error.nodes returns a data frame with an entry for each error node
 #'   in the provenance.  The data frame contains the following columns:
 #'   \itemize{
@@ -492,7 +508,7 @@ get.error.nodes <- function(prov) {
   error.table <- subset (error.nodes, select=c("id", "value", "timestamp"))
   return (error.table)
 }
-  
+
 #' @return get.func.nodes returns a data frame containing information about the functions
 #'   used from other libraries within the script.  The data frame has 2 columns:  id 
 #'   (a unique id) and name (the name of the function called).  

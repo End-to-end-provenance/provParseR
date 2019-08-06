@@ -16,7 +16,7 @@
 		"rdt:p1": {
 			"rdt:name": "prov3.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.835",
+			"rdt:elapsedTime": "0.719",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -26,7 +26,7 @@
 		"rdt:p2": {
 			"rdt:name": "a <- 3",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.045",
+			"rdt:elapsedTime": "0.044",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -36,7 +36,7 @@
 		"rdt:p3": {
 			"rdt:name": "b <- 2",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.007",
+			"rdt:elapsedTime": "0.025",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
@@ -107,13 +107,13 @@
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov3.R",
-			"rdt:scriptTimeStamp": "2019-06-17T10.29.40EDT",
-			"rdt:totalElapsedTime": "0.899",
+			"rdt:scriptTimeStamp": "2019-06-18T14.38.44EDT",
+			"rdt:totalElapsedTime": "0.8",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov_prov3",
-			"rdt:provTimestamp": "2019-06-17T14.55.48EDT",
+			"rdt:provTimestamp": "2019-08-06T14.47.07EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 

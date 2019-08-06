@@ -6,17 +6,17 @@
 
 	"agent" : {
 		"rdt:a1": {
-			"rdt:tool.name": "rdt",
-			"rdt:tool.version": "3.1.0",
+			"rdt:tool.name": "rdtLite",
+			"rdt:tool.version": "1.1.1",
 			"rdt:json.version": "2.2"
 		}
 	},
 
 	"activity" : {
 		"rdt:p1": {
-			"rdt:name": "1SourcedScript.R",
+			"rdt:name": "sourcescript1.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.74",
+			"rdt:elapsedTime": "0.726",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -24,9 +24,9 @@
 			"rdt:endCol": "NA"
 		},
 		"rdt:p2": {
-			"rdt:name": "source (\"source1.r\")",
-			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.11",
+			"rdt:name": "source(\"source1.r\")",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": "0.009",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -34,29 +34,9 @@
 			"rdt:endCol": 19
 		},
 		"rdt:p3": {
-			"rdt:name": "z <- 0",
-			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.05",
-			"rdt:scriptNum": 2,
-			"rdt:startLine": 1,
-			"rdt:startCol": 1,
-			"rdt:endLine": 1,
-			"rdt:endCol": 6
-		},
-		"rdt:p4": {
-			"rdt:name": "source (\"source1.r\")",
+			"rdt:name": "sourcescript1.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.02",
-			"rdt:scriptNum": 1,
-			"rdt:startLine": 1,
-			"rdt:startCol": 1,
-			"rdt:endLine": 1,
-			"rdt:endCol": 19
-		},
-		"rdt:p5": {
-			"rdt:name": "1SourcedScript.R",
-			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.0",
+			"rdt:elapsedTime": "0.022",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -67,22 +47,11 @@
 
 	"entity" : {
 		"rdt:d1": {
-			"rdt:name": "source1.r",
-			"rdt:value": "data/1-source1.r",
+			"rdt:name": "error.msg",
+			"rdt:value": "Error in eval(ei, envir): object 'z' not found\n",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
-			"rdt:type": "File",
-			"rdt:scope": "undefined",
-			"rdt:fromEnv": false,
-			"rdt:hash": "75a1bc24bb03528521bcf3a08e5534a8",
-			"rdt:timestamp": "2019-06-06T11.23.44EDT",
-			"rdt:location": "C:/Users/fong22e/Documents/HarvardForest/provParseR_sourcedScripts/inst/testdata/cases/test_sourcedScripts/source1.r"
-		},
-		"rdt:d2": {
-			"rdt:name": "z",
-			"rdt:value": "0",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"numeric\"]}",
-			"rdt:type": "Data",
-			"rdt:scope": "R_GlobalEnv",
+			"rdt:type": "Exception",
+			"rdt:scope": "ddg.library",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
 			"rdt:timestamp": "",
@@ -92,17 +61,17 @@
 		"rdt:environment": {
 			"rdt:name": "environment",
 			"rdt:architecture": "x86_64",
-			"rdt:operatingSystem": "mingw32",
+			"rdt:operatingSystem": "darwin15.6.0",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "C:/Users/fong22e/Source.R",
-			"rdt:scriptTimeStamp": "2019-06-06T10.32.39EDT",
-			"rdt:totalElapsedTime": "0.92",
+			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/sourcescript1.R",
+			"rdt:scriptTimeStamp": "2019-06-18T14.38.44EDT",
+			"rdt:totalElapsedTime": "0.757",
 			"rdt:sourcedScripts": "source1.r",
-			"rdt:sourcedScriptTimeStamps": "2019-06-05T10.28.27EDT",
-			"rdt:workingDirectory": "C:/Users/fong22e/",
-			"rdt:provDirectory": "C:/Users/fong22e/prov_Source",
-			"rdt:provTimestamp": "2019-06-06T10.33.30EDT",
+			"rdt:sourcedScriptTimeStamps": "2019-06-18T14.38.44EDT",
+			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts",
+			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov_sourcescript1",
+			"rdt:provTimestamp": "2019-08-06T14.47.09EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
@@ -155,14 +124,6 @@
 			}
 		},
 		"rdt:l7": {
-			"name": "rdt",
-			"version": "3.1.0",
-			"prov:type": {
-				"$": "prov:Collection",
-				"type": "xsd:QName"
-			}
-		},
-		"rdt:l8": {
 			"name": "stats",
 			"version": "3.6.0",
 			"prov:type": {
@@ -170,7 +131,7 @@
 				"type": "xsd:QName"
 			}
 		},
-		"rdt:l9": {
+		"rdt:l8": {
 			"name": "utils",
 			"version": "3.6.0",
 			"prov:type": {
@@ -188,28 +149,13 @@
 		"rdt:pp2": {
 			"prov:informant": "rdt:p2",
 			"prov:informed": "rdt:p3"
-		},
-		"rdt:pp3": {
-			"prov:informant": "rdt:p3",
-			"prov:informed": "rdt:p4"
-		},
-		"rdt:pp4": {
-			"prov:informant": "rdt:p4",
-			"prov:informed": "rdt:p5"
 		}
 	},
 
 	"wasGeneratedBy" : {
 		"rdt:pd1": {
-			"prov:activity": "rdt:p3",
-			"prov:entity": "rdt:d2"
-		}
-	},
-
-	"used" : {
-		"rdt:dp1": {
-			"prov:entity": "rdt:d1",
-			"prov:activity": "rdt:p3"
+			"prov:activity": "rdt:p2",
+			"prov:entity": "rdt:d1"
 		}
 	}
 }
