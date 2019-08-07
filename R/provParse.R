@@ -488,7 +488,7 @@ get.data.nodes <- function(prov) {
 #' @export
 get.stdout.nodes <- function(prov) {
   data.nodes <- get.data.nodes(prov)
-  stdout.nodes <- data.nodes[data.nodes$type=="StandardOutput",]
+  stdout.nodes <- data.nodes[data.nodes$type %in% c("StandardOutput","StandardOutputSnapshot"),]
   stdout.table <- subset (stdout.nodes, select=c("id", "value", "timestamp"))
   return (stdout.table)
 }

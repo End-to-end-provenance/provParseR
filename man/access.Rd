@@ -107,7 +107,7 @@ get.scripts returns a data frame identifying all the scripts executed.  The main
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
 
-get.scripts returns a data frame identifying the location of saved copies
+get.saved.scripts returns a data frame identifying the location of saved copies
    of all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).

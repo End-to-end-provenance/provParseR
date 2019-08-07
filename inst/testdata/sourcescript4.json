@@ -16,7 +16,7 @@
 		"rdt:p1": {
 			"rdt:name": "sourcescript4.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.757",
+			"rdt:elapsedTime": "0.867",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -26,7 +26,7 @@
 		"rdt:p2": {
 			"rdt:name": "source(\"source2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.047",
+			"rdt:elapsedTime": "0.126",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -36,7 +36,7 @@
 		"rdt:p3": {
 			"rdt:name": "source(\"source3.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.113",
+			"rdt:elapsedTime": "0.205",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
@@ -46,7 +46,7 @@
 		"rdt:p4": {
 			"rdt:name": "source(\"source4.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.006",
+			"rdt:elapsedTime": "0.068",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -56,7 +56,7 @@
 		"rdt:p5": {
 			"rdt:name": "sourcescript4.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.003",
+			"rdt:elapsedTime": "0.004",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -73,8 +73,8 @@
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/sourcescript4.R",
-			"rdt:scriptTimeStamp": "2019-08-06T14.43.33EDT",
-			"rdt:totalElapsedTime": "0.926",
+			"rdt:scriptTimeStamp": "2019-08-06T14.54.13EDT",
+			"rdt:totalElapsedTime": "1.27",
 			"rdt:sourcedScripts": [
 				"source2.r",
 				"source3.r",
@@ -87,7 +87,7 @@
 			],
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov_sourcescript4",
-			"rdt:provTimestamp": "2019-08-06T14.47.10EDT",
+			"rdt:provTimestamp": "2019-08-07T17.12.17EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
