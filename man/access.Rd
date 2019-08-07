@@ -8,6 +8,7 @@
 \alias{get.saved.scripts}
 \alias{get.proc.nodes}
 \alias{get.data.nodes}
+\alias{get.stdout.nodes}
 \alias{get.error.nodes}
 \alias{get.func.nodes}
 \alias{get.proc.proc}
@@ -36,6 +37,8 @@ get.saved.scripts(prov)
 get.proc.nodes(prov)
 
 get.data.nodes(prov)
+
+get.stdout.nodes(prov)
 
 get.error.nodes(prov)
 
@@ -104,7 +107,7 @@ get.scripts returns a data frame identifying all the scripts executed.  The main
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
 
-get.scripts returns a data frame identifying the location of saved copies
+get.saved.scripts returns a data frame identifying the location of saved copies
    of all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
@@ -144,6 +147,14 @@ get.data.nodes returns a data frame with an entry for each data node
 			\item {hash} {- the hash value for File nodes}
 			\item {timestamp} {- the time at which the node was created}
 			\item {location} {- for file nodes, the absolute path to the file}
+  }
+
+get.stdout.nodes returns a data frame with an entry for each standard output node
+  in the provenance.  The data frame contains the following columns:
+  \itemize{
+     \item {id} {- a unique id}
+			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+			\item {timestamp} {- the time at which the node was created}
   }
 
 get.error.nodes returns a data frame with an entry for each error node
