@@ -281,7 +281,7 @@
 			"rdt:startLine": 59,
 			"rdt:startCol": 1,
 			"rdt:endLine": 59,
-			"rdt:endCol": 44
+			"rdt:endCol": 6
 		},
 		"rdt:p28": {
 			"rdt:name": "apply(data,2,sum)",
@@ -291,9 +291,39 @@
 			"rdt:startLine": 60,
 			"rdt:startCol": 1,
 			"rdt:endLine": 60,
-			"rdt:endCol": 17
+			"rdt:endCol": 9
 		},
 		"rdt:p29": {
+			"rdt:name": "print (data.df)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": "1.184",
+			"rdt:scriptNum": 1,
+			"rdt:startLine": 61,
+			"rdt:startCol": 1,
+			"rdt:endLine": 61,
+			"rdt:endCol": 15
+		},
+		"rdt:p30": {
+			"rdt:name": "data <- read.csv( 'x.csv' , header = FALSE )",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": "1.325",
+			"rdt:scriptNum": 1,
+			"rdt:startLine": 64,
+			"rdt:startCol": 1,
+			"rdt:endLine": 64,
+			"rdt:endCol": 44
+		},
+		"rdt:p31": {
+			"rdt:name": "apply(data,2,sum)",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": "0.017",
+			"rdt:scriptNum": 1,
+			"rdt:startLine": 65,
+			"rdt:startCol": 1,
+			"rdt:endLine": 65,
+			"rdt:endCol": 17
+		},
+		"rdt:p32": {
 			"rdt:name": "prov.R",
 			"rdt:type": "Finish",
 			"rdt:elapsedTime": "0.01",
@@ -308,24 +338,24 @@
 	"entity" : {
 		"rdt:d1": {
 			"rdt:name": "f",
-			"rdt:value": "function (a, b, yy, d, e, f) {...",
+			"rdt:value": "data/1-f.R",
 			"rdt:valType": "function",
-			"rdt:type": "Data",
+			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "",
+			"rdt:timestamp": "2019-08-07T17.11.54EDT",
 			"rdt:location": ""
 		},
 		"rdt:d2": {
 			"rdt:name": "g",
-			"rdt:value": "function(x) {...",
+			"rdt:value": "data/2-g.R",
 			"rdt:valType": "function",
-			"rdt:type": "Data",
+			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "",
+			"rdt:timestamp": "2019-08-07T17.11.54EDT",
 			"rdt:location": ""
 		},
 		"rdt:d3": {
@@ -407,7 +437,7 @@
 		},
 		"rdt:d10": {
 			"rdt:name": "kids.df",
-			"rdt:value": "Row 1 1992  Ben TRUE",
+			"rdt:value": "year1 year2 name1 name2 male1 male2  1992  1995\t 1\t 2\t 1\t 1 ",
 			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[2,3], \"type\":[\"numeric\",\"factor\",\"logical\"]}",
 			"rdt:type": "Data",
 			"rdt:scope": "R_GlobalEnv",
@@ -506,24 +536,24 @@
 		},
 		"rdt:d19": {
 			"rdt:name": "data.df",
-			"rdt:value": "Row 1 1964-01-01  -14\t\t\t -6\t\t\t   -21\t\t\t  0\t   ",
+			"rdt:value": "data/19-data.df-PARTIAL.csv",
 			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[14061,9], \"type\":[\"factor\",\"integer\",\"factor\",\"integer\",\"factor\",\"integer\",\"factor\",\"numeric\",\"factor\"]}",
-			"rdt:type": "Data",
+			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "",
+			"rdt:timestamp": "2019-08-07T17.12.07EDT",
 			"rdt:location": ""
 		},
 		"rdt:d20": {
 			"rdt:name": "shortdata.df",
-			"rdt:value": "Row 1 1964-01-01  -14\t\t\t -6\t\t\t   -21\t\t\t  0\t   ",
+			"rdt:value": "data/20-shortdata.df-PARTIAL.csv",
 			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[100,9], \"type\":[\"factor\",\"integer\",\"factor\",\"integer\",\"factor\",\"integer\",\"factor\",\"numeric\",\"factor\"]}",
-			"rdt:type": "Data",
+			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "",
+			"rdt:timestamp": "2019-08-07T17.12.07EDT",
 			"rdt:location": ""
 		},
 		"rdt:d21": {
@@ -571,8 +601,41 @@
 			"rdt:location": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/airt-vs-prec.pdf"
 		},
 		"rdt:d25": {
+			"rdt:name": "x",
+			"rdt:value": "1",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"numeric\"]}",
+			"rdt:type": "Data",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:hash": "",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"rdt:d26": {
+			"rdt:name": "output",
+			"rdt:value": "\"[1] 1\"",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "StandardOutput",
+			"rdt:scope": "Standard output",
+			"rdt:fromEnv": false,
+			"rdt:hash": "",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"rdt:d27": {
+			"rdt:name": "output",
+			"rdt:value": "data/27-output-PARTIAL.txt",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[11113], \"type\":[\"character\"]}",
+			"rdt:type": "StandardOutputSnapshot",
+			"rdt:scope": "Standard output",
+			"rdt:fromEnv": false,
+			"rdt:hash": "",
+			"rdt:timestamp": "2019-08-07T17.12.10EDT",
+			"rdt:location": ""
+		},
+		"rdt:d28": {
 			"rdt:name": "x.csv",
-			"rdt:value": "data/25-x.csv",
+			"rdt:value": "data/28-x.csv",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
@@ -581,18 +644,18 @@
 			"rdt:timestamp": "2019-08-01T14.12.02EDT",
 			"rdt:location": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/x.csv"
 		},
-		"rdt:d26": {
+		"rdt:d29": {
 			"rdt:name": "data",
-			"rdt:value": "Row 1  1  4",
+			"rdt:value": "data/29-data.csv",
 			"rdt:valType": "{\"container\":\"data_frame\", \"dimension\":[10,2], \"type\":[\"integer\",\"factor\"]}",
-			"rdt:type": "Data",
+			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "",
+			"rdt:timestamp": "2019-08-07T17.12.10EDT",
 			"rdt:location": ""
 		},
-		"rdt:d27": {
+		"rdt:d30": {
 			"rdt:name": "error.msg",
 			"rdt:value": "Error in FUN(newX[, i], ...): invalid 'type' (character) of argument\n",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
@@ -815,6 +878,18 @@
 		"rdt:pp28": {
 			"prov:informant": "rdt:p28",
 			"prov:informed": "rdt:p29"
+		},
+		"rdt:pp29": {
+			"prov:informant": "rdt:p29",
+			"prov:informed": "rdt:p30"
+		},
+		"rdt:pp30": {
+			"prov:informant": "rdt:p30",
+			"prov:informed": "rdt:p31"
+		},
+		"rdt:pp31": {
+			"prov:informant": "rdt:p31",
+			"prov:informed": "rdt:p32"
 		}
 	},
 
@@ -913,11 +988,23 @@
 		},
 		"rdt:pd24": {
 			"prov:activity": "rdt:p27",
-			"prov:entity": "rdt:d26"
+			"prov:entity": "rdt:d25"
 		},
 		"rdt:pd25": {
 			"prov:activity": "rdt:p28",
+			"prov:entity": "rdt:d26"
+		},
+		"rdt:pd26": {
+			"prov:activity": "rdt:p29",
 			"prov:entity": "rdt:d27"
+		},
+		"rdt:pd27": {
+			"prov:activity": "rdt:p30",
+			"prov:entity": "rdt:d29"
+		},
+		"rdt:pd28": {
+			"prov:activity": "rdt:p31",
+			"prov:entity": "rdt:d30"
 		}
 	},
 
@@ -1000,11 +1087,19 @@
 		},
 		"rdt:dp20": {
 			"prov:entity": "rdt:d25",
-			"prov:activity": "rdt:p27"
+			"prov:activity": "rdt:p28"
 		},
 		"rdt:dp21": {
-			"prov:entity": "rdt:d26",
-			"prov:activity": "rdt:p28"
+			"prov:entity": "rdt:d19",
+			"prov:activity": "rdt:p29"
+		},
+		"rdt:dp22": {
+			"prov:entity": "rdt:d28",
+			"prov:activity": "rdt:p30"
+		},
+		"rdt:dp23": {
+			"prov:entity": "rdt:d29",
+			"prov:activity": "rdt:p31"
 		},
 
 		"rdt:fp1": {
@@ -1033,7 +1128,7 @@
 		},
 		"rdt:fp7": {
 			"prov:entity": "rdt:f1",
-			"prov:activity": "rdt:p27"
+			"prov:activity": "rdt:p30"
 		}
 	},
 

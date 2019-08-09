@@ -148,13 +148,13 @@
 	"entity" : {
 		"rdt:d1": {
 			"rdt:name": "fun",
-			"rdt:value": "function(a,b){...",
+			"rdt:value": "data/1-fun.R",
 			"rdt:valType": "function",
-			"rdt:type": "Data",
+			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "",
+			"rdt:timestamp": "2019-08-07T17.12.12EDT",
 			"rdt:location": ""
 		},
 		"rdt:d2": {

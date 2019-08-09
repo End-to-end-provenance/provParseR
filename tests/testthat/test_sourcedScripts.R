@@ -4,7 +4,6 @@ library(testthat)
 context("Reading list of sourced scripts")
 
 # function to remove timestamp and file path from data frame comparison
-# remove file paths from source script names
 get.filenames <- function(df)
 {	
 	scripts <- df[ , "script"]
