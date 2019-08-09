@@ -212,6 +212,21 @@ get.variable.named returns a data frame containing a subset of the data nodes th
 A data frame containing the valType of the specified data node, 
 or the valTypes of all data nodes if no data node is specified. Return NULL
 if there are no data nodes or if the specified data node is not found.
+ If not NULL, the data frame will contain 4 columns in the following order:
+ id, container, dimension, type. The id column refers to the data node id which
+ the valType is associated with. The container, dimension, and type columns are
+ fields which belonged to the original valType string. The container column
+ refers to the container type of the data, such as vector or matrix. The dimension
+ column refers to the size of the data. The type column lists the type(s) contained
+ within the container. In containers such as data frames where the types may differ, 
+ this will be a string list of the types for each column of a data frame.
+ Sometimes, the returned data frame will have NA values. This occurs in cases where 
+ the data node has a valType that is not a string representation of a json object. 
+ Examples of this are environment and function. In these cases, the valType will
+ be stored in the type column and the container and dimension colums will be NA.
+ There is also a case where the valType could have a missing type value. This occurs
+ in cases like lists where the type of each element could be complex. In this case,
+ the type column will be NA.
 }
 \description{
 These functions extract information from a ProvInfo object created by the prov.parse function 
