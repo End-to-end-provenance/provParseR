@@ -92,7 +92,7 @@ methods::setMethod ("initialize",
       prov.df <- lapply(obj.chars, parse.general, m.list = master.list)
       
       .Object@proc.nodes <- prov.df[[1]]
-      .Object@data.nodes <- prov.df[[2]]
+      .Object@data.nodes <- .add.snapshot.paths(prov.df[[2]], .Object@envi)
       .Object@func.nodes <- prov.df[[3]]
       .Object@proc.proc.edges <- prov.df[[4]]
       .Object@proc.data.edges <- prov.df[[5]]
@@ -117,6 +117,18 @@ methods::setMethod ("initialize",
     }
 )
       
+#' Changes the value of snapshot nodes to include a full path to the snapshot.
+#' @param data.nodes the data frame containing all data nodes
+#' @param env the data frame containing environment information
+#' @return the modified data nodes data frame
+#' @noRd
+.add.snapshot.paths <- function (data.nodes, env) {
+  if (any(data.nodes$type %in% c("Snapshot", "StandardOutputSnapshot"))) {
+    prov.dir <- env[env$label == "provDirectory", ]$value
+    data.nodes[data.nodes$type %in% c("Snapshot", "StandardOutputSnapshot"), ]$value <- paste (prov.dir, data.nodes[data.nodes$type %in% c("Snapshot", "StandardOutputSnapshot"), ]$value, sep="/")
+  }
+  return (data.nodes)
+}
 
 # Generalized parser
 parse.general <- function(requested, m.list) {
