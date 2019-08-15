@@ -408,8 +408,11 @@ get.saved.scripts <- function (prov) {
   scripts <- get.scripts(prov)
   env <- get.environment(prov)
   prov.dir <- env[env$label == "provDirectory", ]$value
-  names <- paste0 (prov.dir, "/scripts/", basename (scripts$script))
-  return (data.frame (script = names, timestamp = scripts$timestamp, stringsAsFactors=FALSE))
+  
+  script.names <- paste0(prov.dir, "/scripts/", basename(scripts$script))
+  script.timestamps <- unname(scripts$timestamp)
+  
+  return(data.frame(script = script.names, timestamp = script.timestamps, stringsAsFactors = FALSE))
 }
 
 #' @return get.proc.nodes returns a data frame identifying all the procedural nodes executed.  
