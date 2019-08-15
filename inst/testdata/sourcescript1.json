@@ -16,7 +16,7 @@
 		"rdt:p1": {
 			"rdt:name": "sourcescript1.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.846",
+			"rdt:elapsedTime": "1.5",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -24,9 +24,9 @@
 			"rdt:endCol": "NA"
 		},
 		"rdt:p2": {
-			"rdt:name": "source(\"source1.r\")",
+			"rdt:name": "source(\"source2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.01",
+			"rdt:elapsedTime": "0.0",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -36,7 +36,7 @@
 		"rdt:p3": {
 			"rdt:name": "sourcescript1.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.107",
+			"rdt:elapsedTime": "0.03",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -46,32 +46,20 @@
 	},
 
 	"entity" : {
-		"rdt:d1": {
-			"rdt:name": "error.msg",
-			"rdt:value": "Error in eval(ei, envir): object 'z' not found\n",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
-			"rdt:type": "Exception",
-			"rdt:scope": "ddg.library",
-			"rdt:fromEnv": false,
-			"rdt:hash": "",
-			"rdt:timestamp": "",
-			"rdt:location": ""
-		},
-
 		"rdt:environment": {
 			"rdt:name": "environment",
 			"rdt:architecture": "x86_64",
-			"rdt:operatingSystem": "darwin15.6.0",
+			"rdt:operatingSystem": "mingw32",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/sourcescript1.R",
-			"rdt:scriptTimeStamp": "2019-06-18T14.38.44EDT",
-			"rdt:totalElapsedTime": "0.963",
-			"rdt:sourcedScripts": "source1.r",
-			"rdt:sourcedScriptTimeStamps": "2019-06-18T14.38.44EDT",
-			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts",
-			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov_sourcescript1",
-			"rdt:provTimestamp": "2019-08-07T17.12.15EDT",
+			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/sourcescript1.R",
+			"rdt:scriptTimeStamp": "2019-08-01T14.11.14EDT",
+			"rdt:totalElapsedTime": "1.53",
+			"rdt:sourcedScripts": "source2.r",
+			"rdt:sourcedScriptTimeStamps": "2019-07-31T14.27.02EDT",
+			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts",
+			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov_sourcescript1",
+			"rdt:provTimestamp": "2019-08-09T17.43.58EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
@@ -149,13 +137,6 @@
 		"rdt:pp2": {
 			"prov:informant": "rdt:p2",
 			"prov:informed": "rdt:p3"
-		}
-	},
-
-	"wasGeneratedBy" : {
-		"rdt:pd1": {
-			"prov:activity": "rdt:p2",
-			"prov:entity": "rdt:d1"
 		}
 	}
 }

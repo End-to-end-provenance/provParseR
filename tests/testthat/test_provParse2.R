@@ -53,13 +53,13 @@ expect_match(typeof(data.df$fromEnv), "logical")
 expect_match(typeof(data.df$hash), "character")
 expect_match(typeof(data.df$timestamp), "character")
 expect_match(typeof(data.df$location), "character")
-expect_equal(nrow(data.df), 30)
+expect_equal(nrow(data.df), 28)
 expect_equal(ncol(data.df), 10)
 
 context("Exception nodes access function")
 errors.df <- get.error.nodes(prov)
 expect_equal(nrow(errors.df), 1)
-expect_equal(errors.df$id, "d30")
+expect_equal(errors.df$id, "d28")
 expect_equal(errors.df$value, "Error in FUN(newX[, i], ...): invalid 'type' (character) of argument\n")
 
 
@@ -92,7 +92,7 @@ proc.data.df <- get.proc.data(prov)
 expect_match(class(proc.data.df), "data.frame")
 expect_match(typeof(proc.data.df$entity), "character")
 expect_match(typeof(proc.data.df$activity), "character")
-expect_equal(nrow(proc.data.df), 28)
+expect_equal(nrow(proc.data.df), 26)
 expect_equal(ncol(proc.data.df), 3)
 
 context("Function-to-procedure edges access function")
@@ -163,8 +163,7 @@ expect_equal (nrow (variables.named.foo), 0)
 
 context("Standard output access")
 stdout.df <- get.stdout.nodes(prov)
-expect_equal(nrow(stdout.df), 2)
-expect_equal(stdout.df$value[1], "\"[1] 1\"")
+expect_equal(nrow(stdout.df), 0)
 
 ## If input is a string
 

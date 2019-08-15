@@ -16,17 +16,17 @@
 		"rdt:environment": {
 			"rdt:name": "environment",
 			"rdt:architecture": "x86_64",
-			"rdt:operatingSystem": "darwin15.6.0",
+			"rdt:operatingSystem": "mingw32",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/empty.R",
-			"rdt:scriptTimeStamp": "2019-06-18T14.38.44EDT",
+			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/empty.R",
+			"rdt:scriptTimeStamp": "2019-07-31T14.27.02EDT",
 			"rdt:totalElapsedTime": "0.0",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
-			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts",
-			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov_empty",
-			"rdt:provTimestamp": "2019-08-07T17.11.51EDT",
+			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts",
+			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov_empty",
+			"rdt:provTimestamp": "2019-08-09T17.43.39EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 

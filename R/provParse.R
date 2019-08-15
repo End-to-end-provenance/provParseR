@@ -738,4 +738,87 @@ get.variable.named <- function (prov, var.name) {
   return (variable.nodes)
 }
 
-## ====##
+#' get.val.type parses the valTypes of each data node in the given provenance,
+#'	or the valType of the specified node, and returns it in a data frame.
+#'
+#' @param node.id A vector of node id.
+#' @return A data frame containing the valType of the specified data node, 
+#'	or the valTypes of all data nodes if no data node is specified. Return NULL
+#'	if there are no data nodes or if the specified data node is not found.
+#'  If not NULL, the data frame will contain 4 columns in the following order:
+#'  id, container, dimension, type. The id column refers to the data node id which
+#'  the valType is associated with. The container, dimension, and type columns are
+#'  fields which belonged to the original valType string. The container column
+#'  refers to the container type of the data, such as vector or matrix. The dimension
+#'  column refers to the size of the data. The type column lists the type(s) contained
+#'  within the container. In containers such as data frames where the types may differ, 
+#'  this will be a string list of the types for each column of a data frame.
+#'  Sometimes, the returned data frame will have NA values. This occurs in cases where 
+#'  the data node has a valType that is not a string representation of a json object. 
+#'  Examples of this are environment and function. In these cases, the valType will
+#'  be stored in the type column and the container and dimension colums will be NA.
+#'  There is also a case where the valType could have a missing type value. This occurs
+#'  in cases like lists where the type of each element could be complex. In this case,
+#'  the type column will be NA.
+#' @rdname access
+#' @export
+get.val.type <- function(prov, node.id = NULL) {
+	
+	data.nodes <- get.data.nodes(prov)[ , c("id", "valType")]
+	
+	# extract row for specified node, if applicable
+	if(! is.null(node.id))
+		data.nodes <- data.nodes[data.nodes$id %in% node.id, ]
+	
+	# node not found, return null.
+	if(nrow(data.nodes) == 0)
+		return(NULL)
+	
+	# use sapply to parse val.type into a matrix with 3 columns
+	# since it's a matrix, can query each column or just put into df!!
+	parsed.val.type <- sapply(data.nodes[ , "valType"], function(val.type) {
+		# a string vector to store the parsed valType
+		# keep all terms as strings in order for sapply to be able to convert
+		# the resulting list of character vectors into a matrix
+		# container, dim, type
+		arr = vector(mode = "character", length = 3L)
+		
+		# there are 2 types of valType:
+		# a json object as a string, or
+		# a simple string
+		if(grepl("^\\{(.+)\\}$", val.type)) {
+			
+			# Type is string parsed from entity valType
+			val.type <- jsonlite::fromJSON(val.type)
+			
+			arr[1] <- val.type$container
+			
+			# format dimension and type into a list
+			# so that we can put it in a single element of a data frame
+			arr[2] <- paste(val.type$dimension, collapse = ",")
+			
+			# type could be null (e.g. list)
+			if(is.null(val.type$type))
+				arr[3] <- NA
+			else
+				arr[3] <- paste(val.type$type, collapse= ", ")
+			
+		} else {
+			arr[1] <- NA
+			arr[2] <- NA
+			arr[3] <- val.type
+		}
+		
+		return(arr)
+	}, USE.NAMES = FALSE)
+	
+	# form result data frame and return
+	result <- data.frame("id" = data.nodes[ , "id"],
+						 "container" = parsed.val.type[1, ],
+						 "dimension" = parsed.val.type[2, ],
+						 "type" = parsed.val.type[3, ],
+						 stringsAsFactors = FALSE)
+	return(result)
+}
+
+## ==== ##
