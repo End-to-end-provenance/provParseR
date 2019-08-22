@@ -8,6 +8,7 @@
 \alias{get.saved.scripts}
 \alias{get.proc.nodes}
 \alias{get.data.nodes}
+\alias{get.stdout.nodes}
 \alias{get.error.nodes}
 \alias{get.func.nodes}
 \alias{get.proc.proc}
@@ -21,6 +22,7 @@
 \alias{get.variables.set}
 \alias{get.variables.used}
 \alias{get.variable.named}
+\alias{get.val.type}
 \title{Provenance access functions}
 \usage{
 get.environment(prov)
@@ -36,6 +38,8 @@ get.saved.scripts(prov)
 get.proc.nodes(prov)
 
 get.data.nodes(prov)
+
+get.stdout.nodes(prov)
 
 get.error.nodes(prov)
 
@@ -62,6 +66,8 @@ get.variables.set(prov)
 get.variables.used(prov)
 
 get.variable.named(prov, var.name)
+
+get.val.type(prov, node.id = NULL)
 }
 \arguments{
 \item{prov}{a ProvInfo object created by calling \code{\link{prov.parse}}.}
@@ -71,6 +77,8 @@ it contains both files and URLs.}
 
 \item{var.name}{a string containing the name of a variable used in the script the
 provenance is for}
+
+\item{node.id}{A vector of node id.}
 }
 \value{
 All access functions return NULL if there is no parsed provenance.  If parsed provenance
@@ -104,7 +112,7 @@ get.scripts returns a data frame identifying all the scripts executed.  The main
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
 
-get.scripts returns a data frame identifying the location of saved copies
+get.saved.scripts returns a data frame identifying the location of saved copies
    of all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
@@ -144,6 +152,14 @@ get.data.nodes returns a data frame with an entry for each data node
 			\item {hash} {- the hash value for File nodes}
 			\item {timestamp} {- the time at which the node was created}
 			\item {location} {- for file nodes, the absolute path to the file}
+  }
+
+get.stdout.nodes returns a data frame with an entry for each standard output node
+  in the provenance.  The data frame contains the following columns:
+  \itemize{
+     \item {id} {- a unique id}
+			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+			\item {timestamp} {- the time at which the node was created}
   }
 
 get.error.nodes returns a data frame with an entry for each error node
@@ -203,6 +219,25 @@ get.variables.used returns a data frame containing a subset of the data nodes th
 
 get.variable.named returns a data frame containing a subset of the data nodes that correspond to variables
   with the specified name.
+
+A data frame containing the valType of the specified data node, 
+or the valTypes of all data nodes if no data node is specified. Return NULL
+if there are no data nodes or if the specified data node is not found.
+ If not NULL, the data frame will contain 4 columns in the following order:
+ id, container, dimension, type. The id column refers to the data node id which
+ the valType is associated with. The container, dimension, and type columns are
+ fields which belonged to the original valType string. The container column
+ refers to the container type of the data, such as vector or matrix. The dimension
+ column refers to the size of the data. The type column lists the type(s) contained
+ within the container. In containers such as data frames where the types may differ, 
+ this will be a string list of the types for each column of a data frame.
+ Sometimes, the returned data frame will have NA values. This occurs in cases where 
+ the data node has a valType that is not a string representation of a json object. 
+ Examples of this are environment and function. In these cases, the valType will
+ be stored in the type column and the container and dimension colums will be NA.
+ There is also a case where the valType could have a missing type value. This occurs
+ in cases like lists where the type of each element could be complex. In this case,
+ the type column will be NA.
 }
 \description{
 These functions extract information from a ProvInfo object created by the prov.parse function 

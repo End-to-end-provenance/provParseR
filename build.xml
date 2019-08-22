@@ -54,14 +54,17 @@
 			<param name="theFile" value="sourcescript1.R"/>
 		</antcall>
 		<antcall target="json">
-			<param name="theFile" value="sourcescript4.R"/>
+			<param name="theFile" value="sourcescript3.R"/>
+		</antcall>
+		<antcall target="json">
+			<param name="theFile" value="valType.R"/>
 		</antcall>
 	</target>
 	
 	<target name="json">
 		<echo message="${theFile}"/>
 		<exec executable="Rscript" dir="inst/testscripts">
-			<arg line="-e &quot;rdtLite::prov.run('${theFile}', prov.dir='.')&quot;"/>
+			<arg line="-e &quot;rdtLite::prov.run('${theFile}', prov.dir='.', snapshot=10)&quot;"/>
 		</exec>
 		<basename property="scriptname" file="${theFile}" suffix="R" />
 		<move file="inst/testscripts/prov_${scriptname}/prov.json" tofile="inst/testdata/${scriptname}.json" />

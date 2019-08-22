@@ -1,3 +1,7 @@
+# provParseR 0.2
+
+* Added function: get.stdout.nodes
+
 # provParseR 0.1.2
 
 * Added functions: get.urls, get.error.nodes, and get.variable.named

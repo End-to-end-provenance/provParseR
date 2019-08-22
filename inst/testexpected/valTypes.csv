@@ -1,0 +1,10 @@
+"","id","container","dimension","type"
+"1","d1","vector","1","integer"
+"2","d2","vector","5","character"
+"3","d3","matrix","3,3","integer"
+"4","d4","array","3,3,3,3","integer"
+"5","d5","list","2",NA
+"6","d6","data_frame","5,3","integer, character, factor"
+"7","d7",NA,NA,"function"
+"8","d8",NA,NA,"factor"
+"9","d9",NA,NA,"environment"

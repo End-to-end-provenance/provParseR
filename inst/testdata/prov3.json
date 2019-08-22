@@ -16,7 +16,7 @@
 		"rdt:p1": {
 			"rdt:name": "prov3.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.835",
+			"rdt:elapsedTime": "1.56",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -26,7 +26,7 @@
 		"rdt:p2": {
 			"rdt:name": "a <- 3",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.045",
+			"rdt:elapsedTime": "0.05",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -36,7 +36,7 @@
 		"rdt:p3": {
 			"rdt:name": "b <- 2",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.007",
+			"rdt:elapsedTime": "0.04",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
@@ -46,7 +46,7 @@
 		"rdt:p4": {
 			"rdt:name": "cc <- a + b",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.004",
+			"rdt:elapsedTime": "0.02",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -56,7 +56,7 @@
 		"rdt:p5": {
 			"rdt:name": "prov3.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.008",
+			"rdt:elapsedTime": "0.0",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -103,17 +103,17 @@
 		"rdt:environment": {
 			"rdt:name": "environment",
 			"rdt:architecture": "x86_64",
-			"rdt:operatingSystem": "darwin15.6.0",
+			"rdt:operatingSystem": "mingw32",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov3.R",
-			"rdt:scriptTimeStamp": "2019-06-17T10.29.40EDT",
-			"rdt:totalElapsedTime": "0.899",
+			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov3.R",
+			"rdt:scriptTimeStamp": "2019-07-31T14.27.02EDT",
+			"rdt:totalElapsedTime": "1.67",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
-			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts",
-			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provParseR/inst/testscripts/prov_prov3",
-			"rdt:provTimestamp": "2019-06-17T14.55.48EDT",
+			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts",
+			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov_prov3",
+			"rdt:provTimestamp": "2019-08-09T17.43.55EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 

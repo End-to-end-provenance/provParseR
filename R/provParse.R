@@ -92,7 +92,7 @@ methods::setMethod ("initialize",
       prov.df <- lapply(obj.chars, parse.general, m.list = master.list)
       
       .Object@proc.nodes <- prov.df[[1]]
-      .Object@data.nodes <- prov.df[[2]]
+      .Object@data.nodes <- .add.snapshot.paths(prov.df[[2]], .Object@envi)
       .Object@func.nodes <- prov.df[[3]]
       .Object@proc.proc.edges <- prov.df[[4]]
       .Object@proc.data.edges <- prov.df[[5]]
@@ -117,6 +117,18 @@ methods::setMethod ("initialize",
     }
 )
       
+#' Changes the value of snapshot nodes to include a full path to the snapshot.
+#' @param data.nodes the data frame containing all data nodes
+#' @param env the data frame containing environment information
+#' @return the modified data nodes data frame
+#' @noRd
+.add.snapshot.paths <- function (data.nodes, env) {
+  if (any(data.nodes$type %in% c("Snapshot", "StandardOutputSnapshot"))) {
+    prov.dir <- env[env$label == "provDirectory", ]$value
+    data.nodes[data.nodes$type %in% c("Snapshot", "StandardOutputSnapshot"), ]$value <- paste (prov.dir, data.nodes[data.nodes$type %in% c("Snapshot", "StandardOutputSnapshot"), ]$value, sep="/")
+  }
+  return (data.nodes)
+}
 
 # Generalized parser
 parse.general <- function(requested, m.list) {
@@ -396,8 +408,11 @@ get.saved.scripts <- function (prov) {
   scripts <- get.scripts(prov)
   env <- get.environment(prov)
   prov.dir <- env[env$label == "provDirectory", ]$value
-  names <- paste0 (prov.dir, "/scripts/", basename (scripts$script))
-  return (data.frame (script = names, timestamp = scripts$timestamp, stringsAsFactors=FALSE))
+  
+  script.names <- paste0(prov.dir, "/scripts/", basename(scripts$script))
+  script.timestamps <- unname(scripts$timestamp)
+  
+  return(data.frame(script = script.names, timestamp = script.timestamps, stringsAsFactors = FALSE))
 }
 
 #' @return get.proc.nodes returns a data frame identifying all the procedural nodes executed.  
@@ -477,6 +492,22 @@ get.data.nodes <- function(prov) {
   }
 }
 
+#' @return get.stdout.nodes returns a data frame with an entry for each standard output node
+#'   in the provenance.  The data frame contains the following columns:
+#'   \itemize{
+#'      \item {id} {- a unique id}
+#' 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+#' 			\item {timestamp} {- the time at which the node was created}
+#'   }
+#' @rdname access
+#' @export
+get.stdout.nodes <- function(prov) {
+  data.nodes <- get.data.nodes(prov)
+  stdout.nodes <- data.nodes[data.nodes$type %in% c("StandardOutput","StandardOutputSnapshot"),]
+  stdout.table <- subset (stdout.nodes, select=c("id", "value", "timestamp"))
+  return (stdout.table)
+}
+  
 #' @return get.error.nodes returns a data frame with an entry for each error node
 #'   in the provenance.  The data frame contains the following columns:
 #'   \itemize{
@@ -492,7 +523,7 @@ get.error.nodes <- function(prov) {
   error.table <- subset (error.nodes, select=c("id", "value", "timestamp"))
   return (error.table)
 }
-  
+
 #' @return get.func.nodes returns a data frame containing information about the functions
 #'   used from other libraries within the script.  The data frame has 2 columns:  id 
 #'   (a unique id) and name (the name of the function called).  
@@ -722,4 +753,87 @@ get.variable.named <- function (prov, var.name) {
   return (variable.nodes)
 }
 
-## ====##
+#' get.val.type parses the valTypes of each data node in the given provenance,
+#'	or the valType of the specified node, and returns it in a data frame.
+#'
+#' @param node.id A vector of node id.
+#' @return A data frame containing the valType of the specified data node, 
+#'	or the valTypes of all data nodes if no data node is specified. Return NULL
+#'	if there are no data nodes or if the specified data node is not found.
+#'  If not NULL, the data frame will contain 4 columns in the following order:
+#'  id, container, dimension, type. The id column refers to the data node id which
+#'  the valType is associated with. The container, dimension, and type columns are
+#'  fields which belonged to the original valType string. The container column
+#'  refers to the container type of the data, such as vector or matrix. The dimension
+#'  column refers to the size of the data. The type column lists the type(s) contained
+#'  within the container. In containers such as data frames where the types may differ, 
+#'  this will be a string list of the types for each column of a data frame.
+#'  Sometimes, the returned data frame will have NA values. This occurs in cases where 
+#'  the data node has a valType that is not a string representation of a json object. 
+#'  Examples of this are environment and function. In these cases, the valType will
+#'  be stored in the type column and the container and dimension colums will be NA.
+#'  There is also a case where the valType could have a missing type value. This occurs
+#'  in cases like lists where the type of each element could be complex. In this case,
+#'  the type column will be NA.
+#' @rdname access
+#' @export
+get.val.type <- function(prov, node.id = NULL) {
+	
+	data.nodes <- get.data.nodes(prov)[ , c("id", "valType")]
+	
+	# extract row for specified node, if applicable
+	if(! is.null(node.id))
+		data.nodes <- data.nodes[data.nodes$id %in% node.id, ]
+	
+	# node not found, return null.
+	if(nrow(data.nodes) == 0)
+		return(NULL)
+	
+	# use sapply to parse val.type into a matrix with 3 columns
+	# since it's a matrix, can query each column or just put into df!!
+	parsed.val.type <- sapply(data.nodes[ , "valType"], function(val.type) {
+		# a string vector to store the parsed valType
+		# keep all terms as strings in order for sapply to be able to convert
+		# the resulting list of character vectors into a matrix
+		# container, dim, type
+		arr = vector(mode = "character", length = 3L)
+		
+		# there are 2 types of valType:
+		# a json object as a string, or
+		# a simple string
+		if(grepl("^\\{(.+)\\}$", val.type)) {
+			
+			# Type is string parsed from entity valType
+			val.type <- jsonlite::fromJSON(val.type)
+			
+			arr[1] <- val.type$container
+			
+			# format dimension and type into a list
+			# so that we can put it in a single element of a data frame
+			arr[2] <- paste(val.type$dimension, collapse = ",")
+			
+			# type could be null (e.g. list)
+			if(is.null(val.type$type))
+				arr[3] <- NA
+			else
+				arr[3] <- paste(val.type$type, collapse= ", ")
+			
+		} else {
+			arr[1] <- NA
+			arr[2] <- NA
+			arr[3] <- val.type
+		}
+		
+		return(arr)
+	}, USE.NAMES = FALSE)
+	
+	# form result data frame and return
+	result <- data.frame("id" = data.nodes[ , "id"],
+						 "container" = parsed.val.type[1, ],
+						 "dimension" = parsed.val.type[2, ],
+						 "type" = parsed.val.type[3, ],
+						 stringsAsFactors = FALSE)
+	return(result)
+}
+
+## ==== ##
