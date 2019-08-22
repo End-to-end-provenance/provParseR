@@ -59,6 +59,9 @@ get.data.nodes()
 # Function nodes
 get.func.nodes()
 
+# Error nodes
+get.error.nodes()
+
 EDGES
 
 # Procedure-to-procedure edges
