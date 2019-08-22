@@ -29,7 +29,7 @@ creates a ProvInfo object "prov" (where the path to the provenance file is "c:/p
 The following access functions return data frames:
 
 ```{r}
-*Environment*
+ENVIRONMENT
 
 # Computing environment
 get.environment()
@@ -40,7 +40,7 @@ get.libs()
 # Provenance collection tool
 get.tool.info()
 
-*Scripts*
+SCRIPTS
 
 # Scripts executed
 get.scripts()
@@ -48,7 +48,7 @@ get.scripts()
 # Location of saved scripts
 get.saved.scripts()
 
-*Nodes*
+NODES
 
 # Procedure nodes
 get.proc.nodes()
@@ -59,7 +59,7 @@ get.data.nodes()
 # Function nodes
 get.func.nodes()
 
-*Edges*
+EDGES
 
 # Procedure-to-procedure edges
 get.proc.proc()
@@ -76,7 +76,7 @@ get.func.proc()
 # Function-library edges
 get.func.lib()
 
-*Input/Output*
+INPUT/OUTPUT
 
 # Files read
 get.input.files()
@@ -90,7 +90,7 @@ get.urls()
 # Standard output
 get.stdout.nodes()
 
-*Variables*
+VARIABLES
 
 # Variable data type
 get.val.type()
