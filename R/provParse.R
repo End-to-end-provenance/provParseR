@@ -52,6 +52,7 @@ ProvInfo <- methods::setClass("ProvInfo",
         func.proc.edges = "data.frame", 
         func.lib.edges = "data.frame", 
         agents = "data.frame", 
+        args = "list",
         envi = "data.frame", 
         libs = "data.frame", 
         scripts = "data.frame")
@@ -80,16 +81,18 @@ methods::setMethod ("initialize",
       
       # These nodes cannot be parsed with the generalized function.
       # Therefore they are done separately and appended later.
+      .Object@agents <- parse.agents(master.list)
+      .Object@args <- parse.args(master.list)
       .Object@envi <- parse.envi(master.list)
       .Object@libs <- parse.libs(master.list)
       .Object@scripts <- parse.scripts(master.list)
       
       # This list represents the characters codes for the different
       # possible objects.
-      obj.chars <- c("p", "d", "f", "pp", "pd", "dp", "fp", "m", "a")
+      obj.chars <- c("p", "d", "f", "pp", "pd", "dp", "fp", "m")
       
       # Utilizes char codes to produce the list of data frames.
-      prov.df <- lapply(obj.chars, parse.general, m.list = master.list)
+      prov.df <- lapply(obj.chars, parse.from.identifier, m.list = master.list)
       
       .Object@proc.nodes <- prov.df[[1]]
       .Object@data.nodes <- .add.snapshot.paths(prov.df[[2]], .Object@envi)
@@ -99,7 +102,6 @@ methods::setMethod ("initialize",
       .Object@data.proc.edges <- prov.df[[6]]
       .Object@func.proc.edges <- prov.df[[7]]
       .Object@func.lib.edges <- prov.df[[8]]
-      .Object@agents <- prov.df[[9]]
       
       # Check the type of the elapsedTime column.
       # Convert to a column of doubles if it is a column of strings.
@@ -130,16 +132,31 @@ methods::setMethod ("initialize",
   return (data.nodes)
 }
 
-# Generalized parser
-parse.general <- function(requested, m.list) {
+# Generalized parser - parses the nodes with the requested node identifier
+parse.from.identifier <- function(requested, m.list) {
   
-  # Constructs pattern to match to using the grep function.
+	# Constructs pattern to match to using the grep function.
   grep.arg <- paste("^", requested, "[[:digit:]]", sep = "")
   
   # Using the pattern to pull out only the requested
   # nodes/edges from the master list.
   # This list had data stored in rows not columns
   nodes <- m.list[grep(grep.arg, names(m.list))]
+  
+  # Calls helper function to convert nodes to a data frame
+  return(parse.general(nodes))
+}
+
+# Generalized parser - parses the given nodes into a data frame
+parse.general <- function(nodes) {
+  
+  # Constructs pattern to match to using the grep function.
+  #grep.arg <- paste("^", requested, "[[:digit:]]", sep = "")
+  #
+  # Using the pattern to pull out only the requested
+  # nodes/edges from the master list.
+  # This list had data stored in rows not columns
+  #nodes <- m.list[grep(grep.arg, names(m.list))]
   
   if (length(nodes) == 0) return(data.frame())
   
@@ -174,6 +191,77 @@ parse.general <- function(requested, m.list) {
   return(nodes.df)
 }
 
+# Agent parser
+parse.agents <- function(m.list) {
+	
+	# Extract nodes from master list
+  nodes <- m.list[grep("^a[[:digit:]]", names(m.list))]
+  
+  # Remove entries regarding arguments
+  nodes <- lapply(nodes, function(x) {
+              x[-grep("args", names(x))]
+           })
+  
+  # Parse into data frame and return
+  return(parse.general(nodes))
+}
+
+# Parser for argumnents.
+# Should I assume there to be only 1 set of this?
+# The general parser and the parsing of the agent node doesn't assume that though
+#
+# Extracts the arguments in each agent into a named list, where:
+# 1. Each element is the value of an argument, converted into its 
+# corresponding type listed in the property args.types.
+# 2. The name of each element is the name of the argument.
+# The name of each list is the agent number.
+parse.args <- function(m.list) {
+  
+  # Extract nodes from master list
+  nodes <- m.list[grep("^a[[:digit:]]", names(m.list))]
+  
+  # Extract entries regarding arguments
+  nodes <- lapply(nodes, function(x) {
+              x[grep("args", names(x))]
+           })
+  
+  # For each agent, convert to a named list such that
+  # each element is the value of an argument converted back to its original type,
+  # the name of each element is the name of the argument
+  # This results in a list of named lists.
+  args <- lapply(nodes, function(node) {
+    
+    # Extract the argument values and types for easy reference
+    vals <- node[[grep("values", names(node))]]
+    types <- node[[grep("types", names(node))]]
+    
+    # Obtain the indices. 
+    # This is so that we could use the lapply function instead of a loop.
+    indices <- c(1:length(vals))
+    
+    # The alternative to using a loop.
+    # For each index, i, convert the argument value into its original argument type.
+    # Types supported: logical, integer, numeric
+    # Anything else remains as a string.
+    vals <- lapply(indices, function(i) {
+      if(types[i] == "logical")
+        return(as.logical(vals[i]))
+      else if(types[i] == "integer")
+        return(as.integer(vals[i]))
+      else if(types[i] == "numeric")
+        return(as.numeric(vals[i]))
+      else
+        return(vals[i])
+    })
+    
+    # Before returning, name each argument value with its corresponding argument name
+    names(vals) <- node[[grep("names", names(node))]]
+    return(vals)
+  }) # end type conversion for each agent
+  
+  return(args)
+}
+
 # Environment parser
 parse.envi <- function(m.list) {
   
@@ -199,7 +287,7 @@ parse.envi <- function(m.list) {
 parse.libs <- function(m.list) {
   # Use the general function, however it will 
   # add unneeded columns
-  libraries <- parse.general("l", m.list)
+  libraries <- parse.from.identifier("l", m.list)
   
   # Pull out columns of info wanted
   libraries <- libraries[,c("id", "name", "version")]
@@ -328,6 +416,9 @@ prov.parse <- function(prov.input, isFile = T) {
 #' get.libs(prov)
 #' get.scripts(prov)
 #' get.environment(prov)
+#' get.val.type(prov, "d1")
+#' get.tool.info(prov)
+#' get.args(prov)
 #' 
 #' @return All access functions return NULL if there is no parsed provenance.  If parsed provenance
 #'   exists, but there is no provenance for the type of information requested, such as no input 
@@ -383,6 +474,25 @@ get.tool.info <- function(prov) {
           } else {
             NULL
           })
+}
+
+#' @return get.args returns a named list describing the arguments that were passed
+#'    to prov.run or prov.init when the provenance was collected.
+#'    Each element is the value of an argument in its original type, 
+#'    each element name is the name of the arguemnt the value corresponds to.
+#' @rdname access
+#' @export
+get.args <- function(prov) {
+  if(is.null(prov)) {
+    return(NULL)
+  }
+  else {
+    # removes the 'a' identifier from the id of the agent each list corresponds to
+    args <- prov@args
+    names(args) <- grep("[[:digit:]]", names(args))
+    
+    return(args)
+  }
 }
 
 #' @return get.scripts returns a data frame identifying all the scripts executed.  The main script
@@ -461,13 +571,13 @@ get.proc.nodes <- function(prov) {
 #' 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
 #' 			\item {valType} {- a description of the value's type, including its container (such as list, vector, etc.), 
 #'         dimensions and member types (such as character, numeric, etc.)}
-#' 			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, or Device}
+#' 			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, Device, 
+#'         StandardOutput, or StandardOutputSnapshot}
 #' 			\item {scope} {- a hex number identifying the scope.  This is only used for node's with type Data or Snapshot}
 #' 			\item {fromEnv} {- a logical value.  If true, it means the variable had a value before the script began execution}
 #' 			\item {hash} {- the hash value for File nodes}
 #' 			\item {timestamp} {- the time at which the node was created}
 #' 			\item {location} {- for file nodes, the absolute path to the file}
-
 #'   }
 #' @rdname access
 #' @export
@@ -761,20 +871,15 @@ get.variable.named <- function (prov, var.name) {
 #'	or the valTypes of all data nodes if no data node is specified. Return NULL
 #'	if there are no data nodes or if the specified data node is not found.
 #'  If not NULL, the data frame will contain 4 columns in the following order:
-#'  id, container, dimension, type. The id column refers to the data node id which
-#'  the valType is associated with. The container, dimension, and type columns are
-#'  fields which belonged to the original valType string. The container column
-#'  refers to the container type of the data, such as vector or matrix. The dimension
-#'  column refers to the size of the data. The type column lists the type(s) contained
-#'  within the container. In containers such as data frames where the types may differ, 
-#'  this will be a string list of the types for each column of a data frame.
-#'  Sometimes, the returned data frame will have NA values. This occurs in cases where 
-#'  the data node has a valType that is not a string representation of a json object. 
-#'  Examples of this are environment and function. In these cases, the valType will
-#'  be stored in the type column and the container and dimension colums will be NA.
-#'  There is also a case where the valType could have a missing type value. This occurs
-#'  in cases like lists where the type of each element could be complex. In this case,
-#'  the type column will be NA.
+#'   \itemize{
+#'      \item {id} {- The data node id.}
+#'      \item {container} {- The type for the data's container, such as list, vector, etc. 
+#'         NA in cases such as environment and function where the original valType is not a json object.}
+#'      \item {dimension} {- The size of the data, represented as a string list when there are 2 or more dimensions.
+#'         NA in cases such as environment and function where the original valType is not a json object.}
+#'      \item {type} {- The type(s) contained within the container, represented as a string list in containers such as 
+#'         data frames when there are multiple types. NA in cases like lists where the type of each element can be complex.}
+#'   }
 #' @rdname access
 #' @export
 get.val.type <- function(prov, node.id = NULL) {
