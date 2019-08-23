@@ -71,7 +71,7 @@
 		<delete dir="inst/testscripts/prov_${scriptname}" />
 	</target>
 
-    <target name="cran-check" depends="build, create-json">
+    <target name="cran-check" depends="build">
     	<exec executable="R" >
     		<arg line="CMD check --as-cran --no-vignettes --no-build-vignettes ${tarfile}"/>
     	</exec>
