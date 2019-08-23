@@ -1,5 +1,3 @@
-[![Travis-CI Build Status](https://travis-ci.org/ProvTools/provParseR.svg?branch=master)](https://travis-ci.org/ProvTools/provParseR)
-
 # provParseR
 
 Parses the provenance collected by rdtLite or rdt and returns selected provenance as an R data frame.
@@ -9,7 +7,7 @@ Parses the provenance collected by rdtLite or rdt and returns selected provenanc
 Install from GitHub:
 ```{r}
 # install.packages("devtools")
-devtools::install_github("ProvTools/provParseR")
+devtools::install_github("End-to-end-provenance/provParseR")
 ```
 Once installed, load the package:
 ```{r}
