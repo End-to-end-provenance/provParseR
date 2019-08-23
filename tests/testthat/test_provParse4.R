@@ -23,7 +23,7 @@ expect_equal(nrow(tool.df), 1)
 expect_equal(ncol(tool.df), 3)
 expect_equal (tool.df$tool.name, "rdtLite")
 expect_equal (tool.df$tool.version, "1.1.1")
-expect_equal (tool.df$json.version, "2.2")
+expect_equal (tool.df$json.version, "2.3")
 
 context("Procedure nodes access function")
 proc.df <- get.proc.nodes(prov)
