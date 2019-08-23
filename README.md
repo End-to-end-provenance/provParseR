@@ -40,6 +40,9 @@ get.libs()
 # Provenance collection tool
 get.tool.info()
 
+# Arguments
+get.args()
+
 SCRIPTS
 
 # Scripts executed
