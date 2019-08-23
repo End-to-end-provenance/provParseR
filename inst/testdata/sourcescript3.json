@@ -8,7 +8,25 @@
 		"rdt:a1": {
 			"rdt:tool.name": "rdtLite",
 			"rdt:tool.version": "1.1.1",
-			"rdt:json.version": "2.2"
+			"rdt:json.version": "2.3",
+			"rdt:args.names": [
+				"overwrite",
+				"details",
+				"snapshot.size",
+				"save.debug"
+			],
+			"rdt:args.values": [
+				"TRUE",
+				"TRUE",
+				"10",
+				"FALSE"
+			],
+			"rdt:args.types": [
+				"logical",
+				"logical",
+				"numeric",
+				"logical"
+			]
 		}
 	},
 
@@ -16,7 +34,7 @@
 		"rdt:p1": {
 			"rdt:name": "sourcescript3.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "1.32",
+			"rdt:elapsedTime": "0.74",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -26,7 +44,7 @@
 		"rdt:p2": {
 			"rdt:name": "source(\"source2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.05",
+			"rdt:elapsedTime": "0.11",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -36,7 +54,7 @@
 		"rdt:p3": {
 			"rdt:name": "source(\"source3.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.18",
+			"rdt:elapsedTime": "0.19",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
@@ -46,7 +64,7 @@
 		"rdt:p4": {
 			"rdt:name": "source(\"source4.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.01",
+			"rdt:elapsedTime": "0.08",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -71,29 +89,29 @@
 			"rdt:architecture": "x86_64",
 			"rdt:operatingSystem": "mingw32",
 			"rdt:language": "R",
-			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/sourcescript3.R",
-			"rdt:scriptTimeStamp": "2019-08-01T14.11.21EDT",
-			"rdt:totalElapsedTime": "1.56",
+			"rdt:langVersion": "R version 3.6.1 (2019-07-05)",
+			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/sourcescript3.R",
+			"rdt:scriptTimeStamp": "2019-08-22T13.49.06EDT",
+			"rdt:totalElapsedTime": "1.12",
 			"rdt:sourcedScripts": [
-				"source2.r",
-				"source3.r",
-				"source4.r"
+				"C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/source2.r",
+				"C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/source3.r",
+				"C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/source4.r"
 			],
 			"rdt:sourcedScriptTimeStamps": [
-				"2019-07-31T14.27.02EDT",
-				"2019-07-31T14.27.02EDT",
-				"2019-07-31T14.27.02EDT"
+				"2019-08-22T13.49.06EDT",
+				"2019-08-22T13.49.06EDT",
+				"2019-08-22T13.49.06EDT"
 			],
-			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts",
-			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_parseValType/inst/testscripts/prov_sourcescript3",
-			"rdt:provTimestamp": "2019-08-09T17.44.01EDT",
+			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts",
+			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/prov_sourcescript3",
+			"rdt:provTimestamp": "2019-08-22T20.21.03EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
 		"rdt:l1": {
 			"name": "base",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -101,7 +119,7 @@
 		},
 		"rdt:l2": {
 			"name": "datasets",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -109,7 +127,7 @@
 		},
 		"rdt:l3": {
 			"name": "ggplot2",
-			"version": "3.1.1",
+			"version": "3.2.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -117,7 +135,7 @@
 		},
 		"rdt:l4": {
 			"name": "graphics",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -125,7 +143,7 @@
 		},
 		"rdt:l5": {
 			"name": "grDevices",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -133,7 +151,7 @@
 		},
 		"rdt:l6": {
 			"name": "methods",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -141,7 +159,7 @@
 		},
 		"rdt:l7": {
 			"name": "stats",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -149,7 +167,7 @@
 		},
 		"rdt:l8": {
 			"name": "utils",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
