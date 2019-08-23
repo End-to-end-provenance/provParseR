@@ -31,6 +31,8 @@ the access functions the package provides.
 
 \item{\code{agents}}{tool that created the provenance}
 
+\item{\code{args}}{arguments passed when provenance was created}
+
 \item{\code{envi}}{environmental information}
 
 \item{\code{libs}}{libraries}

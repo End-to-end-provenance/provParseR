@@ -4,6 +4,7 @@
 \alias{get.environment}
 \alias{get.libs}
 \alias{get.tool.info}
+\alias{get.args}
 \alias{get.scripts}
 \alias{get.saved.scripts}
 \alias{get.proc.nodes}
@@ -30,6 +31,8 @@ get.environment(prov)
 get.libs(prov)
 
 get.tool.info(prov)
+
+get.args(prov)
 
 get.scripts(prov)
 
@@ -108,6 +111,11 @@ get.tool.info returns a data frame describing the tool that
   collected the provenance.  It contains 3 columns:  tool.name, tool.version
   and json.version.
 
+get.args returns a named list describing the arguments that were passed
+   to prov.run or prov.init when the provenance was collected.
+   Each element is the value of an argument in its original type, 
+   each element name is the name of the arguemnt the value corresponds to.
+
 get.scripts returns a data frame identifying all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
@@ -146,7 +154,8 @@ get.data.nodes returns a data frame with an entry for each data node
 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
 			\item {valType} {- a description of the value's type, including its container (such as list, vector, etc.), 
         dimensions and member types (such as character, numeric, etc.)}
-			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, or Device}
+			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, Device, 
+        StandardOutput, or StandardOutputSnapshot}
 			\item {scope} {- a hex number identifying the scope.  This is only used for node's with type Data or Snapshot}
 			\item {fromEnv} {- a logical value.  If true, it means the variable had a value before the script began execution}
 			\item {hash} {- the hash value for File nodes}
@@ -224,20 +233,15 @@ A data frame containing the valType of the specified data node,
 or the valTypes of all data nodes if no data node is specified. Return NULL
 if there are no data nodes or if the specified data node is not found.
  If not NULL, the data frame will contain 4 columns in the following order:
- id, container, dimension, type. The id column refers to the data node id which
- the valType is associated with. The container, dimension, and type columns are
- fields which belonged to the original valType string. The container column
- refers to the container type of the data, such as vector or matrix. The dimension
- column refers to the size of the data. The type column lists the type(s) contained
- within the container. In containers such as data frames where the types may differ, 
- this will be a string list of the types for each column of a data frame.
- Sometimes, the returned data frame will have NA values. This occurs in cases where 
- the data node has a valType that is not a string representation of a json object. 
- Examples of this are environment and function. In these cases, the valType will
- be stored in the type column and the container and dimension colums will be NA.
- There is also a case where the valType could have a missing type value. This occurs
- in cases like lists where the type of each element could be complex. In this case,
- the type column will be NA.
+  \itemize{
+     \item {id} {- The data node id.}
+     \item {container} {- The type for the data's container, such as list, vector, etc. 
+        NA in cases such as environment and function where the original valType is not a json object.}
+     \item {dimension} {- The size of the data, represented as a string list when there are 2 or more dimensions.
+        NA in cases such as environment and function where the original valType is not a json object.}
+     \item {type} {- The type(s) contained within the container, represented as a string list in containers such as 
+        data frames when there are multiple types. NA in cases like lists where the type of each element can be complex.}
+  }
 }
 \description{
 These functions extract information from a ProvInfo object created by the prov.parse function 
@@ -263,6 +267,9 @@ get.func.lib(prov)
 get.libs(prov)
 get.scripts(prov)
 get.environment(prov)
+get.val.type(prov, "d1")
+get.tool.info(prov)
+get.args(prov)
 
 }
 \seealso{
