@@ -33,6 +33,7 @@
 #' @slot func.proc.edges function use edges
 #' @slot func.lib.edges function library edges
 #' @slot agents tool that created the provenance
+#' @slot args arguments passed when provenance was created
 #' @slot envi environmental information
 #' @slot libs libraries
 #' @slot scripts scripts executed 
