@@ -18,15 +18,15 @@ library("provParseR")
 
 
 # Usage
-The prov.parse function parses the prov.json file or string created by rdtLite or rdt and returns a ProvInfo object. This object can then be queried to return a data frame containing the desired values. For example:
+The prov.parse function parses the prov.json file or string created by rdtLite or rdt and returns an R object of class ProvInfo. This object can then be queried to return a data frame containing the desired values. For example:
 
 ```{r}
 prov <- prov.parse("c:/prov/prov.json")
 data.nodes <- get.data.nodes(prov)
 ```
-creates a ProvInfo object "prov" (where the path to the provenance file is "c:/prov/prov.json") and a data frame "data.nodes" that contains all data nodes in the provenance graph.
+creates an R object "prov" (where the path to the provenance file is "c:/prov/prov.json") and a data frame "data.nodes" that contains all data nodes in the provenance graph.
 
-The following access functions return data frames:
+The access functions below return a data frame with the specified content. For more details, please see the help pages for provParseR.
 
 ```{r}
 ENVIRONMENT
@@ -79,7 +79,7 @@ get.func.proc()
 # Function-library edges
 get.func.lib()
 
-INPUT/OUTPUT
+INPUTS/OUTPUTS
 
 # Files read
 get.input.files()
