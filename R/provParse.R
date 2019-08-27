@@ -420,6 +420,7 @@ prov.parse <- function(prov.input, isFile = T) {
 #' get.val.type(prov, "d1")
 #' get.tool.info(prov)
 #' get.args(prov)
+#' get.stdout.nodes(prov)
 #' 
 #' @return All access functions return NULL if there is no parsed provenance.  If parsed provenance
 #'   exists, but there is no provenance for the type of information requested, such as no input 

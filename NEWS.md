@@ -1,6 +1,6 @@
 # provParseR 0.2
 
-* Added functions: get.stdout.nodes, get.args
+* Added functions: get.stdout.nodes, get.args, get.val.type, get.tool.info
 * Snapshot nodes include path to the snapshot file
 
 # provParseR 0.1.2
