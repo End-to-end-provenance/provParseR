@@ -270,6 +270,7 @@ get.environment(prov)
 get.val.type(prov, "d1")
 get.tool.info(prov)
 get.args(prov)
+get.stdout.nodes(prov)
 
 }
 \seealso{
