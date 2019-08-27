@@ -55,6 +55,11 @@ tryCatch (
   error = function(e) {}
 )
 
+# Test standard output
+x <- 1
+print (x)
+print (data.df)
+
 # Test error
 data <- read.csv( 'x.csv' , header = FALSE )
 apply(data,2,sum)

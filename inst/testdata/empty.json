@@ -7,8 +7,26 @@
 	"agent" : {
 		"rdt:a1": {
 			"rdt:tool.name": "rdtLite",
-			"rdt:tool.version": "1.1.0",
-			"rdt:json.version": "2.2"
+			"rdt:tool.version": "1.1.1",
+			"rdt:json.version": "2.3",
+			"rdt:args.names": [
+				"overwrite",
+				"details",
+				"snapshot.size",
+				"save.debug"
+			],
+			"rdt:args.values": [
+				"TRUE",
+				"TRUE",
+				"10",
+				"FALSE"
+			],
+			"rdt:args.types": [
+				"logical",
+				"logical",
+				"numeric",
+				"logical"
+			]
 		}
 	},
 
@@ -18,21 +36,21 @@
 			"rdt:architecture": "x86_64",
 			"rdt:operatingSystem": "mingw32",
 			"rdt:language": "R",
-			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "C:/Users/fong22e/Source.R",
-			"rdt:scriptTimeStamp": "2019-06-06T10.32.39EDT",
+			"rdt:langVersion": "R version 3.6.1 (2019-07-05)",
+			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/empty.R",
+			"rdt:scriptTimeStamp": "2019-08-22T13.49.06EDT",
 			"rdt:totalElapsedTime": "0.0",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
-			"rdt:workingDirectory": "C:/Users/fong22e/",
-			"rdt:provDirectory": "C:/Users/fong22e/prov_Source",
-			"rdt:provTimestamp": "2019-06-06T10.33.30EDT",
+			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts",
+			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/prov_empty",
+			"rdt:provTimestamp": "2019-08-22T20.20.29EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
 		"rdt:l1": {
 			"name": "base",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -40,7 +58,7 @@
 		},
 		"rdt:l2": {
 			"name": "datasets",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -48,7 +66,7 @@
 		},
 		"rdt:l3": {
 			"name": "ggplot2",
-			"version": "3.1.1",
+			"version": "3.2.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -56,7 +74,7 @@
 		},
 		"rdt:l4": {
 			"name": "graphics",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -64,7 +82,7 @@
 		},
 		"rdt:l5": {
 			"name": "grDevices",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -72,39 +90,23 @@
 		},
 		"rdt:l6": {
 			"name": "methods",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
 			}
 		},
 		"rdt:l7": {
-			"name": "provParseR",
-			"version": "0.1.2",
+			"name": "stats",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
 			}
 		},
 		"rdt:l8": {
-			"name": "rdtLite",
-			"version": "1.1.0",
-			"prov:type": {
-				"$": "prov:Collection",
-				"type": "xsd:QName"
-			}
-		},
-		"rdt:l9": {
-			"name": "stats",
-			"version": "3.6.0",
-			"prov:type": {
-				"$": "prov:Collection",
-				"type": "xsd:QName"
-			}
-		},
-		"rdt:l10": {
 			"name": "utils",
-			"version": "3.6.0",
+			"version": "3.6.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"

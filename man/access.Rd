@@ -4,10 +4,12 @@
 \alias{get.environment}
 \alias{get.libs}
 \alias{get.tool.info}
+\alias{get.args}
 \alias{get.scripts}
 \alias{get.saved.scripts}
 \alias{get.proc.nodes}
 \alias{get.data.nodes}
+\alias{get.stdout.nodes}
 \alias{get.error.nodes}
 \alias{get.func.nodes}
 \alias{get.proc.proc}
@@ -21,6 +23,7 @@
 \alias{get.variables.set}
 \alias{get.variables.used}
 \alias{get.variable.named}
+\alias{get.val.type}
 \title{Provenance access functions}
 \usage{
 get.environment(prov)
@@ -29,6 +32,8 @@ get.libs(prov)
 
 get.tool.info(prov)
 
+get.args(prov)
+
 get.scripts(prov)
 
 get.saved.scripts(prov)
@@ -36,6 +41,8 @@ get.saved.scripts(prov)
 get.proc.nodes(prov)
 
 get.data.nodes(prov)
+
+get.stdout.nodes(prov)
 
 get.error.nodes(prov)
 
@@ -62,6 +69,8 @@ get.variables.set(prov)
 get.variables.used(prov)
 
 get.variable.named(prov, var.name)
+
+get.val.type(prov, node.id = NULL)
 }
 \arguments{
 \item{prov}{a ProvInfo object created by calling \code{\link{prov.parse}}.}
@@ -71,6 +80,8 @@ it contains both files and URLs.}
 
 \item{var.name}{a string containing the name of a variable used in the script the
 provenance is for}
+
+\item{node.id}{A vector of node id.}
 }
 \value{
 All access functions return NULL if there is no parsed provenance.  If parsed provenance
@@ -100,11 +111,16 @@ get.tool.info returns a data frame describing the tool that
   collected the provenance.  It contains 3 columns:  tool.name, tool.version
   and json.version.
 
+get.args returns a named list describing the arguments that were passed
+   to prov.run or prov.init when the provenance was collected.
+   Each element is the value of an argument in its original type, 
+   each element name is the name of the arguemnt the value corresponds to.
+
 get.scripts returns a data frame identifying all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
 
-get.scripts returns a data frame identifying the location of saved copies
+get.saved.scripts returns a data frame identifying the location of saved copies
    of all the scripts executed.  The main script
    will be first, followed by all sourced scripts.  The data frame contains 
    2 columns:  name and timestamp (when the script was last modified).
@@ -138,12 +154,21 @@ get.data.nodes returns a data frame with an entry for each data node
 			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
 			\item {valType} {- a description of the value's type, including its container (such as list, vector, etc.), 
         dimensions and member types (such as character, numeric, etc.)}
-			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, or Device}
+			\item {type} {- the type of the node, one of Data, Snapshot, File, URL, Exception, Device, 
+        StandardOutput, or StandardOutputSnapshot}
 			\item {scope} {- a hex number identifying the scope.  This is only used for node's with type Data or Snapshot}
 			\item {fromEnv} {- a logical value.  If true, it means the variable had a value before the script began execution}
 			\item {hash} {- the hash value for File nodes}
 			\item {timestamp} {- the time at which the node was created}
 			\item {location} {- for file nodes, the absolute path to the file}
+  }
+
+get.stdout.nodes returns a data frame with an entry for each standard output node
+  in the provenance.  The data frame contains the following columns:
+  \itemize{
+     \item {id} {- a unique id}
+			\item {value} {- either a text value (possible shortened) or the name of a file where the value is stored}
+			\item {timestamp} {- the time at which the node was created}
   }
 
 get.error.nodes returns a data frame with an entry for each error node
@@ -203,6 +228,20 @@ get.variables.used returns a data frame containing a subset of the data nodes th
 
 get.variable.named returns a data frame containing a subset of the data nodes that correspond to variables
   with the specified name.
+
+A data frame containing the valType of the specified data node, 
+or the valTypes of all data nodes if no data node is specified. Return NULL
+if there are no data nodes or if the specified data node is not found.
+ If not NULL, the data frame will contain 4 columns in the following order:
+  \itemize{
+     \item {id} {- The data node id.}
+     \item {container} {- The type for the data's container, such as list, vector, etc. 
+        NA in cases such as environment and function where the original valType is not a json object.}
+     \item {dimension} {- The size of the data, represented as a string list when there are 2 or more dimensions.
+        NA in cases such as environment and function where the original valType is not a json object.}
+     \item {type} {- The type(s) contained within the container, represented as a string list in containers such as 
+        data frames when there are multiple types. NA in cases like lists where the type of each element can be complex.}
+  }
 }
 \description{
 These functions extract information from a ProvInfo object created by the prov.parse function 
@@ -228,6 +267,10 @@ get.func.lib(prov)
 get.libs(prov)
 get.scripts(prov)
 get.environment(prov)
+get.val.type(prov, "d1")
+get.tool.info(prov)
+get.args(prov)
+get.stdout.nodes(prov)
 
 }
 \seealso{

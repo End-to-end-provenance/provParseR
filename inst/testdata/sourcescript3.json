@@ -32,9 +32,9 @@
 
 	"activity" : {
 		"rdt:p1": {
-			"rdt:name": "prov3.R",
+			"rdt:name": "sourcescript3.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.73",
+			"rdt:elapsedTime": "0.74",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -42,39 +42,39 @@
 			"rdt:endCol": "NA"
 		},
 		"rdt:p2": {
-			"rdt:name": "a <- 3",
+			"rdt:name": "source(\"source2.r\")",
 			"rdt:type": "Operation",
 			"rdt:elapsedTime": "0.11",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
 			"rdt:endLine": 1,
-			"rdt:endCol": 6
+			"rdt:endCol": 19
 		},
 		"rdt:p3": {
-			"rdt:name": "b <- 2",
+			"rdt:name": "source(\"source3.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.11",
+			"rdt:elapsedTime": "0.19",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
 			"rdt:endLine": 2,
-			"rdt:endCol": 6
+			"rdt:endCol": 19
 		},
 		"rdt:p4": {
-			"rdt:name": "cc <- a + b",
+			"rdt:name": "source(\"source4.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.06",
+			"rdt:elapsedTime": "0.08",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
 			"rdt:endLine": 3,
-			"rdt:endCol": 11
+			"rdt:endCol": 19
 		},
 		"rdt:p5": {
-			"rdt:name": "prov3.R",
+			"rdt:name": "sourcescript3.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.01",
+			"rdt:elapsedTime": "0.0",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -84,54 +84,28 @@
 	},
 
 	"entity" : {
-		"rdt:d1": {
-			"rdt:name": "a",
-			"rdt:value": "3",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"numeric\"]}",
-			"rdt:type": "Data",
-			"rdt:scope": "R_GlobalEnv",
-			"rdt:fromEnv": false,
-			"rdt:hash": "",
-			"rdt:timestamp": "",
-			"rdt:location": ""
-		},
-		"rdt:d2": {
-			"rdt:name": "b",
-			"rdt:value": "2",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"numeric\"]}",
-			"rdt:type": "Data",
-			"rdt:scope": "R_GlobalEnv",
-			"rdt:fromEnv": false,
-			"rdt:hash": "",
-			"rdt:timestamp": "",
-			"rdt:location": ""
-		},
-		"rdt:d3": {
-			"rdt:name": "cc",
-			"rdt:value": "5",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"numeric\"]}",
-			"rdt:type": "Data",
-			"rdt:scope": "R_GlobalEnv",
-			"rdt:fromEnv": false,
-			"rdt:hash": "",
-			"rdt:timestamp": "",
-			"rdt:location": ""
-		},
-
 		"rdt:environment": {
 			"rdt:name": "environment",
 			"rdt:architecture": "x86_64",
 			"rdt:operatingSystem": "mingw32",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.1 (2019-07-05)",
-			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/prov3.R",
+			"rdt:script": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/sourcescript3.R",
 			"rdt:scriptTimeStamp": "2019-08-22T13.49.06EDT",
-			"rdt:totalElapsedTime": "1.02",
-			"rdt:sourcedScripts": "",
-			"rdt:sourcedScriptTimeStamps": "",
+			"rdt:totalElapsedTime": "1.12",
+			"rdt:sourcedScripts": [
+				"C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/source2.r",
+				"C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/source3.r",
+				"C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/source4.r"
+			],
+			"rdt:sourcedScriptTimeStamps": [
+				"2019-08-22T13.49.06EDT",
+				"2019-08-22T13.49.06EDT",
+				"2019-08-22T13.49.06EDT"
+			],
 			"rdt:workingDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts",
-			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/prov_prov3",
-			"rdt:provTimestamp": "2019-08-22T20.20.59EDT",
+			"rdt:provDirectory": "C:/Users/fong22e/Documents/HarvardForest/provParseR_runArgs/inst/testscripts/prov_sourcescript3",
+			"rdt:provTimestamp": "2019-08-22T20.21.03EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
@@ -217,32 +191,6 @@
 		"rdt:pp4": {
 			"prov:informant": "rdt:p4",
 			"prov:informed": "rdt:p5"
-		}
-	},
-
-	"wasGeneratedBy" : {
-		"rdt:pd1": {
-			"prov:activity": "rdt:p2",
-			"prov:entity": "rdt:d1"
-		},
-		"rdt:pd2": {
-			"prov:activity": "rdt:p3",
-			"prov:entity": "rdt:d2"
-		},
-		"rdt:pd3": {
-			"prov:activity": "rdt:p4",
-			"prov:entity": "rdt:d3"
-		}
-	},
-
-	"used" : {
-		"rdt:dp1": {
-			"prov:entity": "rdt:d1",
-			"prov:activity": "rdt:p4"
-		},
-		"rdt:dp2": {
-			"prov:entity": "rdt:d2",
-			"prov:activity": "rdt:p4"
 		}
 	}
 }
