@@ -151,14 +151,7 @@ parse.from.identifier <- function(requested, m.list) {
 # Generalized parser - parses the given nodes into a data frame
 parse.general <- function(nodes) {
   
-  # Constructs pattern to match to using the grep function.
-  #grep.arg <- paste("^", requested, "[[:digit:]]", sep = "")
-  #
-  # Using the pattern to pull out only the requested
-  # nodes/edges from the master list.
-  # This list had data stored in rows not columns
-  #nodes <- m.list[grep(grep.arg, names(m.list))]
-  
+  # case: nothing to parse
   if (length(nodes) == 0) return(data.frame())
   
   # The num of columns are stored in each row in the list
@@ -198,9 +191,15 @@ parse.agents <- function(m.list) {
 	# Extract nodes from master list
   nodes <- m.list[grep("^a[[:digit:]]", names(m.list))]
   
-  # Remove entries regarding arguments
+  # Remove entries regarding arguments, if any
   nodes <- lapply(nodes, function(x) {
-              x[-grep("args", names(x))]
+              
+              indices <- grep("args", names(x))
+                            
+              if(identical(indices, integer(0)))
+                return(x)
+              else
+                return(x[-indices])
            })
   
   # Parse into data frame and return
@@ -221,10 +220,43 @@ parse.args <- function(m.list) {
   # Extract nodes from master list
   nodes <- m.list[grep("^a[[:digit:]]", names(m.list))]
   
-  # Extract entries regarding arguments
+  # If no agent nodes, return empty list
+  if(length(nodes) == 0)
+    return(list())
+  
+  # For each agent, extract entries regarding arguments, if any.
+  # Replace with NULL if there are none.
+  # Unfortunately, the NULL will be in its own list.
+  # This results in each list having the 3 lists of argument information,
+  # or 1 list of NULL.
   nodes <- lapply(nodes, function(x) {
-              x[grep("args", names(x))]
+              
+              indices <- grep("args", names(x))
+              
+              if(identical(indices, integer(0)))
+                return(NULL)
+              else
+                x[indices]
            })
+  
+  # Then, for each agent (loop through indices of main list),
+  # figure out which indices of the main list do not have a list of NULL.
+  nodes.indices <- 1:length(nodes)
+  nodes.indices <- lapply(nodes.indices, function(i)
+                   {
+                      if(is.null(nodes[[i]]))
+                        return(NULL)
+                      else
+                        return(i)
+                   })
+  nodes.indices <- unlist(nodes.indices, recursive = TRUE, use.names = FALSE)
+  
+  # If null, that means there are no agents have arguments. Return empty list.
+  if(is.null(nodes.indices))
+    return(list())
+  
+  # Extract nodes with arguments.
+  nodes <- nodes[nodes.indices]
   
   # For each agent, convert to a named list such that
   # each element is the value of an argument converted back to its original type,
