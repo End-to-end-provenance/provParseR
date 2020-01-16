@@ -108,4 +108,7 @@ get.variables.set()
 # Variables used
 get.variables.used()
 
+# Pre-existing variables
+get.preexisting()
+
 ```

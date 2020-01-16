@@ -224,7 +224,7 @@ get.output.files returns a data frame containing a subset of the data nodes that
   written by the script.
 
 get.preexisting returns a data frame containing variables in the global environment 
-that are used but not set by the script.
+that are used but not set by a script or a console session.
 
 get.variables.set returns a data frame containing a subset of the data nodes that correspond to variables
   assigned to in the script.
