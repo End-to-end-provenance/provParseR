@@ -20,6 +20,7 @@
 \alias{get.input.files}
 \alias{get.urls}
 \alias{get.output.files}
+\alias{get.preexisting}
 \alias{get.variables.set}
 \alias{get.variables.used}
 \alias{get.variable.named}
@@ -63,6 +64,8 @@ get.input.files(prov, only.files = FALSE)
 get.urls(prov)
 
 get.output.files(prov)
+
+get.preexisting(prov)
 
 get.variables.set(prov)
 
@@ -219,6 +222,9 @@ get.urls returns a data frame containing a subset of the data nodes that corresp
 
 get.output.files returns a data frame containing a subset of the data nodes that correspond to files that are 
   written by the script.
+
+get.preexisting returns a data frame containing variables in the global environment 
+that are used but not set by the script.
 
 get.variables.set returns a data frame containing a subset of the data nodes that correspond to variables
   assigned to in the script.
