@@ -849,6 +849,21 @@ get.output.files <- function (prov) {
 }
 
 #' @rdname access
+#' @return get.preexisting returns a data frame containing variables in the global environment 
+#' that are used but not set by a script or a console session.
+#' @export
+get.preexisting <- function(prov) {
+  data.nodes <- get.data.nodes(prov)
+  if (is.null (data.nodes)) return (NULL)
+
+  vars <- data.nodes[data.nodes$fromEnv == TRUE, "name"]
+  vars <- as.data.frame(vars, stringsAsFactors = FALSE)
+  colnames(vars) <- "name"
+  
+  return(vars)
+}
+
+#' @rdname access
 #' @return get.variables.set returns a data frame containing a subset of the data nodes that correspond to variables
 #'   assigned to in the script.  
 #' @export
