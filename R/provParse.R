@@ -1,5 +1,5 @@
 # Copyright (C) President and Fellows of Harvard College and 
-# Trustees of Mount Holyoke College, 2018, 2019.
+# Trustees of Mount Holyoke College, 2018, 2019, 2020.
 
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -846,6 +846,21 @@ get.output.files <- function (prov) {
   output.data <- get.proc.data(prov)$entity
   output.files <- file.nodes[file.nodes$id %in% output.data, ]
   return (output.files)
+}
+
+#' @rdname access
+#' @return get.preexisting returns a data frame containing variables in the global environment 
+#' that are used but not set by a script or a console session.
+#' @export
+get.preexisting <- function(prov) {
+  data.nodes <- get.data.nodes(prov)
+  if (is.null (data.nodes)) return (NULL)
+
+  vars <- data.nodes[data.nodes$fromEnv == TRUE, "name"]
+  vars <- as.data.frame(vars, stringsAsFactors = FALSE)
+  colnames(vars) <- "name"
+  
+  return(vars)
 }
 
 #' @rdname access
