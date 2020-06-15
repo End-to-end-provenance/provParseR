@@ -1,5 +1,5 @@
 # Copyright (C) President and Fellows of Harvard College and 
-# Trustees of Mount Holyoke College, 2018, 2019.
+# Trustees of Mount Holyoke College, 2018, 2019, 2020.
 
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
