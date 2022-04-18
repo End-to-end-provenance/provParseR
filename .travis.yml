@@ -13,10 +13,5 @@ r_packages:
   - devtools
   - jsonlite
 
-r_github_packages:
-  - ProvTools/provParseR
-
 notifications:
   slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
-
-
