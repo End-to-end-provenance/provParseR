@@ -13,5 +13,8 @@ r_packages:
   - devtools
   - jsonlite
 
+r_github_packages:
+  - End-to-end-provenance/rdtLite
+
 notifications:
   slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
