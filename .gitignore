@@ -5,5 +5,4 @@
 /provParseR.Rcheck/
 *.tar.gz
 /.project
-/.travis.yml~
 /.DS_Store
