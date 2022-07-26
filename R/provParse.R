@@ -330,7 +330,7 @@ parse.libs <- function(m.list) {
   }
   else {
     libraries <- libraries[,c("id", "name", "version")]
-    libraries$fromScript <- FALSE
+    libraries$whereLoaded <- "unknown"
   }
   return(libraries)
 }
