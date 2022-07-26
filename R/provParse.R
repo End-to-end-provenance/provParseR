@@ -322,11 +322,11 @@ parse.libs <- function(m.list) {
   # add unneeded columns
   libraries <- parse.from.identifier("l", m.list)
   
-  # Pull out columns of info wanted.  The "fromScript" column was
+  # Pull out columns of info wanted.  The "whereLoaded" column was
   # added with rdtLite 1.4
   columns <- colnames(libraries)
-  if ("fromScript" %in% columns) {
-  	libraries <- libraries[,c("id", "name", "version", "fromScript")]
+  if ("whereLoaded" %in% columns) {
+  	libraries <- libraries[,c("id", "name", "version", "whereLoaded")]
   }
   else {
     libraries <- libraries[,c("id", "name", "version")]
