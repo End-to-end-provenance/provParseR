@@ -1,7 +1,7 @@
 Package: provParseR
 Title: Pulls Information from Prov.Json Files
-Version: 0.3
-Date: 2020-06-15
+Version: 1.0
+Date: 2022-08-01
 Authors@R: c(
     person("Orenna", "Brand", email = "o.brand@columbia.edu", role = "aut"),
     person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = "aut"),
