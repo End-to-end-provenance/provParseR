@@ -10,10 +10,12 @@ context("Environment access function")
 envi.df <- get.environment(prov)
 expect_match(class(envi.df), "data.frame")
 expect_match(typeof(envi.df$value), "character")
-expect_equal(nrow(envi.df), 12)
+expect_equal(nrow(envi.df), 16)
+print (envi.df)
 expect_equal(ncol(envi.df), 2)
-expect_equal (envi.df$label, c("name", "architecture", "operatingSystem", "language", "langVersion",
-        "script", "scriptTimeStamp", "totalElapsedTime", "workingDirectory", "provDirectory", "provTimestamp", 
+expect_equal (envi.df$label, c("name", "architecture", "operatingSystem", "language", "langVersion", "ui", "pandoc",
+        "script", "scriptTimeStamp", "scriptHash", "totalElapsedTime", 
+        "sourcedScriptHashes", "workingDirectory", "provDirectory", "provTimestamp", 
         "hashAlgorithm"))
 
 ## Tool information
@@ -26,7 +28,7 @@ expect_match(typeof(tool.df$json.version), "character")
 expect_equal(nrow(tool.df), 1)
 expect_equal(ncol(tool.df), 3)
 expect_equal (tool.df$tool.name, "rdtLite")
-expect_equal (tool.df$tool.version, "1.1.1")
+expect_equal (tool.df$tool.version, "1.4")
 expect_equal (tool.df$json.version, "2.3")
 
 ## Arguments
@@ -85,10 +87,10 @@ expect_equal(errors.df$value, "Error in FUN(newX[, i], ...): invalid 'type' (cha
 context("Function nodes access function")
 func.df <- get.func.nodes(prov)
 expect_match(class(func.df), "data.frame")
-expect_equal(nrow(func.df), 5)
+expect_equal(nrow(func.df), 4)
 expect_match(typeof(func.df$name), "character")
 expect_equal(ncol(func.df), 2)
-expect_equal (func.df$name, c("read.csv", "write.csv", "pdf", "plot", "dev.off"))
+expect_equal (func.df$name, c("read.csv", "write.csv", "pdf", "dev.off"))
 
 ## Procedure-to-procedure edges
 context("Procedure-to-procedure edges access function")
@@ -123,7 +125,7 @@ func.proc.df <- get.func.proc(prov)
 expect_match(class(func.proc.df), "data.frame")
 expect_match(typeof(func.proc.df$"function"), "character")
 expect_match(typeof(func.proc.df$activity), "character")
-expect_equal(nrow(func.proc.df), 7)
+expect_equal(nrow(func.proc.df), 6)
 expect_equal(ncol(func.proc.df), 3)
 
 ## Function-library grouping
@@ -132,7 +134,7 @@ func.lib.df <- get.func.lib(prov)
 expect_match(class(func.lib.df), "data.frame")
 expect_match(typeof(func.lib.df$library), "character")
 expect_match(typeof(func.lib.df$"function"), "character")
-expect_equal(nrow(func.lib.df), 5)
+expect_equal(nrow(func.lib.df), 4)
 expect_equal(ncol(func.lib.df), 3)
 
 ## Library nodes
@@ -141,8 +143,8 @@ libs.df <- get.libs(prov)
 expect_match(class(libs.df), "data.frame")
 expect_match(typeof(libs.df$name), "character")
 expect_match(typeof(libs.df$version), "character")
-expect_equal(nrow(libs.df), 8)
-expect_equal(ncol(libs.df), 3)
+expect_equal(nrow(libs.df), 43)
+expect_equal(ncol(libs.df), 4)
 
 ## Scripts
 context("Scripts access function")
@@ -206,7 +208,7 @@ context("String prov - Environment access function")
 envi.df <- get.environment(prov)
 expect_match(class(envi.df), "data.frame")
 expect_match(typeof(envi.df$value), "character")
-expect_equal(nrow(envi.df), 12)
+expect_equal(nrow(envi.df), 16)
 expect_equal(ncol(envi.df), 2)
 
 context("String prov - Procedure nodes access function")

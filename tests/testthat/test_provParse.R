@@ -105,7 +105,7 @@ expect_match(class(libs.df), "data.frame")
 expect_match(typeof(libs.df$name), "character")
 expect_match(typeof(libs.df$version), "character")
 expect_equal(nrow(libs.df), 13)
-expect_equal(ncol(libs.df), 3)
+expect_equal(ncol(libs.df), 4)
 
 context("Scripts access function")
 scripts.df <- get.scripts(prov)
