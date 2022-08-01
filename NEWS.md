@@ -1,3 +1,7 @@
+# provParseR 0.3
+
+* Added get.preexisting function to the API.
+
 # provParseR 0.2
 
 * Added functions: get.stdout.nodes, get.args, get.val.type, get.tool.info

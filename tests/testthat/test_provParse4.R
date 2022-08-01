@@ -101,7 +101,7 @@ expect_match(class(libs.df), "data.frame")
 expect_match(typeof(libs.df$name), "character")
 expect_match(typeof(libs.df$version), "character")
 expect_equal(nrow(libs.df), 8)
-expect_equal(ncol(libs.df), 3)
+expect_equal(ncol(libs.df), 4)
 expect_setequal (libs.df$name, c("base", "datasets", "ggplot2", "graphics", "grDevices",
         "methods", "stats", "utils"))
 

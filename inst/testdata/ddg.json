@@ -5,7 +5,6 @@
 	},
 
 	"activity" : {
-		// procedure nodes
 		"p1": {
 			"rdt:name": "exercise.R",
 			"rdt:type": "Start",
@@ -379,7 +378,6 @@
 	},
 
 	"entity" : {
-		// data nodes
 		"d1": {
 			"rdt:name": "http://harvardforest.fas.harvard.edu/sites/harvardforest.fas.harvard.edu/files/weather/metsta.dat",
 			"rdt:value": "data/1-metsta.dat",
@@ -557,7 +555,6 @@
 			"rdt:location": "/Users/orenna/dev.off.16.pdf"
 		},
 
-		// environment
 		"environment": {
 			"rdt:name": "environment",
 			"rdt:architecture": "x86_64",
@@ -575,7 +572,6 @@
 			"rdt:hashAlgorithm": "md5"
 		},
 
-		// library nodes - prov collections
 		"l1": {
 			"name": "base",
 			"version": "3.5.0",
@@ -681,7 +677,6 @@
 			}
 		},
 
-		// function nodes
 		"f1": {
 			"name": "read.csv"
 		},
@@ -709,7 +704,6 @@
 	},
 
 	"wasInformedBy" : {
-		// procedure-to-procedure edges
 		"pp1": {
 			"prov:informant": "rdt:p1",
 			"prov:informed": "rdt:p2"
@@ -857,7 +851,6 @@
 	},
 
 	"wasGeneratedBy" : {
-		// procedure-to-data edges
 		"pd1": {
 			"prov:activity": "rdt:p2",
 			"prov:entity": "rdt:d2"
@@ -921,7 +914,6 @@
 	},
 
 	"used" : {
-		// data-to-procedure edges
 		"dp1": {
 			"prov:entity": "rdt:d1",
 			"prov:activity": "rdt:p2"
@@ -1079,7 +1071,6 @@
 			"prov:activity": "rdt:p37"
 		},
 
-		// function-to-procedure edges
 		"fp1": {
 			"prov:entity": "rdt:f1",
 			"prov:activity": "rdt:p2"
@@ -1115,7 +1106,6 @@
 	},
 
 	"hadMember" : {
-		// groups function nodes with their library nodes
 		"m1": {
 			"prov:collection": "rdt:l5",
 			"prov:entity": "rdt:f5"

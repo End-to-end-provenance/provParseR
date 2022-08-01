@@ -322,8 +322,16 @@ parse.libs <- function(m.list) {
   # add unneeded columns
   libraries <- parse.from.identifier("l", m.list)
   
-  # Pull out columns of info wanted
-  libraries <- libraries[,c("id", "name", "version")]
+  # Pull out columns of info wanted.  The "whereLoaded" column was
+  # added with rdtLite 1.4
+  columns <- colnames(libraries)
+  if ("whereLoaded" %in% columns) {
+  	libraries <- libraries[,c("id", "name", "version", "whereLoaded")]
+  }
+  else {
+    libraries <- libraries[,c("id", "name", "version")]
+    libraries$whereLoaded <- "unknown"
+  }
   return(libraries)
 }
 
@@ -794,6 +802,17 @@ get.func.lib <- function(prov) {
     return (func.lib.df[c("func_id", "function", "library")])
   } 
 }
+
+get.libs.needed <- function (prov, proc_ids) {
+    func.proc.edges <- prov@func.proc.edges
+    if (nrow (func.proc.edges) == 0) return (vector())
+    func.nodes <- get.func.nodes (prov)
+    print (func.nodes)
+    matching <- func.nodes[func.nodes$activity %in% proc_ids, ]
+    print (matching)
+    return (matching)
+}
+	
 
 #' @rdname access
 #' @return get.input.files returns a data frame containing a subset of the data nodes that correspond to files that are 
