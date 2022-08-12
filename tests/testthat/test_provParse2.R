@@ -10,12 +10,12 @@ context("Environment access function")
 envi.df <- get.environment(prov)
 expect_match(class(envi.df), "data.frame")
 expect_match(typeof(envi.df$value), "character")
-expect_equal(nrow(envi.df), 16)
+expect_equal(nrow(envi.df), 15)
 print (envi.df)
 expect_equal(ncol(envi.df), 2)
 expect_equal (envi.df$label, c("name", "architecture", "operatingSystem", "language", "langVersion", "ui", "pandoc",
         "script", "scriptTimeStamp", "scriptHash", "totalElapsedTime", 
-        "sourcedScriptHashes", "workingDirectory", "provDirectory", "provTimestamp", 
+        "workingDirectory", "provDirectory", "provTimestamp", 
         "hashAlgorithm"))
 
 ## Tool information
@@ -153,7 +153,7 @@ expect_match(class(scripts.df), "data.frame")
 expect_match(typeof(scripts.df$script), "character")
 expect_match(typeof(scripts.df$timestamp), "character")
 expect_equal (nrow (scripts.df), 1)
-expect_equal(ncol(scripts.df), 2)
+expect_equal(ncol(scripts.df), 3)
 
 ## Input files
 context ("Input files")
@@ -208,7 +208,7 @@ context("String prov - Environment access function")
 envi.df <- get.environment(prov)
 expect_match(class(envi.df), "data.frame")
 expect_match(typeof(envi.df$value), "character")
-expect_equal(nrow(envi.df), 16)
+expect_equal(nrow(envi.df), 15)
 expect_equal(ncol(envi.df), 2)
 
 context("String prov - Procedure nodes access function")
