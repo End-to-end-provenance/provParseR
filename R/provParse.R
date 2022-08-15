@@ -304,6 +304,9 @@ parse.envi <- function(m.list) {
   # function
   env <- env[-which(names(env) == "sourcedScripts")]
   env <- env[-which(names(env) == "sourcedScriptTimeStamps")]
+  if ("sourcedScriptHashes" %in% names(env)) {
+    env <- env[-which(names(env) == "sourcedScriptHashes")]
+  }
   
   # Swap rows and columns for clarity and apply name the column
   environment <- t(as.data.frame(env))
@@ -342,16 +345,30 @@ parse.scripts <- function(m.list) {
   env <- m.list$environment
   
   # Put the main script in the table
-  scripts.df <- data.frame (script = env$script[1], timestamp = env$scriptTimeStamp[1],
-      stringsAsFactors = F)
+  scripts.df <- 
+    if ("scriptHash" %in% names(env)) 
+      data.frame (script = env$script[1], 
+                  timestamp = env$scriptTimeStamp[1],
+                  hash = env$scriptHash[1], stringsAsFactors = F)
+    else 
+      data.frame (script = env$script[1], 
+                  timestamp = env$scriptTimeStamp[1],
+                  hash = "", stringsAsFactors = F)
   
   # Grab the sourced script names
   scripts <- env$`sourcedScripts`
   
   if (length(scripts) > 0 && scripts[1] != "") {
     # Append the sourced scripts
-    scripts.df <- rbind (scripts.df, 
-        cbind(script = scripts, timestamp = env$`sourcedScriptTimeStamps`))
+    scripts.df <- 
+      if ("sourcedScriptHashes" %in% names(env)) 
+        rbind (scripts.df, cbind(script = scripts, 
+                                 timestamp = env$`sourcedScriptTimeStamps`, 
+                                 hash = env$`sourcedScriptHashes`))
+      else 
+        rbind (scripts.df, cbind(script = scripts, 
+                                 timestamp = env$`sourcedScriptTimeStamps`, 
+                                 hash = rep("", length(scripts))))
   }
   
   return(scripts.df)

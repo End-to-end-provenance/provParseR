@@ -1,7 +1,7 @@
 Package: provParseR
 Title: Pulls Information from Prov.Json Files
 Version: 1.0
-Date: 2022-08-01
+Date: 2022-08-08
 Authors@R: c(
     person("Orenna", "Brand", email = "o.brand@columbia.edu", role = "aut"),
     person("Joseph", "Wonsil", email = "jwonsil@carthage.edu", role = "aut"),
@@ -16,7 +16,6 @@ Description: R functions to access provenance information collected by 'rdt' or
 Depends: R (>= 3.3)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
-LazyData: true
 Imports: 
     jsonlite,
     methods
