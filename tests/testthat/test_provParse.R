@@ -113,7 +113,7 @@ expect_match(class(scripts.df), "data.frame")
 expect_equal (nrow (scripts.df), 1)
 expect_match(typeof(scripts.df$script), "character")
 expect_match(typeof(scripts.df$timestamp), "character")
-expect_equal(ncol(scripts.df), 2)
+expect_equal(ncol(scripts.df), 3)
 
 context ("Input files")
 input.files <- get.input.files (prov, only.files=TRUE)
